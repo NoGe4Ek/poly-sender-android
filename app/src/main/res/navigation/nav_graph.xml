@@ -3,26 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/UserListFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.poly.poly_sender_android.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/UserListFragment"
+        android:name="com.poly.testwaveaccess.ui.userList.UserListFragment"
+        android:label="Users"
+        tools:layout="@layout/fragment_attributes">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_UserListFragment_to_UserDetailsFragment"
+            app:destination="@id/UserDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.poly.poly_sender_android.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/UserDetailsFragment"
+        android:name="com.poly.testwaveaccess.ui.userDetails.UserDetailsFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_user_details">
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="-1" />
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_UserDetailsFragment_to_UserListFragment"
+            app:destination="@id/UserListFragment" />
+
+        <action
+            android:id="@+id/action_UserDetailsFragment_to_UserDetailsFragment"
+            app:destination="@id/UserDetailsFragment" />
     </fragment>
 </navigation>
