@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/user_card"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/attribute_card"
     style="@style/Widget.Material3.CardView.Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -22,36 +23,27 @@
         android:paddingBottom="8dp">
 
         <TextView
-            android:id="@+id/card_name"
+            android:id="@+id/card_student_name"
             style="@style/Theme.HiNote.TextView.Header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ex_card_textview_name"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="@id/card_student_email"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/card_email"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="AttrName" />
 
         <TextView
-            android:layout_marginTop="8dp"
-            android:id="@+id/card_email"
+            android:id="@+id/card_student_email"
             style="@style/Theme.HiNote.TextView.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ex_card_textview_email"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_name" />
-
-        <TextView
-            android:id="@+id/card_isActive"
-            style="@style/Theme.HiNote.TextView.Extra"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ex_card_textview_isactive"
-            app:layout_constraintTop_toBottomOf="@id/card_email"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/card_student_name"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Email: email@email.ru" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

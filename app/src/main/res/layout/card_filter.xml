@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/user_card"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/filter_card"
     style="@style/Widget.Material3.CardView.Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,37 +22,106 @@
         android:paddingEnd="16dp"
         android:paddingBottom="8dp">
 
-        <TextView
-            android:id="@+id/card_name"
-            style="@style/Theme.HiNote.TextView.Header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ex_card_textview_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/card_email"
-            app:layout_constraintVertical_chainStyle="packed" />
+        <ImageView
+            android:id="@+id/card_filter_button_edit"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="card_button_edit"
+            android:src="@drawable/ic_card_edit"
+            app:layout_constraintBottom_toBottomOf="@id/card_filter_name"
+            app:layout_constraintEnd_toStartOf="@id/card_filter_button_delete"
+            app:layout_constraintTop_toTopOf="@id/card_filter_name"
+            app:tint="?attr/colorPrimary" />
+
+        <ImageView
+            android:id="@+id/card_filter_button_delete"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="card_button_delete"
+            android:src="@drawable/ic_card_delete"
+            app:layout_constraintBottom_toBottomOf="@id/card_filter_name"
+            app:layout_constraintEnd_toStartOf="@id/card_filter_button_share"
+            app:layout_constraintTop_toTopOf="@id/card_filter_name"
+            app:tint="?attr/colorPrimary" />
+
+        <ImageView
+            android:id="@+id/card_filter_button_share"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:contentDescription="card_button_share"
+            android:src="@drawable/ic_card_share"
+            app:layout_constraintBottom_toBottomOf="@id/card_filter_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/card_filter_name"
+            app:tint="?attr/colorPrimary" />
 
         <TextView
-            android:layout_marginTop="8dp"
-            android:id="@+id/card_email"
+            android:id="@+id/card_filter_name"
+            style="@style/Theme.HiNote.TextView.Header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="@id/card_filter_email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.7"
+            tools:text="FilterName" />
+
+        <TextView
+            android:id="@+id/card_filter_email"
             style="@style/Theme.HiNote.TextView.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ex_card_textview_email"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/card_filter_student_count"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_name" />
+            app:layout_constraintTop_toBottomOf="@id/card_filter_name"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Email: email@mail.ru" />
 
         <TextView
-            android:id="@+id/card_isActive"
-            style="@style/Theme.HiNote.TextView.Extra"
+            android:id="@+id/card_filter_student_count"
+            style="@style/Theme.HiNote.TextView.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ex_card_textview_isactive"
-            app:layout_constraintTop_toBottomOf="@id/card_email"
+            app:layout_constraintBottom_toTopOf="@id/card_filter_creation_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_filter_email"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Студенты: 3" />
+
+        <TextView
+            android:id="@+id/card_filter_creation_type"
+            style="@style/Theme.HiNote.TextView.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/card_filter_mode"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_filter_student_count"
+            tools:text="Создан: из списка" />
+
+        <TextView
+            android:id="@+id/card_filter_mode"
+            style="@style/Theme.HiNote.TextView.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/card_filter_creation_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_filter_creation_type"
+            tools:text="Режим: no-reply" />
+
+        <TextView
+            android:id="@+id/card_filter_creation_date"
+            style="@style/Theme.HiNote.TextView.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_filter_mode"
+            tools:text="Дата создания: dd.mm.yyyy" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
