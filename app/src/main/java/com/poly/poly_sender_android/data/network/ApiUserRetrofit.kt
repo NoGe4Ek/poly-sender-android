@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface ApiUserRetrofit {
 
-    @GET(Constants.USERS_URL)
+    @POST(Constants.USERS_URL)
     suspend fun get(): List<UserNetworkEntity>
 
 }

@@ -17,7 +17,7 @@ class LoginActor: Actor<LoginState, UserDetailsWish, LoginEffect>() {
         wish: UserDetailsWish
     ): Flow<LoginEffect?> = flow {
         when (wish) {
-            is UserDetailsWish.GetUserDetails -> {
+            is LoginWish.Login -> {
                 try {
                     val user = mainRepository.getUser(wish.userId)
                     val friends = mutableListOf<User>()
