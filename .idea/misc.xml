@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/card_attribute.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/card_filter.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/card_student.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/fragment_attributes.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/fragment_creation_attribute.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/fragment_login.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/fragment_register.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/fragment_restore.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/fragment_student_profile.xml" value="0.33" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_card_delete.xml" value="0.139" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_card_edit.xml" value="0.139" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_card_share.xml" value="0.139" />
@@ -40,7 +52,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

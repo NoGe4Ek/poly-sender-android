@@ -1,6 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_view_student_profile_square"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_marginTop="32dp"
+            android:contentDescription="student_profile_square"
+            android:src="@drawable/ic_profile_square"
+            android:translationZ="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?attr/colorPrimary" />
+
+        <TextView
+            style="@style/Theme.HiNote.TextView.AppHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="БИ"
+            android:textColor="?attr/colorOnPrimary"
+            android:translationZ="30dp"
+            app:layout_constraintBottom_toBottomOf="@id/image_view_student_profile_square"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/image_view_student_profile_square"
+            app:tint="?attr/colorPrimary" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="32dp"
+            app:cardElevation="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_view_student_profile_name"
+                    style="@style/Theme.HiNote.TextView.Header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="64dp"
+                    app:layout_constraintWidth_default="percent"
+                    app:layout_constraintWidth_percent="0.9"
+                    android:text="Бакланов Иван Дмитриевич"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="@id/text_view_student_profile_role"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_view_student_profile_role"
+                    style="@style/Theme.HiNote.TextView.Extra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Студент"
+                    app:layout_constraintBottom_toTopOf="@id/text_view_student_profile_financing"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_name" />
+
+                <TextView
+                    android:id="@+id/text_view_student_profile_financing"
+                    style="@style/Theme.HiNote.TextView.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Финансирование:\nБюджет"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="@id/text_view_student_profile_form"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_role" />
+
+                <TextView
+                    android:id="@+id/text_view_student_profile_form"
+                    style="@style/Theme.HiNote.TextView.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Форма обучения:\nОчная"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="text_view_student_profile_program_type"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_financing" />
+
+                <TextView
+                    android:id="@+id/text_view_student_profile_program_type"
+                    style="@style/Theme.HiNote.TextView.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Тип программы:\nМагистратура"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="text_view_student_profile_direction"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_form" />
+
+                <TextView
+                    android:id="@+id/text_view_student_profile_direction"
+                    style="@style/Theme.HiNote.TextView.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Направление:\nИнформатика и вычислительная техника"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="text_view_student_profile_orientation"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_program_type" />
+
+                <TextView
+                    android:id="@+id/text_view_student_profile_orientation"
+                    style="@style/Theme.HiNote.TextView.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Направленность:\nТехнологии проектирования системного и прикладного программного обеспечения"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="text_view_student_profile_targeted_training"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_direction" />
+
+                <TextView
+                    android:id="@+id/text_view_student_profile_targeted_training"
+                    style="@style/Theme.HiNote.TextView.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Целевое назначение:\nНе целевой"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="text_view_student_profile_group_number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_orientation" />
+
+                <TextView
+                    android:id="@+id/text_view_student_profile_group_number"
+                    style="@style/Theme.HiNote.TextView.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Номер группы:\n3540901/11501"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="text_view_student_profile_curse"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_targeted_training" />
+
+                <TextView
+                    android:id="@+id/text_view_student_profile_curse"
+                    style="@style/Theme.HiNote.TextView.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Курс:\n1"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="text_view_student_profile_section_attribute"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_group_number" />
+
+                <TextView
+                    android:id="@+id/text_view_student_profile_section_attribute"
+                    style="@style/Theme.HiNote.TextView.Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Раздел:\nАтрибут"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_curse" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
