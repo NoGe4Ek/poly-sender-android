@@ -19,11 +19,11 @@ class CreationSectionActor : Actor<CreationSectionState, CreationSectionWish, Cr
             is CreationSectionWish.CreateSection -> {
                 try {
                     emit(CreationSectionEffect.Loading)
-                    val users = mainRepository.cacheAndGetUsers()
-
+                    val creationSectionResponse = mainRepository.createGroupName(mainRepository.user.idStaff, wish.sectionName)
+                    emit(CreationSectionEffect.Success)
                 } catch (e: Exception) {
                     val errorMessage = e.message ?: "Unknown exception"
-                    emit(CreationAttributeEffect.RefreshFailure(false, errorMessage))
+                    emit(CreationSectionEffect.Failure(errorMessage))
                 }
             }
         }

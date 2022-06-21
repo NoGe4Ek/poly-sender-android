@@ -7,9 +7,9 @@ import javax.inject.Inject
 
 class CreationSectionStore @Inject constructor(
     logger: Logger
-): Store<CreationAttributeState, CreationAttributeWish, CreationAttributeEffect, CreationAttributeNews>(logger) {
+): Store<CreationSectionState, CreationSectionWish, CreationSectionEffect, CreationSectionNews>(logger) {
     init {
-        actor = CreationAttributeActor()
-        reducer = CreationAttributeReducer()
+        actor = CreationSectionActor()
+        reducer = CreationSectionReducer()
     }
 }
