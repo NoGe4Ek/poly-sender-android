@@ -1,11 +1,14 @@
-package com.poly.poly_sender_android.ui.attributes.mvi
+package com.poly.poly_sender_android.ui.attributes.creationSection.mvi
 
+import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.data.models.domainModel.User
 import com.poly.poly_sender_android.mvi.Effect
+import com.poly.poly_sender_android.ui.attributes.SearchParam
+import com.poly.poly_sender_android.ui.attributes.mvi.AttributesEffect
+import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeEffect
 
 sealed interface CreationSectionEffect: Effect {
-    data class RefreshInProcess(val isLoading: Boolean = true): CreationAttributeEffect
-    data class RefreshSuccess(val isLoading: Boolean = false, val users: List<User>): CreationAttributeEffect
-    data class RefreshFailure(val isLoading: Boolean = false, val errorMessage: String):
-        CreationAttributeEffect
+    object Loading : CreationSectionEffect
+    object Success : CreationSectionEffect
+    data class Failure(val errorMessage: String) : CreationSectionEffect
 }

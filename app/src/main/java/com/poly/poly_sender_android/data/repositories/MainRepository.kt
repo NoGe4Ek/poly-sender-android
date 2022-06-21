@@ -1,9 +1,6 @@
 package com.poly.poly_sender_android.data.repositories
 
-import com.poly.poly_sender_android.data.models.domainModel.Attribute
-import com.poly.poly_sender_android.data.models.domainModel.GetAccessResponse
-import com.poly.poly_sender_android.data.models.domainModel.RestoreResponse
-import com.poly.poly_sender_android.data.models.domainModel.User
+import com.poly.poly_sender_android.data.models.domainModel.*
 import com.poly.poly_sender_android.data.network.SignInBody
 import javax.inject.Singleton
 
@@ -25,4 +22,6 @@ interface MainRepository {
     suspend fun restorePassword(login: String): RestoreResponse
 
     suspend fun getDataAttributesCurrentStaff(id: String): List<Attribute>
+
+    suspend fun createGroupName(id: String, groupName: String): CreateGroupResponse
 }
