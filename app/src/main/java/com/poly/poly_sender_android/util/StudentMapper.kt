@@ -8,15 +8,25 @@ import javax.inject.Inject
 class StudentMapper @Inject constructor(): EntityMapper<StudentNetworkEntity, Student>() {
 
     override fun mapFromEntity(entity: StudentNetworkEntity): Student {
-        return Student(
-
-        )
+        with(entity) {
+            return Student(
+                id = id,
+                name = name,
+                email = email,
+                attributes = mapAttributesToAttributesItem(attributes)
+            )
+        }
     }
 
     override fun mapToEntity(domainModel: Student): StudentNetworkEntity {
-        return StudentNetworkEntity(
-
-        )
+        with(domainModel) {
+            return StudentNetworkEntity(
+                id = id,
+                name = name,
+                email = email,
+                attributes = mapAttributesItemToAttributes(attributes)
+            )
+        }
     }
 
     private fun mapAttributesToAttributesItem(attributes: Map<String, List<String>>): AttributesItem {
@@ -75,11 +85,5 @@ class StudentMapper @Inject constructor(): EntityMapper<StudentNetworkEntity, St
         }
 
         return attributes
-    }
-}
-
-class AttributesMapper {
-    companion object {
-
     }
 }
