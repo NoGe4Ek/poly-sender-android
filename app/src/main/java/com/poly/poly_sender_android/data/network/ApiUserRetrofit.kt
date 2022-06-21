@@ -1,7 +1,10 @@
 package com.poly.poly_sender_android.data.network
 
 import com.poly.poly_sender_android.data.models.domainModel.GetAccessResponse
-import com.poly.poly_sender_android.data.models.networkModel.*
+import com.poly.poly_sender_android.data.models.networkModel.AttributeNetworkEntity
+import com.poly.poly_sender_android.data.models.networkModel.GetAccessResponseNetworkEntity
+import com.poly.poly_sender_android.data.models.networkModel.RestoreResponseNetworkEntity
+import com.poly.poly_sender_android.data.models.networkModel.UserNetworkEntity
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -19,6 +22,8 @@ interface ApiRetrofit {
     @POST(Constants.URL_getAttributesCurrentStaff)
     suspend fun getDataAttributesCurrentStaff(@Body commonRequestBody: CommonRequestBody): List<AttributeNetworkEntity>
 
+    @POST(Constants.URL_createGroupName)
+    suspend fun createGroupName(@Body createGroupBody: CreateGroupBody): CreateGroupResponseNetworkEntity
     @POST(Constants.URL_getFilters)
     suspend fun getFilters(@Body commonRequestBody: CommonRequestBody) : List<FilterNetworkEntity>
 }

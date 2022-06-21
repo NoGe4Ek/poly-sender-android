@@ -1,8 +1,8 @@
-package com.poly.poly_sender_android.ui.attributes.mvi
+package com.poly.poly_sender_android.ui.attributes.creationSection.mvi
 
 import com.poly.poly_sender_android.mvi.Wish
+import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeWish
 
 sealed interface CreationSectionWish: Wish {
-    object SmartRefresh: CreationAttributeWish
-    object RefreshFromNetwork: CreationAttributeWish
+    data class CreateSection(val name: String): CreationSectionWish
 }

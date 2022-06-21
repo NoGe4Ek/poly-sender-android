@@ -6,6 +6,6 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.auth.AuthActivity">
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_auth" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

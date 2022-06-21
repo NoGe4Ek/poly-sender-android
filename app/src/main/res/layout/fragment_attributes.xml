@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/search_view" />
 
-    <SearchView
+    <android.widget.SearchView
         android:id="@+id/search_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -29,9 +29,12 @@
         android:id="@+id/attribute_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constrainedHeight="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_view" />
+        app:layout_constraintTop_toBottomOf="@id/search_view"
+        tools:listitem="@layout/card_attribute" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/floating_button_add_section"
@@ -41,15 +44,15 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:contentDescription="floating_button_add_section"
+        android:contentDescription="@string/floating_button_add_section"
         android:focusable="true"
-        android:text="Раздел"
         android:visibility="invisible"
         app:icon="@drawable/ic_card_edit"
         app:layout_constraintBottom_toTopOf="@id/floating_button_add_attribute"
         app:layout_constraintEnd_toEndOf="@id/floating_button_add_attribute"
         app:layout_constraintStart_toStartOf="@id/floating_button_add_attribute"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/ic_add"
+        tools:text="Раздел" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/floating_button_add_attribute"
@@ -59,14 +62,14 @@
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:contentDescription="floating_button_add_attribute"
+        android:contentDescription="@string/floating_button_add_attribute"
         android:focusable="true"
-        android:text="Атрибут"
         android:visibility="invisible"
         app:icon="@drawable/ic_card_edit"
         app:layout_constraintBottom_toTopOf="@id/floating_button_add"
         app:layout_constraintEnd_toEndOf="@id/floating_button_add"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/ic_add"
+        tools:text="Атрибут" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_button_add"
@@ -76,7 +79,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:clickable="true"
-        android:contentDescription="floating_button_add"
+        android:contentDescription="@string/floating_button_add_for_attribute"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.attributes.AttributesFragment">
+    tools:context=".ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionFragment">
 
     <Button
         android:id="@+id/button_filter"
         style="@style/Widget.Material3.Button.IconButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:icon="@drawable/ic_filter"
         android:layout_marginEnd="32dp"
+        app:icon="@drawable/ic_filter"
         app:layout_constraintBottom_toBottomOf="@id/checkbox_all"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
         android:id="@+id/checkbox_all"
         android:layout_width="0dp"
-        android:layout_marginStart="32dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,10 +29,10 @@
         style="@style/Theme.HiNote.TextView.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Выбрать всех"
+        app:layout_constraintBottom_toBottomOf="@id/checkbox_all"
         app:layout_constraintStart_toEndOf="@id/checkbox_all"
         app:layout_constraintTop_toTopOf="@id/checkbox_all"
-        app:layout_constraintBottom_toBottomOf="@id/checkbox_all"/>
+        tools:text="Выбрать всех" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/md_all"
@@ -40,29 +40,32 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_all"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checkbox_all" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/student_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@id/button_next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/md_all"
-        app:layout_constraintBottom_toTopOf="@id/button_next"/>
+        tools:listitem="@layout/card_student" />
 
     <Button
         android:id="@+id/button_next"
+        style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Далее"
-        android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        style="@style/Widget.Material3.Button.TonalButton"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Далее" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,14 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginTop="256dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toTopOf="@id/button_creation_section"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        android:hint="Название раздела">
+        tools:hint="Название раздела">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -28,15 +28,14 @@
 
     <Button
         android:id="@+id/button_creation_section"
+        style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Создать раздел"
-        android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_field_section_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        style="@style/Widget.Material3.Button.TonalButton"
-        />
+        tools:text="Создать раздел" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
