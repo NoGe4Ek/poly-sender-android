@@ -1,13 +1,10 @@
 package com.poly.poly_sender_android.ui.attributes.mvi
 
-import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.mvi.Actor
-import com.poly.poly_sender_android.ui.auth.login.mvi.LoginEffect
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import java.util.jar.Attributes
 
 class AttributesActor : Actor<AttributesState, AttributesWish, AttributesEffect>() {
 

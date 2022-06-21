@@ -9,14 +9,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.databinding.FragmentAttributesBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.adapters.AttributesAdapter
-import com.poly.poly_sender_android.ui.attributes.mvi.*
+import com.poly.poly_sender_android.ui.attributes.mvi.AttributesNews
+import com.poly.poly_sender_android.ui.attributes.mvi.AttributesState
+import com.poly.poly_sender_android.ui.attributes.mvi.AttributesWish
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

@@ -22,4 +22,8 @@ interface ApiRetrofit {
     @POST(Constants.URL_getAttributesCurrentStaff)
     suspend fun getDataAttributesCurrentStaff(@Body commonRequestBody: CommonRequestBody): List<AttributeNetworkEntity>
 
+    @POST(Constants.URL_createGroupName)
+    suspend fun createGroupName(@Body createGroupBody: CreateGroupBody): CreateGroupResponseNetworkEntity
+    @POST(Constants.URL_getFilters)
+    suspend fun getFilters(@Body commonRequestBody: CommonRequestBody) : List<FilterNetworkEntity>
 }

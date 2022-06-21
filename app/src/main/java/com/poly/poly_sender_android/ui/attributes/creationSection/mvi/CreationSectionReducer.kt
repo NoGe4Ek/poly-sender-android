@@ -1,25 +1,30 @@
-package com.poly.poly_sender_android.ui.attributes.mvi
+package com.poly.poly_sender_android.ui.attributes.creationSection.mvi
 
 import android.widget.Toast
 import com.poly.poly_sender_android.mvi.Reducer
+import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeEffect
+import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeNews
+import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeState
 
-class CreationSectionReducer: Reducer<CreationAttributeState, CreationAttributeEffect, CreationAttributeNews> {
+class CreationSectionReducer: Reducer<CreationSectionState, CreationSectionEffect, CreationSectionNews> {
 
-    override fun reduce(state: CreationAttributeState, effect: CreationAttributeEffect): Pair<CreationAttributeState?, CreationAttributeNews?> {
-        var reducedState: CreationAttributeState? = null
-        var reducedNews: CreationAttributeNews? = null
+    override fun reduce(state: CreationSectionState, effect: CreationSectionEffect): Pair<CreationSectionState?, CreationSectionNews?> {
+        var reducedState: CreationSectionState? = null
+        var reducedNews: CreationSectionNews? = null
         when (effect) {
-            is CreationAttributeEffect.RefreshInProcess -> {
-                reducedState = state.copy(isLoading = effect.isLoading)
+            is CreationSectionEffect.Loading -> {
+                reducedState = state.copy(isLoading = true)
             }
 
-            is CreationAttributeEffect.RefreshSuccess -> {
-                reducedState = state.copy(isLoading = effect.isLoading, users = effect.users)
+            is CreationSectionEffect.Success -> {
+                reducedState = state.copy(isLoading = false)
+                reducedNews = CreationSectionNews.Message("Section was successfully created")
+                //TODO navigate to attribute fragment
             }
 
-            is CreationAttributeEffect.RefreshFailure -> {
-                reducedState = state.copy(isLoading = effect.isLoading)
-                reducedNews = CreationAttributeNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
+            is CreationSectionEffect.Failure -> {
+                reducedState = state.copy(isLoading = false)
+                reducedNews = CreationSectionNews.Message(effect.errorMessage)
             }
         }
         return reducedState to reducedNews

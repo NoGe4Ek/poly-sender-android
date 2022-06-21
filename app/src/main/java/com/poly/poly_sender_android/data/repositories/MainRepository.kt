@@ -25,4 +25,8 @@ interface MainRepository {
     suspend fun restorePassword(login: String): RestoreResponse
 
     suspend fun getDataAttributesCurrentStaff(id: String): List<Attribute>
+
+    suspend fun createGroupName(id: String, groupName: String): CreateGroupResponse
+
+    suspend fun getFilters(id: String): List<Filter>
 }

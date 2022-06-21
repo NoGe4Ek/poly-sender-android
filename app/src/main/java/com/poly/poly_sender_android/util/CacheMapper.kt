@@ -1,5 +1,5 @@
 package com.poly.poly_sender_android.util
-
+/*
 import com.poly.poly_sender_android.data.models.domainModel.User
 import com.poly.poly_sender_android.data.models.dbModel.UserCacheEntity
 import com.poly.poly_sender_android.data.models.domainModel.EyeColor
@@ -55,4 +55,4 @@ class CacheMapper @Inject constructor(): EntityMapper<UserCacheEntity, User>() {
             isActive = domainModel.isActive,
         )
     }
-}
+}*/
