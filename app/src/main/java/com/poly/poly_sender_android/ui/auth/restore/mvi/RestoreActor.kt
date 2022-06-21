@@ -19,6 +19,7 @@ class RestoreActor : Actor<RestoreState, RestoreWish, RestoreEffect>() {
         when (wish) {
             is RestoreWish.Restore -> {
                 try {
+                    emit(RestoreEffect.Loading)
                     val restoreResponse = mainRepository.restorePassword(wish.login) //TODO do we use this response?
                     emit(RestoreEffect.Success)
                 } catch (e: Exception) {

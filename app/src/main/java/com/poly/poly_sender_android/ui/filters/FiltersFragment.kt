@@ -15,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.poly.poly_sender_android.common.Logger
 import com.poly.testwaveaccess.databinding.FragmentUserListBinding
 import com.poly.poly_sender_android.mvi.MviView
-import com.poly.poly_sender_android.ui.UserListAdapter
+import com.poly.poly_sender_android.ui.adapters.AttributesAdapter
 import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeNews
 import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeState
 import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeWish
@@ -35,7 +35,7 @@ class FiltersFragment : Fragment(), MviView<CreationAttributeState, CreationAttr
     private val binding get() = _binding!!
 
     lateinit var userListRecycler: RecyclerView
-    lateinit var userListAdapter: UserListAdapter
+    lateinit var attributesAdapter: AttributesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +52,7 @@ class FiltersFragment : Fragment(), MviView<CreationAttributeState, CreationAttr
         logger.connect(javaClass)
 
         userListRecycler = binding.userList
-        userListAdapter = UserListAdapter { user ->
+        attributesAdapter = AttributesAdapter { user ->
             if (user.isActive == "true") {
                 val action = UserListFragmentDirections.actionUserListFragmentToUserDetailsFragment(
                     userId = user.id
@@ -64,7 +64,7 @@ class FiltersFragment : Fragment(), MviView<CreationAttributeState, CreationAttr
             }
         }
         userListRecycler.layoutManager = LinearLayoutManager(this.requireContext())
-        userListRecycler.adapter = userListAdapter
+        userListRecycler.adapter = attributesAdapter
 
         with(userListViewModel) {
             bind(viewLifecycleOwner.lifecycleScope, this@FiltersFragment)
@@ -86,7 +86,7 @@ class FiltersFragment : Fragment(), MviView<CreationAttributeState, CreationAttr
         binding.refreshUserList.isRefreshing = state.isLoading
 
         if (state.users.isNotEmpty()) {
-            userListAdapter.submitList(state.users)
+            attributesAdapter.submitList(state.users)
         }
     }
 

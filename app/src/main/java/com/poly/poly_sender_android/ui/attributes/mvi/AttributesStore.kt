@@ -6,9 +6,9 @@ import javax.inject.Inject
 
 class AttributesStore @Inject constructor(
     logger: Logger
-): Store<CreationAttributeState, CreationAttributeWish, CreationAttributeEffect, CreationAttributeNews>(logger) {
+): Store<AttributesState, AttributesWish, AttributesEffect, AttributesNews>(logger) {
     init {
-        actor = CreationAttributeActor()
-        reducer = CreationAttributeReducer()
+        actor = AttributesActor()
+        reducer = AttributesReducer()
     }
 }

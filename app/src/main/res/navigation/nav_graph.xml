@@ -3,34 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/UserListFragment">
+    app:startDestination="@id/AttributesFragment">
 
     <fragment
-        android:id="@+id/UserListFragment"
-        android:name="com.poly.testwaveaccess.ui.userList.UserListFragment"
-        android:label="Users"
+        android:id="@+id/AttributesFragment"
+        android:name="com.poly.poly_sender_android.ui.attributes.AttributesFragment"
+        android:label="Attributes"
         tools:layout="@layout/fragment_attributes">
 
         <action
-            android:id="@+id/action_UserListFragment_to_UserDetailsFragment"
-            app:destination="@id/UserDetailsFragment" />
+            android:id="@+id/action_AttributesFragment_to_StudentProfileFragment"
+            app:destination="@id/StudentProfileFragment" />
     </fragment>
     <fragment
-        android:id="@+id/UserDetailsFragment"
-        android:name="com.poly.testwaveaccess.ui.userDetails.UserDetailsFragment"
-        android:label="Profile"
-        tools:layout="@layout/fragment_user_details">
+        android:id="@+id/StudentProfileFragment"
+        android:name="com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragment"
+        android:label="Student Profile"
+        tools:layout="@layout/fragment_student_profile">
         <argument
-            android:name="userId"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:name="student"
+            app:argType="string" />
 
         <action
-            android:id="@+id/action_UserDetailsFragment_to_UserListFragment"
-            app:destination="@id/UserListFragment" />
-
-        <action
-            android:id="@+id/action_UserDetailsFragment_to_UserDetailsFragment"
-            app:destination="@id/UserDetailsFragment" />
+            android:id="@+id/action_StudentProfileFragment_to_AttributesFragment"
+            app:destination="@id/AttributesFragment" />
     </fragment>
 </navigation>

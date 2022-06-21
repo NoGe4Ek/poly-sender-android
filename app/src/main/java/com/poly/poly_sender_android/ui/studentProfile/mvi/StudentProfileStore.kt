@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class StudentProfileStore @Inject constructor(
     logger: Logger
-): Store<StudentProfileState, UserDetailsWish, StudentProfileEffect, StudentProfileNews>(logger) {
+): Store<StudentProfileState, StudentProfileWish, StudentProfileEffect, StudentProfileNews>(logger) {
     init {
         actor = StudentProfileActor()
         reducer = StudentProfileReducer()

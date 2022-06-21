@@ -1,6 +1,6 @@
 package com.poly.poly_sender_android.util
 
-import com.poly.poly_sender_android.data.models.domainModel.AttributesItem
+import com.poly.poly_sender_android.data.models.domainModel.StudentAttributesItem
 import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.data.models.networkModel.StudentNetworkEntity
 import javax.inject.Inject
@@ -29,7 +29,7 @@ class StudentMapper @Inject constructor(): EntityMapper<StudentNetworkEntity, St
         }
     }
 
-    private fun mapAttributesToAttributesItem(attributes: Map<String, List<String>>): AttributesItem {
+    private fun mapAttributesToAttributesItem(attributes: Map<String, List<String>>): StudentAttributesItem {
         val financing = mutableListOf<String>()
         val form = mutableListOf<String>()
         val programType = mutableListOf<String>()
@@ -54,7 +54,7 @@ class StudentMapper @Inject constructor(): EntityMapper<StudentNetworkEntity, St
             }
         }
 
-        return AttributesItem(
+        return StudentAttributesItem(
             financing = financing,
             form = form,
             programType = programType,
@@ -67,10 +67,10 @@ class StudentMapper @Inject constructor(): EntityMapper<StudentNetworkEntity, St
         )
     }
 
-    private fun mapAttributesItemToAttributes(attributesItem: AttributesItem):Map<String, List<String>>  {
+    private fun mapAttributesItemToAttributes(studentAttributesItem: StudentAttributesItem):Map<String, List<String>>  {
         val attributes = mutableMapOf<String, List<String>>()
 
-        with(attributesItem) {
+        with(studentAttributesItem) {
             attributes["Финансирование"] = financing
             attributes["Форма обучения"] = form
             attributes["Тип программы"] = programType

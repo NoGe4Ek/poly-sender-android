@@ -4,5 +4,5 @@ import com.poly.poly_sender_android.mvi.News
 
 
 sealed interface AttributesNews: News {
-    data class Message(val duration: Int, val content: String): CreationAttributeNews
+    data class Message(val content: String): AttributesNews
 }

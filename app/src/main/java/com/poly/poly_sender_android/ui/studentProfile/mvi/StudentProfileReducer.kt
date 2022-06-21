@@ -9,23 +9,14 @@ class StudentProfileReducer: Reducer<StudentProfileState, StudentProfileEffect, 
         var reducedState: StudentProfileState? = null
         var reducedNews: StudentProfileNews? = null
         when (effect) {
-            is StudentProfileEffect.GetUserDetailsFailure -> {
-                reducedNews = StudentProfileNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
+            is StudentProfileEffect.Loading -> {
+                // it's ok, you can implement necessary logic
             }
-            is StudentProfileEffect.GetUserDetailsSuccess -> {
-                reducedState = state.copy(user = effect.user, friends = effect.friends)
+            is StudentProfileEffect.Success -> {
+                // it's ok, you can implement necessary logic
             }
-            is StudentProfileEffect.ExternalCallFailure -> {
-                reducedNews = StudentProfileNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is StudentProfileEffect.ExternalEmailFailure -> {
-                reducedNews = StudentProfileNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is StudentProfileEffect.ExternalMapFailure -> {
-                reducedNews = StudentProfileNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is StudentProfileEffect.ExternalSuccess -> {
-                //Do nothing, that's ok
+            is StudentProfileEffect.Failure -> {
+                // it's ok, you can implement necessary logic
             }
         }
         return reducedState to reducedNews

@@ -17,6 +17,7 @@ class RestoreReducer: Reducer<RestoreState, RestoreEffect, RestoreNews> {
                 //TODO navigate to LoginFragment or...?
             }
             is RestoreEffect.Failure -> {
+                reducedState = state.copy(isLoading = false)
                 reducedNews = RestoreNews.Message(effect.errorMessage)
             }
         }

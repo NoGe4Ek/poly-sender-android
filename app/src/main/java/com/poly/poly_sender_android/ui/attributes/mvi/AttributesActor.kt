@@ -1,57 +1,34 @@
 package com.poly.poly_sender_android.ui.attributes.mvi
 
+import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.mvi.Actor
+import com.poly.poly_sender_android.ui.auth.login.mvi.LoginEffect
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import java.util.jar.Attributes
 
-class AttributesActor : Actor<CreationAttributeState, CreationAttributeWish, CreationAttributeEffect>() {
+class AttributesActor : Actor<AttributesState, AttributesWish, AttributesEffect>() {
 
     override suspend fun effect(
-        state: CreationAttributeState,
-        wish: CreationAttributeWish
-    ): Flow<CreationAttributeEffect?> = flow {
+        state: AttributesState,
+        wish: AttributesWish
+    ): Flow<AttributesEffect?> = flow {
         when (wish) {
-            is CreationAttributeWish.RefreshFromNetwork -> {
-                emit(CreationAttributeEffect.RefreshInProcess(true))
+            is AttributesWish.Refresh -> {
                 try {
-                    val users = mainRepository.cacheAndGetUsers()
-                    if (users.isNotEmpty())
-                        emit(
-                            CreationAttributeEffect.RefreshSuccess(
-                                false,
-                                users,
-                            )
-                        )
-                    else
-                        emit(CreationAttributeEffect.RefreshFailure(false, "Users is missing"))
-
+                    emit(AttributesEffect.Loading)
+                    val attributes = mainRepository.getDataAttributesCurrentStaff(mainRepository.user.idStaff)
+                    //TODO impl searchParam filtering
+                    emit(AttributesEffect.Success(attributes, wish.searchParam))
                 } catch (e: Exception) {
                     val errorMessage = e.message ?: "Unknown exception"
-                    emit(CreationAttributeEffect.RefreshFailure(false, errorMessage))
+                    emit(AttributesEffect.Failure(errorMessage))
                 }
             }
 
-            is CreationAttributeWish.SmartRefresh -> {
-                emit(CreationAttributeEffect.RefreshInProcess(true))
-                try {
-                    val users = mainRepository.spGetUsers()
-                    if (users.isNotEmpty())
-                        emit(
-                            CreationAttributeEffect.RefreshSuccess(
-                                false,
-                                users,
-                            )
-                        )
-                    else
-                        emit(CreationAttributeEffect.RefreshFailure(false, "Local users is missing"))
-                } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
-                    emit(CreationAttributeEffect.RefreshFailure(false, errorMessage))
-                }
 
-            }
         }
     }.flowOn(Dispatchers.IO)
 }

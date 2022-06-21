@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -11,38 +12,35 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.poly.poly_sender_android.common.Logger
-import com.poly.testwaveaccess.databinding.FragmentUserListBinding
+import com.poly.poly_sender_android.databinding.FragmentAttributesBinding
 import com.poly.poly_sender_android.mvi.MviView
-import com.poly.poly_sender_android.ui.UserListAdapter
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeNews
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeState
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeWish
+import com.poly.poly_sender_android.ui.adapters.AttributesAdapter
+import com.poly.poly_sender_android.ui.attributes.mvi.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class AttributesFragment : Fragment(), MviView<CreationAttributeState, CreationAttributeNews> {
+class AttributesFragment : Fragment(), MviView<AttributesState, AttributesNews> {
 
     @Inject
     lateinit var logger: Logger
 
     private val userListViewModel: AttributesViewModel by viewModels()
 
-    private var _binding: FragmentUserListBinding? = null
+    private var _binding: FragmentAttributesBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var userListRecycler: RecyclerView
-    lateinit var userListAdapter: UserListAdapter
+    lateinit var attributesRecycler: RecyclerView
+    lateinit var attributesAdapter: AttributesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentUserListBinding.inflate(inflater, container, false)
+        _binding = FragmentAttributesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -51,30 +49,34 @@ class AttributesFragment : Fragment(), MviView<CreationAttributeState, CreationA
 
         logger.connect(javaClass)
 
-        userListRecycler = binding.userList
-        userListAdapter = UserListAdapter { user ->
-            if (user.isActive == "true") {
-                val action = UserListFragmentDirections.actionUserListFragmentToUserDetailsFragment(
-                    userId = user.id
-                )
-                view.findNavController().navigate(action)
-            } else {
-                Snackbar.make((binding.snack as View), "User is inactive at this moment", Snackbar.LENGTH_SHORT)
-                    .show()
-            }
-        }
-        userListRecycler.layoutManager = LinearLayoutManager(this.requireContext())
-        userListRecycler.adapter = userListAdapter
+        attributesRecycler = binding.attributeList
+        attributesAdapter = AttributesAdapter(onEditClicked = {}, onDeleteClicked = {}, onShareClicked = {}) //TODO
+        attributesRecycler.layoutManager = LinearLayoutManager(this.requireContext())
+        attributesRecycler.adapter = attributesAdapter
 
         with(userListViewModel) {
             bind(viewLifecycleOwner.lifecycleScope, this@AttributesFragment)
         }
 
-        userListViewModel.obtainWish(CreationAttributeWish.SmartRefresh)
+        userListViewModel.obtainWish(AttributesWish.Refresh(searchParam = SearchParam())) //TODO empty param
 
-        binding.refreshUserList.setOnRefreshListener {
-            userListViewModel.obtainWish(CreationAttributeWish.RefreshFromNetwork)
-        }
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                callSearch(newText)
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                callSearch(query)
+                return false
+            }
+
+            fun callSearch(query: String?) {
+                userListViewModel.obtainWish(AttributesWish.Refresh(searchParam = SearchParam())) //TODO
+            }
+
+        })
     }
 
     override fun onDestroyView() {
@@ -82,17 +84,19 @@ class AttributesFragment : Fragment(), MviView<CreationAttributeState, CreationA
         _binding = null
     }
 
-    override fun renderState(state: CreationAttributeState) {
-        binding.refreshUserList.isRefreshing = state.isLoading
+    override fun renderState(state: AttributesState) {
+        if (state.isLoading) {
+            //TODO
+        }
 
-        if (state.users.isNotEmpty()) {
-            userListAdapter.submitList(state.users)
+        if (state.attributes.isNotEmpty()) {
+            attributesAdapter.submitList(state.attributes)
         }
     }
 
-    override fun renderNews(new: CreationAttributeNews) {
+    override fun renderNews(new: AttributesNews) {
         when (new) {
-            is CreationAttributeNews.Message -> {
+            is AttributesNews.Message -> {
                 Toast.makeText(requireContext(), new.content, Toast.LENGTH_SHORT).show()
             }
         }

@@ -17,7 +17,7 @@ import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.common.string
 import com.poly.testwaveaccess.databinding.FragmentUserDetailsBinding
 import com.poly.poly_sender_android.mvi.MviView
-import com.poly.poly_sender_android.ui.UserListAdapter
+import com.poly.poly_sender_android.ui.adapters.AttributesAdapter
 import com.poly.poly_sender_android.ui.auth.login.mvi.LoginNews
 import com.poly.poly_sender_android.ui.auth.login.mvi.LoginState
 import com.poly.poly_sender_android.ui.auth.mvi.UserDetailsWish
@@ -37,7 +37,7 @@ class ProfileFragment : Fragment(), MviView<LoginState, LoginNews> {
     private val binding get() = _binding!!
 
     lateinit var friendListRecycler: RecyclerView
-    lateinit var friendListAdapter: UserListAdapter
+    lateinit var friendListAdapter: AttributesAdapter
 
     private val args: UserDetailsFragmentArgs by navArgs()
     private var userId: Int = -1
@@ -57,7 +57,7 @@ class ProfileFragment : Fragment(), MviView<LoginState, LoginNews> {
         logger.connect(javaClass)
 
         friendListRecycler = binding.friendList
-        friendListAdapter = UserListAdapter { user ->
+        friendListAdapter = AttributesAdapter { user ->
             if (user.isActive == "true") {
                 val action = UserDetailsFragmentDirections.actionUserDetailsFragmentToUserDetailsFragment(
                     userId = user.id

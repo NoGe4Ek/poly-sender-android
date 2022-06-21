@@ -8,16 +8,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class AttributesViewModel @Inject constructor(): BaseViewModel<CreationAttributeState, CreationAttributeWish, CreationAttributeEffect, CreationAttributeNews>() {
+class AttributesViewModel @Inject constructor(): BaseViewModel<AttributesState, AttributesWish, AttributesEffect, AttributesNews>() {
 
-    private val initState = CreationAttributeState(
+    private val initState = AttributesState(
         isLoading = false,
-        users = emptyList(),
+        attributes = emptyList(),
+        searchParam = SearchParam(),
     )
     override val stateFlow = MutableStateFlow(initState)
-    override val wishFlow = MutableSharedFlow<CreationAttributeWish?>()
-    override val effectFlow = MutableSharedFlow<CreationAttributeEffect?>()
-    override val newsFlow = MutableSharedFlow<CreationAttributeNews>()
+    override val wishFlow = MutableSharedFlow<AttributesWish?>()
+    override val effectFlow = MutableSharedFlow<AttributesEffect?>()
+    override val newsFlow = MutableSharedFlow<AttributesNews>()
 
-    @Inject override lateinit var store: CreationAttributeStore
+    @Inject override lateinit var store: AttributesStore
 }

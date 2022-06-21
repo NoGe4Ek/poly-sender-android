@@ -1,4 +1,4 @@
-package com.poly.poly_sender_android.ui
+package com.poly.poly_sender_android.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.poly.poly_sender_android.data.models.domainModel.User
 import com.poly.testwaveaccess.databinding.UserCardBinding
 
-class UserListAdapter(
+class FiltersAdapter(
     private val onItemClicked: (User) -> Unit
-): ListAdapter<User, UserListAdapter.UserViewHolder>(DiffCallback)
+): ListAdapter<User, FiltersAdapter.UserViewHolder>(DiffCallback)
 {
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<User>() {

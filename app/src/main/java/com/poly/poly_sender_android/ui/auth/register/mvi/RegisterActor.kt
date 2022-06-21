@@ -16,6 +16,7 @@ class RegisterActor : Actor<RegisterState, RegisterWish, RegisterEffect>() {
         when (wish) {
             is RegisterWish.GetAccess -> {
                 try {
+                    emit(RegisterEffect.Loading)
                     var getAccessResponse: GetAccessResponse
                     with(wish) {
                         getAccessResponse = mainRepository.getAccess(

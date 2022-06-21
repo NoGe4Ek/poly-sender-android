@@ -1,5 +1,6 @@
 package com.poly.poly_sender_android.data.repositories
 
+import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.data.models.domainModel.GetAccessResponse
 import com.poly.poly_sender_android.data.models.domainModel.RestoreResponse
 import com.poly.poly_sender_android.data.models.domainModel.User
@@ -8,6 +9,7 @@ import javax.inject.Singleton
 
 @Singleton
 interface MainRepository {
+    var user: User
 
     suspend fun checkSignIn(login: String, password: String): User
 
@@ -20,5 +22,7 @@ interface MainRepository {
         highSchool: String,
     ): GetAccessResponse
 
-    suspend fun restorePassword(login: String):RestoreResponse
+    suspend fun restorePassword(login: String): RestoreResponse
+
+    suspend fun getDataAttributesCurrentStaff(id: String): List<Attribute>
 }

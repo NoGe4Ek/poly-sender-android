@@ -29,19 +29,19 @@ object Constants {
     private const val ATTRIBUTES = "/attributes"
     private const val ATTRIBUTES_ROOT = API_ROOT + API_PREFIX + ATTRIBUTES
 
-    const val URL_getGroupAttributes = "$ATTRIBUTES_ROOT/getGroupAttributes"
-    const val URL_getAttributes = "$ATTRIBUTES_ROOT/getAttributes"
-    const val URL_calculateAttribute = "$ATTRIBUTES_ROOT/calculate"
-    const val URL_deleteAttribute = "$ATTRIBUTES_ROOT/deleteAttribute"
-    const val URL_attributeShare = "$ATTRIBUTES_ROOT/share"
-    const val URL_createAttribute = "$ATTRIBUTES_ROOT/createAttribute"
-    const val URL_createGroupName = "$ATTRIBUTES_ROOT/createGroupName"
-    const val URL_updateAttribute = "$ATTRIBUTES_ROOT/updateAttribute"
-    const val URL_getGroupNamesCurrentStaff = "$ATTRIBUTES_ROOT/getGroupNamesCurrentStaff"
-    const val URL_getGroupNames = "$ATTRIBUTES_ROOT/getGroupNames"
-    const val URL_getAttributeById = "$ATTRIBUTES_ROOT/getAttributeById"
-    const val URL_getAttributesCurrentStaff = "$ATTRIBUTES_ROOT/getAttributesCurrentStaff"
-    const val URL_deleteGroupAttribute = "$ATTRIBUTES_ROOT/deleteGroupAttribute"
+    const val URL_getGroupAttributes = "$ATTRIBUTES_ROOT/getGroupAttributes" // ВСЕ sections c х атрибутами
+    const val URL_getAttributes = "$ATTRIBUTES_ROOT/getAttributes" // ВСЕ
+    const val URL_calculateAttribute = "$ATTRIBUTES_ROOT/calculate" // При создании/обновлении атрибута; calculateExpression
+    const val URL_deleteAttribute = "$ATTRIBUTES_ROOT/deleteAttribute" // удалить атрибут
+    const val URL_attributeShare = "$ATTRIBUTES_ROOT/share" // пошарить атрибут
+    const val URL_createAttribute = "$ATTRIBUTES_ROOT/createAttribute" // создать атрибут
+    const val URL_createGroupName = "$ATTRIBUTES_ROOT/createGroupName" // create section
+    const val URL_updateAttribute = "$ATTRIBUTES_ROOT/updateAttribute" // обновление атрибута
+    const val URL_getGroupNamesCurrentStaff = "$ATTRIBUTES_ROOT/getGroupNamesCurrentStaff" // sections текущего юзера
+    const val URL_getGroupNames = "$ATTRIBUTES_ROOT/getGroupNames" // только имена sections и ...
+    const val URL_getAttributeById = "$ATTRIBUTES_ROOT/getAttributeById" // по id
+    const val URL_getAttributesCurrentStaff = "$ATTRIBUTES_ROOT/getAttributesCurrentStaff" // Аттрибуты стафа
+    const val URL_deleteGroupAttribute = "$ATTRIBUTES_ROOT/deleteGroupAttribute" // удалить section
 
     //FILTERS CONTROLLER
     private const val FILTERS = "/filters"
