@@ -9,23 +9,15 @@ class RestoreReducer: Reducer<RestoreState, RestoreEffect, RestoreNews> {
         var reducedState: RestoreState? = null
         var reducedNews: RestoreNews? = null
         when (effect) {
-            is RestoreEffect.GetUserDetailsFailure -> {
-                reducedNews = RestoreNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
+            is RestoreEffect.Loading -> {
+                reducedState = state.copy(isLoading = true)
             }
-            is RestoreEffect.GetUserDetailsSuccess -> {
-                reducedState = state.copy(user = effect.user, friends = effect.friends)
+            is RestoreEffect.Success -> {
+                //TODO do we use response?
+                //TODO navigate to LoginFragment or...?
             }
-            is RestoreEffect.ExternalCallFailure -> {
-                reducedNews = RestoreNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is RestoreEffect.ExternalEmailFailure -> {
-                reducedNews = RestoreNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is RestoreEffect.ExternalMapFailure -> {
-                reducedNews = RestoreNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is RestoreEffect.ExternalSuccess -> {
-                //Do nothing, that's ok
+            is RestoreEffect.Failure -> {
+                reducedNews = RestoreNews.Message(effect.errorMessage)
             }
         }
         return reducedState to reducedNews

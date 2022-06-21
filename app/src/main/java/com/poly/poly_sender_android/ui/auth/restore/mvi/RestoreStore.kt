@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class RestoreStore @Inject constructor(
     logger: Logger
-): Store<RestoreState, UserDetailsWish, RestoreEffect, RestoreNews>(logger) {
+): Store<RestoreState, RestoreWish, RestoreEffect, RestoreNews>(logger) {
     init {
         actor = RestoreActor()
         reducer = RestoreReducer()

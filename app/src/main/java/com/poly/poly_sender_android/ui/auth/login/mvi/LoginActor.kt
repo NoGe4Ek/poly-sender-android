@@ -16,7 +16,7 @@ class LoginActor : Actor<LoginState, LoginWish, LoginEffect>() {
             is LoginWish.SignIn -> {
                 try {
                     emit(LoginEffect.Loading)
-                    val user = mainRepository.checkSignIn(wish.email, wish.password)
+                    val user = mainRepository.checkSignIn(wish.login, wish.password)
                     if (user.status) {
                         emit(LoginEffect.Success(user))
                     } else {

@@ -1,11 +1,14 @@
 package com.poly.poly_sender_android.data.repositories
 
 import com.poly.poly_sender_android.data.models.domainModel.GetAccessResponse
+import com.poly.poly_sender_android.data.models.domainModel.RestoreResponse
 import com.poly.poly_sender_android.data.models.domainModel.User
 import com.poly.poly_sender_android.data.network.ApiRetrofit
 import com.poly.poly_sender_android.data.network.GetAccessBody
+import com.poly.poly_sender_android.data.network.RestoreBody
 import com.poly.poly_sender_android.data.network.SignInBody
 import com.poly.poly_sender_android.util.GetAccessResponseMapper
+import com.poly.poly_sender_android.util.RestoreMapper
 import com.poly.poly_sender_android.util.StudentMapper
 import com.poly.poly_sender_android.util.UserMapper
 import javax.inject.Inject
@@ -15,6 +18,7 @@ class MainRepositoryImpl @Inject constructor(
     private val studentMapper: StudentMapper,
     private val userMapper: UserMapper,
     private val getAccessResponseMapper: GetAccessResponseMapper,
+    private val restoreMapper: RestoreMapper,
 ) : MainRepository {
 
     override suspend fun checkSignIn(login: String, password: String): User {
@@ -42,6 +46,12 @@ class MainRepositoryImpl @Inject constructor(
         )
 
         return getAccessResponseMapper.mapFromEntity(getAccessResponseNE)
+    }
+
+    override suspend fun restorePassword(login: String): RestoreResponse {
+        val restoreResponseNE = retrofit.restorePassword(RestoreBody(login))
+
+        return restoreMapper.mapFromEntity(restoreResponseNE)
     }
 
     companion object {
