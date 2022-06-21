@@ -1,9 +1,7 @@
 package com.poly.poly_sender_android.util
 
 import com.poly.poly_sender_android.data.models.domainModel.Role
-import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.data.models.domainModel.User
-import com.poly.poly_sender_android.data.models.networkModel.StudentNetworkEntity
 import com.poly.poly_sender_android.data.models.networkModel.UserNetworkEntity
 import javax.inject.Inject
 

@@ -4,6 +4,5 @@ import com.poly.poly_sender_android.mvi.State
 
 data class LoginState(
     val isLoading: Boolean,
-    val email: String,
     val password: String,
 ): State

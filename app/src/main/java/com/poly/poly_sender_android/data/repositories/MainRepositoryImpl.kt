@@ -1,8 +1,11 @@
 package com.poly.poly_sender_android.data.repositories
 
+import com.poly.poly_sender_android.data.models.domainModel.GetAccessResponse
 import com.poly.poly_sender_android.data.models.domainModel.User
 import com.poly.poly_sender_android.data.network.ApiRetrofit
+import com.poly.poly_sender_android.data.network.GetAccessBody
 import com.poly.poly_sender_android.data.network.SignInBody
+import com.poly.poly_sender_android.util.GetAccessResponseMapper
 import com.poly.poly_sender_android.util.StudentMapper
 import com.poly.poly_sender_android.util.UserMapper
 import javax.inject.Inject
@@ -10,12 +13,35 @@ import javax.inject.Inject
 class MainRepositoryImpl @Inject constructor(
     private val retrofit: ApiRetrofit,
     private val studentMapper: StudentMapper,
-    private val userMapper: UserMapper
+    private val userMapper: UserMapper,
+    private val getAccessResponseMapper: GetAccessResponseMapper,
 ) : MainRepository {
 
     override suspend fun checkSignIn(login: String, password: String): User {
-        val user = retrofit.checkSignIn(SignInBody(login, password))
-        return userMapper.mapFromEntity(user)
+        val userNE = retrofit.checkSignIn(SignInBody(login, password))
+        return userMapper.mapFromEntity(userNE)
+    }
+
+    override suspend fun getAccess(
+        firstName: String,
+        lastName: String,
+        patronymic: String,
+        email: String,
+        department: String,
+        highSchool: String
+    ): GetAccessResponse {
+        val getAccessResponseNE = retrofit.getAccess(
+            GetAccessBody(
+                firstName,
+                lastName,
+                patronymic,
+                email,
+                department,
+                highSchool
+            )
+        )
+
+        return getAccessResponseMapper.mapFromEntity(getAccessResponseNE)
     }
 
     companion object {

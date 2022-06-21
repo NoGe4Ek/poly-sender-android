@@ -98,7 +98,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constraint_credentials_block"
-        app:layout_constraintBottom_toTopOf="@id/menu_institute">
+        app:layout_constraintBottom_toTopOf="@id/menu_department">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -107,7 +107,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/menu_institute"
+        android:id="@+id/menu_department"
         style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -134,9 +134,9 @@
         android:layout_marginEnd="32dp"
         android:layout_marginStart="4dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/menu_institute"
+        app:layout_constraintStart_toEndOf="@id/menu_department"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/menu_institute"
+        app:layout_constraintBottom_toBottomOf="@id/menu_department"
         android:hint="Высшая школа">
 
         <AutoCompleteTextView
@@ -154,7 +154,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:text="Запросить доступ"
-        app:layout_constraintTop_toBottomOf="@id/menu_institute"
+        app:layout_constraintTop_toBottomOf="@id/menu_department"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/button_login" />

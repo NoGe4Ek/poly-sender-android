@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class RegisterStore @Inject constructor(
     logger: Logger
-): Store<RegisterState, UserDetailsWish, RegisterEffect, RegisterNews>(logger) {
+): Store<RegisterState, RegisterWish, RegisterEffect, RegisterNews>(logger) {
     init {
         actor = RegisterActor()
         reducer = RegisterReducer()

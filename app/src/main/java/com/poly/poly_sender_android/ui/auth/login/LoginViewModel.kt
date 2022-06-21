@@ -12,7 +12,6 @@ class LoginViewModel @Inject constructor(): BaseViewModel<LoginState, LoginWish,
 
     private val initState = LoginState(
         isLoading = false,
-        email = "",
         password = "",
     )
     override val stateFlow = MutableStateFlow(initState)

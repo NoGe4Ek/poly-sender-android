@@ -4,5 +4,5 @@ import com.poly.poly_sender_android.mvi.News
 
 
 sealed interface RegisterNews: News {
-    data class Message(val duration: Int, val content: String): RegisterNews
+    data class Message(val content: String): RegisterNews
 }

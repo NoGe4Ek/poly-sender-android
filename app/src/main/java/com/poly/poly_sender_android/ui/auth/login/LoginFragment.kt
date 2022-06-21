@@ -47,16 +47,19 @@ class LoginFragment : Fragment(), MviView<LoginState, LoginNews> {
         }
 
         binding.buttonLogin.setOnClickListener {
-            if (binding.textFieldEmail.editText != null && binding.textFieldPassword.editText != null) {
-                loginViewModel.obtainWish(
-                    LoginWish.SignIn(
-                        binding.textFieldEmail.editText!!.string(),
-                        binding.textFieldPassword.editText!!.string()
+            when {
+                binding.textFieldEmail.editText == null -> binding.textFieldEmail.error =
+                    "This field can't be empty" //TODO export to resource and make constants error
+                binding.textFieldPassword.editText == null -> binding.textFieldPassword.error =
+                    "This field can't be empty"
+                else -> {
+                    loginViewModel.obtainWish(
+                        LoginWish.SignIn(
+                            binding.textFieldEmail.editText!!.string(),
+                            binding.textFieldPassword.editText!!.string()
+                        )
                     )
-                )
-            } else {
-                binding.textFieldEmail.error = "This field can't be empty"
-                binding.textFieldPassword.error = "This field can't be empty"
+                }
             }
         }
         binding.buttonRegister.setOnClickListener {

@@ -9,23 +9,15 @@ class RegisterReducer: Reducer<RegisterState, RegisterEffect, RegisterNews> {
         var reducedState: RegisterState? = null
         var reducedNews: RegisterNews? = null
         when (effect) {
-            is RegisterEffect.GetUserDetailsFailure -> {
-                reducedNews = RegisterNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
+            is RegisterEffect.Loading -> {
+                reducedState = state.copy(isLoading = true)
             }
-            is RegisterEffect.GetUserDetailsSuccess -> {
-                reducedState = state.copy(user = effect.user, friends = effect.friends)
+            is RegisterEffect.Success -> {
+                //TODO navigate to LoginFragment
             }
-            is RegisterEffect.ExternalCallFailure -> {
-                reducedNews = RegisterNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is RegisterEffect.ExternalEmailFailure -> {
-                reducedNews = RegisterNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is RegisterEffect.ExternalMapFailure -> {
-                reducedNews = RegisterNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is RegisterEffect.ExternalSuccess -> {
-                //Do nothing, that's ok
+            is RegisterEffect.Failure -> {
+                reducedState = state.copy(isLoading = false)
+                reducedNews = RegisterNews.Message(effect.errorMessage)
             }
         }
         return reducedState to reducedNews

@@ -17,7 +17,11 @@ class LoginActor : Actor<LoginState, LoginWish, LoginEffect>() {
                 try {
                     emit(LoginEffect.Loading)
                     val user = mainRepository.checkSignIn(wish.email, wish.password)
-                    emit(LoginEffect.Success(user))
+                    if (user.status) {
+                        emit(LoginEffect.Success(user))
+                    } else {
+                        emit(LoginEffect.Failure("status: false"))
+                    }
                 } catch (e: Exception) {
                     val errorMessage = e.message ?: "Unknown exception"
                     emit(LoginEffect.Failure(errorMessage))

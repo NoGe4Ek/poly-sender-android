@@ -21,7 +21,6 @@ class LoginReducer : Reducer<LoginState, LoginEffect, LoginNews> {
                 }
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK and FLAG_ACTIVITY_CLEAR_TASK
                 App.appContext.startActivity(intent)
-
             }
             is LoginEffect.Failure -> {
                 reducedState = state.copy(isLoading = false, password = "")
