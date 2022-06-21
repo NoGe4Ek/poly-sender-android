@@ -4,7 +4,7 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.mvi.Reducer
-import com.poly.poly_sender_android.ui.MainActivity
+import com.poly.poly_sender_android.ui.auth.MainActivity
 
 class LoginReducer : Reducer<LoginState, LoginEffect, LoginNews> {
 

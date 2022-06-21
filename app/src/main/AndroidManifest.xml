@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Polysenderandroid"
         tools:targetApi="31">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.auth.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Polysenderandroid">
             <intent-filter>
