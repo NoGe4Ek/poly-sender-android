@@ -1,6 +1,5 @@
 package com.poly.poly_sender_android.ui.auth.register.mvi
 
-import android.widget.Toast
 import com.poly.poly_sender_android.mvi.Reducer
 
 class RegisterReducer: Reducer<RegisterState, RegisterEffect, RegisterNews> {

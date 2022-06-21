@@ -1,5 +1,8 @@
 package com.poly.poly_sender_android.data.repositories
 
+import android.content.SharedPreferences
+import androidx.core.content.edit
+import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.data.models.domainModel.GetAccessResponse
 import com.poly.poly_sender_android.data.models.domainModel.RestoreResponse
@@ -60,15 +63,20 @@ class MainRepositoryImpl @Inject constructor(
         return attributeMapper.mapFromEntityList(attributesNE)
     }
 
+    fun getToken(): String? {
+        return settings.getString(PREFS_TOKEN, null)
+    }
+
+    fun setToken(token: String) {
+        settings.edit {
+            putString(PREFS_TOKEN, token)
+        }
+    }
+
     companion object {
         private const val PREFS_NAME = "PrefsFile"
         private const val PREFS_TOKEN = "token"
-        //val settings: SharedPreferences = App.appContext.getSharedPreferences(PREFS_NAME, 0)
-        //if (settings.getBoolean(SETTINGS_FIRST_TIME, true)) {
-        //            users.addAll(cacheAndGetUsers())
-        //            settings.edit().putBoolean(SETTINGS_FIRST_TIME, false).apply()
-        //        } else {
-        //            users.addAll(getUsers())
-        //        }
+        val settings: SharedPreferences = App.appContext.getSharedPreferences(PREFS_NAME, 0)
+
     }
 }

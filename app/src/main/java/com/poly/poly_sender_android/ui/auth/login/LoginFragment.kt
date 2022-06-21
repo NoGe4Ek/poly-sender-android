@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.common.string
 import com.poly.poly_sender_android.databinding.FragmentLoginBinding
@@ -15,6 +17,7 @@ import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.auth.login.mvi.LoginNews
 import com.poly.poly_sender_android.ui.auth.login.mvi.LoginState
 import com.poly.poly_sender_android.ui.auth.login.mvi.LoginWish
+import com.poly.poly_sender_android.util.ErrorConstants.EMPTY_FILL_ERROR
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -49,9 +52,9 @@ class LoginFragment : Fragment(), MviView<LoginState, LoginNews> {
         binding.buttonLogin.setOnClickListener {
             when {
                 binding.textFieldEmail.editText == null -> binding.textFieldEmail.error =
-                    "This field can't be empty" //TODO export to resource and make constants error
+                    EMPTY_FILL_ERROR
                 binding.textFieldPassword.editText == null -> binding.textFieldPassword.error =
-                    "This field can't be empty"
+                    EMPTY_FILL_ERROR
                 else -> {
                     loginViewModel.obtainWish(
                         LoginWish.SignIn(
@@ -63,10 +66,16 @@ class LoginFragment : Fragment(), MviView<LoginState, LoginNews> {
             }
         }
         binding.buttonRegister.setOnClickListener {
-            //TODO
+            findNavController().navigate(
+                LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            )
         }
+
+
         binding.buttonRestore.setOnClickListener {
-            //TODO
+            findNavController().navigate(
+                LoginFragmentDirections.actionLoginFragmentToRestoreFragment()
+            )
         }
     }
 
@@ -77,7 +86,7 @@ class LoginFragment : Fragment(), MviView<LoginState, LoginNews> {
 
     override fun renderState(state: LoginState) {
         if (state.isLoading) {
-            //TODO
+            // TODO
         }
 
         binding.textFieldPassword.editText?.setText(state.password)

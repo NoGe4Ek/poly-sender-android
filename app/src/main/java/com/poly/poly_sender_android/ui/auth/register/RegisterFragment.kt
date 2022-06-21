@@ -8,13 +8,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.common.string
 import com.poly.poly_sender_android.databinding.FragmentRegisterBinding
 import com.poly.poly_sender_android.mvi.MviView
+import com.poly.poly_sender_android.ui.auth.login.LoginFragmentDirections
 import com.poly.poly_sender_android.ui.auth.register.mvi.RegisterNews
 import com.poly.poly_sender_android.ui.auth.register.mvi.RegisterState
 import com.poly.poly_sender_android.ui.auth.register.mvi.RegisterWish
+import com.poly.poly_sender_android.util.ErrorConstants.EMPTY_FILL_ERROR
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -46,36 +49,42 @@ class RegisterFragment : Fragment(), MviView<RegisterState, RegisterNews> {
             bind(viewLifecycleOwner.lifecycleScope, this@RegisterFragment)
         }
 
-        binding.buttonLogin.setOnClickListener {
-            //TODO navigate to loginFragment
-        }
-        binding.buttonRegister.setOnClickListener {
-            when {
-                binding.textFieldFirstname.editText == null -> binding.textFieldFirstname.error =
-                    "This field can't be empty" //TODO export to resource and make constants error
-                binding.textFieldLastname.editText == null -> binding.textFieldLastname.error =
-                    "This field can't be empty"
-                binding.textFieldPatronymic.editText == null -> binding.textFieldPatronymic.error =
-                    "This field can't be empty"
-                binding.textFieldEmail.editText == null -> binding.textFieldEmail.error =
-                    "This field can't be empty"
-                binding.menuDepartment.editText == null -> binding.menuDepartment.error =
-                    "This field can't be empty"
-                binding.menuHighSchool.editText == null -> binding.menuHighSchool.error =
-                    "This field can't be empty"
-                else -> {
-                    registerViewModel.obtainWish(
-                        RegisterWish.GetAccess(
-                            binding.textFieldFirstname.editText!!.string(),
-                            binding.textFieldLastname.editText!!.string(),
-                            binding.textFieldPatronymic.editText!!.string(),
-                            binding.textFieldEmail.editText!!.string(),
-                            binding.menuDepartment.editText!!.string(),
-                            binding.menuHighSchool.editText!!.string()
+        binding.apply {
+            buttonLogin.setOnClickListener {
+                findNavController().navigate(
+                    RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                )
+            }
+            buttonRegister.setOnClickListener {
+
+                when {
+                    textFieldFirstname.editText == null -> textFieldFirstname.error =
+                        EMPTY_FILL_ERROR
+                    textFieldLastname.editText == null -> textFieldLastname.error =
+                        EMPTY_FILL_ERROR
+                    textFieldPatronymic.editText == null -> textFieldPatronymic.error =
+                        EMPTY_FILL_ERROR
+                    textFieldEmail.editText == null -> textFieldEmail.error =
+                        EMPTY_FILL_ERROR
+                    menuDepartment.editText == null -> menuDepartment.error =
+                        EMPTY_FILL_ERROR
+                    menuHighSchool.editText == null -> menuHighSchool.error =
+                        EMPTY_FILL_ERROR
+                    else -> {
+                        registerViewModel.obtainWish(
+                            RegisterWish.GetAccess(
+                                textFieldFirstname.editText!!.string(),
+                                textFieldLastname.editText!!.string(),
+                                textFieldPatronymic.editText!!.string(),
+                                textFieldEmail.editText!!.string(),
+                                menuDepartment.editText!!.string(),
+                                menuHighSchool.editText!!.string()
+                            )
                         )
-                    )
+                    }
                 }
             }
+
         }
     }
 
