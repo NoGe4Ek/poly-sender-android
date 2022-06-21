@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.restore.RestoreFragment">
+    tools:context=".ui.settings.SettingsFragment">
 
     <TextView
         android:id="@+id/text_view_change_password"
         style="@style/Theme.HiNote.TextView.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Изменить пароль"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/text_field_old_password"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/text_field_old_password"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:text="Изменить пароль" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_old_password"
@@ -26,11 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintTop_toBottomOf="@id/text_view_change_password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/text_field_new_password"
-        android:hint="Старый пароль">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_change_password"
+        tools:hint="Старый пароль">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -44,11 +44,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintTop_toBottomOf="@id/text_field_old_password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/text_field_new_password_again"
-        android:hint="Новый пароль">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_field_old_password"
+        tools:hint="Новый пароль">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -62,11 +62,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintTop_toBottomOf="@id/text_field_new_password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/button_change_password"
-        android:hint="Новый пароль">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_field_new_password"
+        tools:hint="Новый пароль">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -76,41 +76,39 @@
 
     <Button
         android:id="@+id/button_change_password"
+        style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Изменить"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/text_field_new_password_again"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/text_view_get_admin_access"
-        style="@style/Widget.Material3.Button.TonalButton"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_field_new_password_again"
+        tools:text="Изменить" />
 
     <TextView
         android:id="@+id/text_view_get_admin_access"
         style="@style/Theme.HiNote.TextView.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Запросить права администратора"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/text_field_old_password"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_change_password"
-        app:layout_constraintBottom_toTopOf="@id/text_field_old_password"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:text="Запросить права администратора" />
 
     <Button
         android:id="@+id/button_get_admin_access"
+        style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Запросить"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/text_view_get_admin_access"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/Widget.Material3.Button.TonalButton"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_get_admin_access"
+        tools:text="Запросить" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

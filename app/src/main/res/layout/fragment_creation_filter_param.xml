@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.restore.RestoreFragment">
+    tools:context=".ui.filters.creationFilter.CreationFilterParamFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_filter_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginTop="256dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toTopOf="@id/menu_mailing_mode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        android:hint="Название фильтра">
+        tools:hint="Название фильтра">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -30,33 +30,32 @@
         android:id="@+id/menu_mailing_mode"
         style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="0dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_field_filter_name"
-        android:hint="Получение почты">
+        tools:hint="Получение почты">
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
-            />
+            tools:ignore="LabelFor" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button_next"
+        style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Далее"
-        android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        style="@style/Widget.Material3.Button.TonalButton"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Далее" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

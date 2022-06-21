@@ -11,13 +11,13 @@
         style="@style/Theme.HiNote.TextView.AppHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/application_name_header"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="64dp"
         android:layout_marginTop="64dp"
+        android:layout_marginBottom="64dp"
+        android:text="@string/application_name_header"
+        app:layout_constraintBottom_toTopOf="@id/text_field_email"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/text_field_email"
         app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -27,11 +27,11 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintTop_toBottomOf="@id/text_view_app_name_header"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/button_restore"
-        android:hint="Email">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_app_name_header"
+        tools:hint="Email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -41,16 +41,15 @@
 
     <Button
         android:id="@+id/button_restore"
+        style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Восстановить пароль"
-        android:layout_marginBottom="32dp"
         android:layout_marginTop="256dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_field_email"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        style="@style/Widget.Material3.Button.TonalButton"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_field_email"
+        tools:text="Восстановить пароль" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

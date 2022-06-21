@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.attributes.creationAttribute.CreationAttributeFragment">
 
     <TextView
         android:id="@+id/text_view_attribute_name"
@@ -11,12 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Имя атрибута: name"
+        app:layout_constraintBottom_toTopOf="@id/text_view_student_count"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/text_view_student_count"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Имя атрибута: name" />
 
     <TextView
         android:id="@+id/text_view_student_count"
@@ -24,35 +25,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Студентов: 23"
-        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintBottom_toTopOf="@id/text_view_section"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/text_view_attribute_name"
         app:layout_constraintTop_toBottomOf="@id/text_view_attribute_name"
-        app:layout_constraintBottom_toTopOf="@id/text_view_section" />
+        tools:text="Студентов: 23" />
 
     <TextView
         android:id="@+id/text_view_section"
         style="@style/Theme.HiNote.TextView.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Раздел: какой-то раздел"
-        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintBottom_toTopOf="@id/button_creation_attribute"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/text_view_student_count"
         app:layout_constraintTop_toBottomOf="@id/text_view_student_count"
-        app:layout_constraintBottom_toTopOf="@id/button_creation_attribute" />
+        tools:text="Раздел: какой-то раздел" />
 
     <Button
         android:id="@+id/button_creation_attribute"
+        style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Создать раздел"
-        android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        style="@style/Widget.Material3.Button.TonalButton"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Создать раздел" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

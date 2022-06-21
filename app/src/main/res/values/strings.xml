@@ -44,4 +44,18 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="application_name_header">PolySender</string>
+    <string name="floating_button_add_section">floating_button_add_section</string>
+    <string name="floating_button_add_attribute">floating_button_add_attribute</string>
+    <string name="floating_button_add_for_attribute">floating_button_add_for_attribute</string>
+    <string name="floating_button_add_filter">floating_button_add_filter</string>
+    <string name="floating_button_add_for_filter">floating_button_add_for_filter</string>
+    <string name="filter_card_button_edit">filter_card_button_edit</string>
+    <string name="filter_card_button_delete">filter_card_button_delete</string>
+    <string name="filter_card_button_share">filter_card_button_share</string>
+    <string name="attribute_card_button_edit">attribute_card_button_edit</string>
+    <string name="attribute_card_button_delete">attribute_card_button_delete</string>
+    <string name="attribute_card_button_share">attribute_card_button_share</string>
+    <string name="profile_square">profile_square</string>
+    <string name="student_profile_square">student_profile_square</string>
+
 </resources>
