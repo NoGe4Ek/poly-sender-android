@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class LoginStore @Inject constructor(
     logger: Logger
-): Store<LoginState, UserDetailsWish, LoginEffect, LoginNews>(logger) {
+) : Store<LoginState, LoginWish, LoginEffect, LoginNews>(logger) {
     init {
         actor = LoginActor()
         reducer = LoginReducer()

@@ -4,6 +4,7 @@ object Constants {
 
     //MAIN ADDRESS
     private const val API_ROOT = "https://poly-sender.ru:4085"
+
     //private const val API_ROOT = "http://localhost:4085"
     private const val API_PREFIX = ""
 

@@ -1,11 +1,12 @@
 package com.poly.poly_sender_android.data.network
 
 import com.poly.poly_sender_android.data.models.networkModel.UserNetworkEntity
-import retrofit2.http.GET
+import retrofit2.http.Body
+import retrofit2.http.POST
 
-interface ApiUserRetrofit {
+interface ApiRetrofit {
 
-    @POST(Constants.USERS_URL)
-    suspend fun get(): List<UserNetworkEntity>
+    @POST(Constants.URL_check)
+    suspend fun checkSignIn(@Body signInBody: SignInBody): UserNetworkEntity
 
 }

@@ -1,25 +1,22 @@
 package com.poly.poly_sender_android.ui.auth.login
 
-import com.poly.poly_sender_android.ui.auth.mvi.*
 import com.poly.poly_sender_android.ui.BaseViewModel
-import com.poly.poly_sender_android.ui.auth.login.mvi.LoginState
-import com.poly.poly_sender_android.ui.auth.login.mvi.LoginEffect
-import com.poly.poly_sender_android.ui.auth.login.mvi.LoginNews
-import com.poly.poly_sender_android.ui.auth.login.mvi.LoginStore
+import com.poly.poly_sender_android.ui.auth.login.mvi.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(): BaseViewModel<LoginState, UserDetailsWish, LoginEffect, LoginNews>() {
+class LoginViewModel @Inject constructor(): BaseViewModel<LoginState, LoginWish, LoginEffect, LoginNews>() {
 
     private val initState = LoginState(
-        user = null,
-        emptyList()
+        isLoading = false,
+        email = "",
+        password = "",
     )
     override val stateFlow = MutableStateFlow(initState)
-    override val wishFlow = MutableSharedFlow<UserDetailsWish?>()
+    override val wishFlow = MutableSharedFlow<LoginWish?>()
     override val effectFlow = MutableSharedFlow<LoginEffect?>()
     override val newsFlow = MutableSharedFlow<LoginNews>()
 
