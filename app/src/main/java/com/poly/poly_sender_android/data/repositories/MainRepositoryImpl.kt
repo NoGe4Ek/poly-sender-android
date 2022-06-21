@@ -1,9 +1,6 @@
 package com.poly.poly_sender_android.data.repositories
 
-import com.poly.poly_sender_android.data.models.domainModel.Attribute
-import com.poly.poly_sender_android.data.models.domainModel.GetAccessResponse
-import com.poly.poly_sender_android.data.models.domainModel.RestoreResponse
-import com.poly.poly_sender_android.data.models.domainModel.User
+import com.poly.poly_sender_android.data.models.domainModel.*
 import com.poly.poly_sender_android.data.models.networkModel.AttributeNetworkEntity
 import com.poly.poly_sender_android.data.network.*
 import com.poly.poly_sender_android.util.*
@@ -16,6 +13,7 @@ class MainRepositoryImpl @Inject constructor(
     private val getAccessResponseMapper: GetAccessResponseMapper,
     private val restoreMapper: RestoreMapper,
     private val attributeMapper: AttributeMapper,
+    private val filterMapper: FilterMapper,
 
     override var user: User,
 ) : MainRepository {
@@ -58,6 +56,12 @@ class MainRepositoryImpl @Inject constructor(
         val attributesNE = retrofit.getDataAttributesCurrentStaff(CommonRequestBody(id))
 
         return attributeMapper.mapFromEntityList(attributesNE)
+    }
+
+    override suspend fun getFilters(id: String): List<Filter> {
+        val filtersNE = retrofit.getFilters(CommonRequestBody(id))
+
+        return filterMapper.mapFromEntityList(filtersNE)
     }
 
     companion object {
