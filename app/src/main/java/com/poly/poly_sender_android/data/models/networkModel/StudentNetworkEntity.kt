@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class StudentNetworkEntity(
     @SerializedName("id")
-    val id: Int,
+    val id: String,
 
     @SerializedName("name")
     val name: String,

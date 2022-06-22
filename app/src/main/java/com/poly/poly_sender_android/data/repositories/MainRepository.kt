@@ -1,10 +1,6 @@
 package com.poly.poly_sender_android.data.repositories
 
-import com.poly.poly_sender_android.data.models.domainModel.Attribute
-import com.poly.poly_sender_android.data.models.domainModel.GetAccessResponse
-import com.poly.poly_sender_android.data.models.domainModel.RestoreResponse
-import com.poly.poly_sender_android.data.models.domainModel.User
-import com.poly.poly_sender_android.data.network.SignInBody
+import com.poly.poly_sender_android.data.models.domainModel.*
 import javax.inject.Singleton
 
 @Singleton
@@ -26,7 +22,19 @@ interface MainRepository {
 
     suspend fun getDataAttributesCurrentStaff(id: String): List<Attribute>
 
+    suspend fun getDataAttributes(id: String): List<Attribute>
+
+    suspend fun createAttribute(
+        idStaff: String,
+        name: String,
+        groupName: String,
+        expression: String,
+        studentsId: List<String>,
+    ) : CreateAttributeResponse
+
     suspend fun createGroupName(id: String, groupName: String): CreateGroupResponse
 
     suspend fun getFilters(id: String): List<Filter>
+
+    suspend fun getStudents(id: String): List<Student>
 }

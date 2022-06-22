@@ -51,7 +51,7 @@ class AttributesFragment : Fragment(), MviView<AttributesState, AttributesNews> 
         logger.connect(javaClass)
 
         attributesRecycler = binding.attributeList
-        attributesAdapter = AttributesAdapter(onEditClicked = {}, onDeleteClicked = {}, onShareClicked = {}) //TODO
+        attributesAdapter = AttributesAdapter(onItemClicked = {}, onEditClicked = {}, onDeleteClicked = {}, onShareClicked = {}) //TODO
         attributesRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         attributesRecycler.adapter = attributesAdapter
 
@@ -59,7 +59,7 @@ class AttributesFragment : Fragment(), MviView<AttributesState, AttributesNews> 
             bind(viewLifecycleOwner.lifecycleScope, this@AttributesFragment)
         }
 
-        userListViewModel.obtainWish(AttributesWish.Refresh(searchParam = SearchParam())) //TODO empty param
+        userListViewModel.obtainWish(AttributesWish.Refresh(attributesSearchParam = AttributesSearchParam())) //TODO empty param
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
@@ -74,7 +74,7 @@ class AttributesFragment : Fragment(), MviView<AttributesState, AttributesNews> 
             }
 
             fun callSearch(query: String?) {
-                userListViewModel.obtainWish(AttributesWish.Refresh(searchParam = SearchParam())) //TODO
+                userListViewModel.obtainWish(AttributesWish.Refresh(attributesSearchParam = AttributesSearchParam())) //TODO
             }
 
         })

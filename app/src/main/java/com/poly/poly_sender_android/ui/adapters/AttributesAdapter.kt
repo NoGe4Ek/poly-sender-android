@@ -9,6 +9,7 @@ import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.databinding.CardAttributeBinding
 
 class AttributesAdapter(
+    private val onItemClicked: (Attribute) -> Unit,
     private val onEditClicked: (Attribute) -> Unit,
     private val onDeleteClicked: (Attribute) -> Unit,
     private val onShareClicked: (Attribute) -> Unit
@@ -41,6 +42,9 @@ class AttributesAdapter(
         val attribute: Attribute = getItem(position)
         holder.bind(attribute)
 
+        holder.itemView.setOnClickListener {
+            onItemClicked(attribute)
+        }
         holder.binding.cardAttributeButtonEdit.setOnClickListener {
             onEditClicked(attribute)
         }

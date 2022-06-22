@@ -1,6 +1,5 @@
 package com.poly.poly_sender_android.ui.attributes.mvi
 
-import android.widget.Toast
 import com.poly.poly_sender_android.mvi.Reducer
 
 class AttributesReducer: Reducer<AttributesState, AttributesEffect, AttributesNews> {
@@ -14,7 +13,7 @@ class AttributesReducer: Reducer<AttributesState, AttributesEffect, AttributesNe
             }
 
             is AttributesEffect.Success -> {
-                reducedState = state.copy(isLoading = false, attributes = effect.attributes, searchParam = effect.searchParam)
+                reducedState = state.copy(isLoading = false, attributes = effect.attributes, attributesSearchParam = effect.attributesSearchParam)
             }
 
             is AttributesEffect.Failure -> {

@@ -17,6 +17,7 @@ class MainRepositoryImpl @Inject constructor(
     private val attributeMapper: AttributeMapper,
     private val createGroupResponseMapper: CreateGroupResponseMapper,
     private val filterMapper: FilterMapper,
+    private val createAttributeResponseMapper: CreateAttributeResponseMapper,
 
     override var user: User,
 ) : MainRepository {
@@ -61,6 +62,26 @@ class MainRepositoryImpl @Inject constructor(
         return attributeMapper.mapFromEntityList(attributesNE)
     }
 
+    override suspend fun getDataAttributes(id: String): List<Attribute> {
+        val attributesNE = retrofit.getDataAttributes(CommonRequestBody(id))
+        return attributeMapper.mapFromEntityList(attributesNE)
+    }
+
+    override suspend fun createAttribute(
+        idStaff: String,
+        name: String,
+        groupName: String,
+        expression: String,
+        studentsId: List<String>
+    ): CreateAttributeResponse {
+        val createAttributeResponseNE = retrofit.createAttribute(
+            CreateAttributeBody(
+                idStaff, name, groupName, expression, studentsId
+            )
+        )
+        return createAttributeResponseMapper.mapFromEntity(createAttributeResponseNE)
+    }
+
     override suspend fun createGroupName(id: String, groupName: String): CreateGroupResponse {
         val createGroupResponseNE = retrofit.createGroupName(CreateGroupBody(id, groupName))
         return createGroupResponseMapper.mapFromEntity(createGroupResponseNE)
@@ -70,6 +91,11 @@ class MainRepositoryImpl @Inject constructor(
         val filtersNE = retrofit.getFilters(CommonRequestBody(id))
 
         return filterMapper.mapFromEntityList(filtersNE)
+    }
+
+    override suspend fun getStudents(id: String): List<Student> {
+        val studentsNE = retrofit.getAllStudents(CommonRequestBody(id))
+        return studentMapper.mapFromEntityList(studentsNE)
     }
 
     fun getToken(): String? {

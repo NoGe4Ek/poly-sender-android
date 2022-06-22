@@ -12,4 +12,6 @@ data class Attribute(
     val students: List<String>,
     val studentsDTO: List<String>,
     val status: String,
+
+    var isChecked: Boolean
 )

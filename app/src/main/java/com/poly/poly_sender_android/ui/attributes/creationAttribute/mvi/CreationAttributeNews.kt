@@ -1,4 +1,4 @@
-package com.poly.poly_sender_android.ui.attributes.mvi
+package com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi
 
 import com.poly.poly_sender_android.mvi.News
 

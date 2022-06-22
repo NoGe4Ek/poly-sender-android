@@ -1,8 +1,6 @@
 package com.poly.poly_sender_android.ui.attributes.creationSection
 
-import com.poly.poly_sender_android.ui.attributes.mvi.*
 import com.poly.poly_sender_android.ui.BaseViewModel
-import com.poly.poly_sender_android.ui.attributes.SearchParam
 import com.poly.poly_sender_android.ui.attributes.creationSection.mvi.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

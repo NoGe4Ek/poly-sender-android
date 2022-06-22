@@ -18,7 +18,7 @@ class AttributesActor : Actor<AttributesState, AttributesWish, AttributesEffect>
                     emit(AttributesEffect.Loading)
                     val attributes = mainRepository.getDataAttributesCurrentStaff(mainRepository.user.idStaff)
                     //TODO impl searchParam filtering
-                    emit(AttributesEffect.Success(attributes, wish.searchParam))
+                    emit(AttributesEffect.Success(attributes, wish.attributesSearchParam))
                 } catch (e: Exception) {
                     val errorMessage = e.message ?: "Unknown exception"
                     emit(AttributesEffect.Failure(errorMessage))

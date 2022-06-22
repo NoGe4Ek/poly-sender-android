@@ -13,7 +13,7 @@ class AttributesViewModel @Inject constructor(): BaseViewModel<AttributesState, 
     private val initState = AttributesState(
         isLoading = false,
         attributes = emptyList(),
-        searchParam = SearchParam(),
+        attributesSearchParam = AttributesSearchParam(),
     )
     override val stateFlow = MutableStateFlow(initState)
     override val wishFlow = MutableSharedFlow<AttributesWish?>()

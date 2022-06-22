@@ -1,9 +1,6 @@
 package com.poly.poly_sender_android.ui.attributes.creationSection.mvi
 
 import com.poly.poly_sender_android.mvi.Actor
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeEffect
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeState
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeWish
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

@@ -14,17 +14,18 @@ class AttributeMapper @Inject constructor() :
     override fun mapFromEntity(entity: AttributeNetworkEntity): Attribute {
         with(entity) {
             return Attribute(
-            id = id,
-            owner = owner,
-            attributeName = attributeName,
-            groupName = groupName,
-            expression = expression,
-            type = type,
-            link = link,
-            created = created,
-            students = students,
-            studentsDTO = studentsDTO,
-            status = status,
+                id = id,
+                owner = owner,
+                attributeName = attributeName,
+                groupName = groupName,
+                expression = expression,
+                type = type,
+                link = link,
+                created = created,
+                students = students,
+                studentsDTO = studentsDTO,
+                status = status,
+                isChecked = false
             )
         }
     }

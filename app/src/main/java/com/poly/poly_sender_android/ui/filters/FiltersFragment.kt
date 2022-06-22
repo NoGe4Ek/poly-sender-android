@@ -16,9 +16,9 @@ import com.poly.poly_sender_android.common.Logger
 import com.poly.testwaveaccess.databinding.FragmentUserListBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.adapters.AttributesAdapter
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeNews
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeState
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeWish
+import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeNews
+import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeState
+import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeWish
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

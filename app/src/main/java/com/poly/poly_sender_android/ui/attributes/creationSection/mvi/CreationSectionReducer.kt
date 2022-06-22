@@ -1,10 +1,6 @@
 package com.poly.poly_sender_android.ui.attributes.creationSection.mvi
 
-import android.widget.Toast
 import com.poly.poly_sender_android.mvi.Reducer
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeEffect
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeNews
-import com.poly.poly_sender_android.ui.attributes.mvi.CreationAttributeState
 
 class CreationSectionReducer: Reducer<CreationSectionState, CreationSectionEffect, CreationSectionNews> {
 

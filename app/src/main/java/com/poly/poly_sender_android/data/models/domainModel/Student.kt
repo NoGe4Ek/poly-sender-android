@@ -1,8 +1,9 @@
 package com.poly.poly_sender_android.data.models.domainModel
 
 data class Student (
-    val id: Int,
+    val id: String,
     val name: String,
     val email: String,
-    val attributes: StudentAttributesItem
+    val attributes: StudentAttributesItem,
+    var isChecked: Boolean
 )

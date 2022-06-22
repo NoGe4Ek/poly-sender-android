@@ -49,6 +49,7 @@ class StudentsAdapter(
 
         fun bind(student: Student) {
             binding.apply {
+                cardCheckBox.isChecked = student.isChecked
                 cardStudentName.text = student.name
                 cardStudentEmail.text = student.email
             }

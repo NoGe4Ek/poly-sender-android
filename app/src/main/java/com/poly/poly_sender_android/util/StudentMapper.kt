@@ -13,7 +13,8 @@ class StudentMapper @Inject constructor(): EntityMapper<StudentNetworkEntity, St
                 id = id,
                 name = name,
                 email = email,
-                attributes = mapAttributesToAttributesItem(attributes)
+                attributes = mapAttributesToAttributesItem(attributes),
+                isChecked = false
             )
         }
     }
