@@ -60,7 +60,7 @@ class CreationAttributeReducer :
                 reducedState = state.copy(
                     searchAttributes = effect.searchAttributes,
                     searchSelectedAttributes = effect.searchSelectedAttributes,
-                    searchSelectedSearchSection = effect.searchSelectedSearchSection
+                    searchSelectedSection = effect.searchSelectedSearchSection
                 )
             }
             is CreationAttributeEffect.UpdateSharedStorageBySelectionSuccess -> {

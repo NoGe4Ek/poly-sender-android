@@ -5,28 +5,30 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.poly.poly_sender_android.data.models.domainModel.User
-import com.poly.testwaveaccess.databinding.UserCardBinding
+import com.poly.poly_sender_android.data.models.domainModel.Filter
+import com.poly.poly_sender_android.databinding.CardFilterBinding
 
 class FiltersAdapter(
-    private val onItemClicked: (User) -> Unit
-): ListAdapter<User, FiltersAdapter.UserViewHolder>(DiffCallback)
-{
+    private val onItemClicked: (Filter) -> Unit,
+    private val onEditClicked: (Filter) -> Unit,
+    private val onDeleteClicked: (Filter) -> Unit,
+    private val onShareClicked: (Filter) -> Unit
+) : ListAdapter<Filter, FiltersAdapter.FilterViewHolder>(DiffCallback) {
     companion object {
-        private val DiffCallback = object : DiffUtil.ItemCallback<User>() {
-            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+        private val DiffCallback = object : DiffUtil.ItemCallback<Filter>() {
+            override fun areItemsTheSame(oldItem: Filter, newItem: Filter): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+            override fun areContentsTheSame(oldItem: Filter, newItem: Filter): Boolean {
                 return oldItem == newItem
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        return UserViewHolder(
-            UserCardBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilterViewHolder {
+        return FilterViewHolder(
+            CardFilterBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -35,23 +37,35 @@ class FiltersAdapter(
     }
 
     // Passes the message object to a ViewHolder so that the contents can be bound to UI.
-    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val user: User = getItem(position)
-        holder.bind(user)
+    override fun onBindViewHolder(holder: FilterViewHolder, position: Int) {
+        val filter: Filter = getItem(position)
+        holder.bind(filter)
 
         holder.itemView.setOnClickListener {
-            onItemClicked(user)
+            onItemClicked(filter)
+        }
+        holder.binding.cardFilterButtonEdit.setOnClickListener {
+            onEditClicked(filter)
+        }
+        holder.binding.cardFilterButtonDelete.setOnClickListener {
+            onDeleteClicked(filter)
+        }
+        holder.binding.cardFilterButtonShare.setOnClickListener {
+            onShareClicked(filter)
         }
     }
 
-    inner class UserViewHolder(private val binding: UserCardBinding) :
+    inner class FilterViewHolder(val binding: CardFilterBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(user: User) {
+        fun bind(filter: Filter) {
             binding.apply {
-                cardName.text = user.name
-                cardEmail.text = user.email
-                cardIsActive.text = if (user.isActive == "true") "Active" else "Inactive"
+                cardFilterName.text = filter.filterName
+                cardFilterEmail.text = filter.mail
+                cardFilterStudentCount.text = filter.students.size.toString()
+                cardFilterCreationType.text = filter.type
+                cardFilterMode.text = filter.mode
+                cardFilterCreationDate.text = filter.created
             }
         }
     }

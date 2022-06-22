@@ -21,5 +21,5 @@ data class CreationAttributeState(
     //val searchParam: CreationAttributeSearchParam,
     val searchAttributes: List<Attribute>,
     val searchSelectedAttributes: List<Attribute>,
-    val searchSelectedSearchSection: String, //TODO class sections
+    val searchSelectedSection: String, //TODO class sections
 ): State

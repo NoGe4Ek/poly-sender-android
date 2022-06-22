@@ -23,12 +23,12 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class AttributesFragment : Fragment(), MviView<AttributesState, AttributesNews> {
+class AttributesFragment : Fragment(), MviView<AttributesState, AttributesNews> { //TODO animation floating buttons
 
     @Inject
     lateinit var logger: Logger
 
-    private val userListViewModel: AttributesViewModel by viewModels()
+    private val attributesViewModel: AttributesViewModel by viewModels()
 
     private var _binding: FragmentAttributesBinding? = null
     private val binding get() = _binding!!
@@ -55,11 +55,15 @@ class AttributesFragment : Fragment(), MviView<AttributesState, AttributesNews> 
         attributesRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         attributesRecycler.adapter = attributesAdapter
 
-        with(userListViewModel) {
+        with(attributesViewModel) {
             bind(viewLifecycleOwner.lifecycleScope, this@AttributesFragment)
         }
 
-        userListViewModel.obtainWish(AttributesWish.Refresh(attributesSearchParam = AttributesSearchParam())) //TODO empty param
+        attributesViewModel.obtainWish(AttributesWish.Refresh(attributesSearchParam = AttributesSearchParam())) //TODO empty param
+
+        binding.buttonFilter.setOnClickListener {
+            //TODO
+        }
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
@@ -74,7 +78,7 @@ class AttributesFragment : Fragment(), MviView<AttributesState, AttributesNews> 
             }
 
             fun callSearch(query: String?) {
-                userListViewModel.obtainWish(AttributesWish.Refresh(attributesSearchParam = AttributesSearchParam())) //TODO
+                attributesViewModel.obtainWish(AttributesWish.Refresh(attributesSearchParam = AttributesSearchParam())) //TODO
             }
 
         })

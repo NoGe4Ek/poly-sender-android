@@ -69,19 +69,21 @@ class CreationAttributeSelectionAttributingFragment : Fragment(),
 
         binding.buttonApply.setOnClickListener {
 
-            creationAttributeSharedViewModel.obtainWish(
-                CreationAttributeWish.UpdateSharedStorageBySelectionAttributing(
-                    //TODO save state using local adapter & impl emit refresh students with searchParam
+            creationAttributeSharedViewModel.apply {
+                obtainWish(
+                    CreationAttributeWish.UpdateSharedStorageBySelectionAttributing(
+                        nmState.searchAttributes, nmState.searchSelectedAttributes, nmState.searchSelectedSection
+                    )
                 )
-            )
-
+            }
+            //TODO emit refresh students with searchParam on main screen
             //TODO navigate to Attributes
         }
         binding.buttonClear.setOnClickListener {
             creationAttributeSharedViewModel.obtainWish(CreationAttributeWish.ClearSearchParam)
             //TODO navigate to Attributes
         }
-        //TODO add onChangeSection listener
+        //TODO add onChangeSection listener with UpdateSharedStorageBySelectionAttributing
     }
 
     override fun onDestroyView() {
@@ -90,7 +92,7 @@ class CreationAttributeSelectionAttributingFragment : Fragment(),
     }
 
     override fun renderState(state: CreationAttributeState) {
-        binding.menuSection.editText?.setText(state.searchSelectedSearchSection)
+        binding.menuSection.editText?.setText(state.searchSelectedSection)
         attributesAdapter.submitList(state.searchAttributes)
     }
 

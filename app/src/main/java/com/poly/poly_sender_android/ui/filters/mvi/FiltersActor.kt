@@ -6,51 +6,23 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class FiltersActor : Actor<CreationFilterState, CreationFilterWish, CreationFilterEffect>() {
+class FiltersActor : Actor<FiltersState, FiltersWish, FiltersEffect>() {
 
     override suspend fun effect(
-        state: CreationFilterState,
-        wish: CreationFilterWish
-    ): Flow<CreationFilterEffect?> = flow {
+        state: FiltersState,
+        wish: FiltersWish
+    ): Flow<FiltersEffect?> = flow {
         when (wish) {
-            is CreationFilterWish.RefreshFromNetwork -> {
-                emit(CreationFilterEffect.RefreshInProcess(true))
+            is FiltersWish.Refresh -> {
+                emit(FiltersEffect.Loading)
                 try {
-                    val users = mainRepository.cacheAndGetUsers()
-                    if (users.isNotEmpty())
-                        emit(
-                            CreationFilterEffect.RefreshSuccess(
-                                false,
-                                users,
-                            )
-                        )
-                    else
-                        emit(CreationFilterEffect.RefreshFailure(false, "Users is missing"))
+                    val filters = mainRepository.getFilters(mainRepository.user.idStaff)
+                    emit(FiltersEffect.Success(filters, wish.filtersSearchParam))
 
                 } catch (e: Exception) {
                     val errorMessage = e.message ?: "Unknown exception"
-                    emit(CreationFilterEffect.RefreshFailure(false, errorMessage))
+                    emit(FiltersEffect.Failure(errorMessage))
                 }
-            }
-
-            is CreationFilterWish.SmartRefresh -> {
-                emit(CreationFilterEffect.RefreshInProcess(true))
-                try {
-                    val users = mainRepository.spGetUsers()
-                    if (users.isNotEmpty())
-                        emit(
-                            CreationFilterEffect.RefreshSuccess(
-                                false,
-                                users,
-                            )
-                        )
-                    else
-                        emit(CreationFilterEffect.RefreshFailure(false, "Local users is missing"))
-                } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
-                    emit(CreationFilterEffect.RefreshFailure(false, errorMessage))
-                }
-
             }
         }
     }.flowOn(Dispatchers.IO)

@@ -1,25 +1,29 @@
 package com.poly.poly_sender_android.ui.filters.mvi
 
-import android.widget.Toast
 import com.poly.poly_sender_android.mvi.Reducer
 
-class FiltersReducer: Reducer<CreationFilterState, CreationFilterEffect, CreationFilterNews> {
+class FiltersReducer : Reducer<FiltersState, FiltersEffect, FiltersNews> {
 
-    override fun reduce(state: CreationFilterState, effect: CreationFilterEffect): Pair<CreationFilterState?, CreationFilterNews?> {
-        var reducedState: CreationFilterState? = null
-        var reducedNews: CreationFilterNews? = null
+    override fun reduce(
+        state: FiltersState,
+        effect: FiltersEffect
+    ): Pair<FiltersState?, FiltersNews?> {
+        var reducedState: FiltersState? = null
+        var reducedNews: FiltersNews? = null
         when (effect) {
-            is CreationFilterEffect.RefreshInProcess -> {
-                reducedState = state.copy(isLoading = effect.isLoading)
+            FiltersEffect.Loading -> {
+                reducedState = state.copy(isLoading = true)
             }
-
-            is CreationFilterEffect.RefreshSuccess -> {
-                reducedState = state.copy(isLoading = effect.isLoading, users = effect.users)
+            is FiltersEffect.Success -> {
+                reducedState = state.copy(
+                    isLoading = false,
+                    filters = effect.filters,
+                    filtersSearchParam = effect.filtersSearchParam
+                )
             }
-
-            is CreationFilterEffect.RefreshFailure -> {
-                reducedState = state.copy(isLoading = effect.isLoading)
-                reducedNews = CreationFilterNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
+            is FiltersEffect.Failure -> {
+                reducedState = state.copy(isLoading = false)
+                reducedNews = FiltersNews.Message(effect.errorMessage)
             }
         }
         return reducedState to reducedNews

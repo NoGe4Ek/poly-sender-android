@@ -22,7 +22,7 @@ interface ApiRetrofit {
     @POST(Constants.URL_getAttributes)
     suspend fun getDataAttributes(@Body commonRequestBody: CommonRequestBody): List<AttributeNetworkEntity>
 
-    @POST(Constants.URL_getAttributes)
+    @POST(Constants.URL_createAttribute)
     suspend fun createAttribute(@Body createAttributeBody: CreateAttributeBody): CreateAttributeResponseNetworkEntity
 
     @POST(Constants.URL_createGroupName)

@@ -4,10 +4,7 @@ import androidx.room.*
 import com.poly.poly_sender_android.data.models.dbModel.UserCacheEntity
 
 @Dao
-interface UsersDao {
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addUsers(users: List<UserCacheEntity>)
+interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addUser(user: UserCacheEntity)

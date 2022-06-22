@@ -3,7 +3,7 @@ package com.poly.poly_sender_android.di
 import android.content.Context
 import androidx.room.Room
 import com.poly.poly_sender_android.data.database.AppDatabase
-import com.poly.poly_sender_android.data.database.UsersDao
+import com.poly.poly_sender_android.data.database.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +21,7 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideUsersDao(appDatabase: AppDatabase): UsersDao {
+    fun provideUsersDao(appDatabase: AppDatabase): UserDao {
         return appDatabase.usersDao()
     }
 

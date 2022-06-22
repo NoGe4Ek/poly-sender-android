@@ -5,7 +5,6 @@ import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 
@@ -21,7 +20,7 @@ class CreationAttributeSharedViewModel @Inject constructor() :
         selectedStudents = emptyList(),
         searchAttributes = emptyList(),
         searchSelectedAttributes = emptyList(),
-        searchSelectedSearchSection = ""
+        searchSelectedSection = ""
     )
     override val stateFlow = MutableStateFlow(initState)
     val nmState: CreationAttributeState

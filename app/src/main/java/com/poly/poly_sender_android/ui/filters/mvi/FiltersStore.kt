@@ -6,9 +6,9 @@ import javax.inject.Inject
 
 class FiltersStore @Inject constructor(
     logger: Logger
-): Store<CreationFilterState, CreationFilterWish, CreationFilterEffect, CreationFilterNews>(logger) {
+): Store<FiltersState, FiltersWish, FiltersEffect, FiltersNews>(logger) {
     init {
-        actor = CreationFilterActor()
-        reducer = CreationFilterReducer()
+        actor = FiltersActor()
+        reducer = FiltersReducer()
     }
 }

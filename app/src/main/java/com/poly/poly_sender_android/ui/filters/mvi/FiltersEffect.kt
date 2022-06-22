@@ -1,11 +1,13 @@
 package com.poly.poly_sender_android.ui.filters.mvi
 
-import com.poly.poly_sender_android.data.models.domainModel.User
+import com.poly.poly_sender_android.data.models.domainModel.Filter
 import com.poly.poly_sender_android.mvi.Effect
+import com.poly.poly_sender_android.ui.filters.FiltersSearchParam
 
-sealed interface FiltersEffect: Effect {
-    data class RefreshInProcess(val isLoading: Boolean = true): CreationFilterEffect
-    data class RefreshSuccess(val isLoading: Boolean = false, val users: List<User>): CreationFilterEffect
-    data class RefreshFailure(val isLoading: Boolean = false, val errorMessage: String):
-        CreationFilterEffect
+sealed interface FiltersEffect : Effect {
+    object Loading : FiltersEffect
+    data class Success(val filters: List<Filter>, val filtersSearchParam: FiltersSearchParam) :
+        FiltersEffect
+
+    data class Failure(val errorMessage: String) : FiltersEffect
 }
