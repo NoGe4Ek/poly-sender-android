@@ -41,7 +41,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:hint="Фамилия">
+            android:hint="Фамилия">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             app:layout_constraintBottom_toBottomOf="@id/text_field_lastname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/text_field_lastname"
-            tools:hint="Имя">
+            android:hint="Имя">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
             app:layout_constraintEnd_toStartOf="@id/text_field_firstname"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_field_lastname"
-            tools:hint="Отчество">
+            android:hint="Отчество">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -97,7 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constraint_credentials_block"
-        tools:hint="Email">
+        android:hint="Email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -116,7 +116,7 @@
         app:layout_constraintEnd_toStartOf="@id/menu_high_school"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_field_email"
-        tools:hint="Институт">
+        android:hint="Институт">
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
@@ -136,7 +136,7 @@
         app:layout_constraintBottom_toBottomOf="@id/menu_department"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/menu_department"
-        tools:hint="Высшая школа">
+        android:hint="Высшая школа">
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
@@ -156,7 +156,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/menu_department"
-        tools:text="Запросить доступ" />
+        android:text="Запросить доступ" />
 
     <Button
         android:id="@+id/button_login"
@@ -168,7 +168,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_register"
-        tools:text="Уже есть аккаунт" />
+        android:text="Уже есть аккаунт" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

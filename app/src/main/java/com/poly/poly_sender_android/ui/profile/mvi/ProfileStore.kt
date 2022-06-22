@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class ProfileStore @Inject constructor(
     logger: Logger
-): Store<ProfileState, UserDetailsWish, ProfileEffect, ProfileNews>(logger) {
+): Store<ProfileState, ProfileWish, ProfileEffect, ProfileNews>(logger) {
     init {
         actor = ProfileActor()
         reducer = ProfileReducer()

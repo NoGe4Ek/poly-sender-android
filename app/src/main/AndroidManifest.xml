@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.poly.poly_sender_android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -15,7 +16,18 @@
         android:theme="@style/Theme.Polysenderandroid"
         tools:targetApi="31">
         <activity
-            android:name=".ui.auth.MainActivity"
+            android:name=".ui.auth.AuthActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Polysenderandroid">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Polysenderandroid">
             <intent-filter>

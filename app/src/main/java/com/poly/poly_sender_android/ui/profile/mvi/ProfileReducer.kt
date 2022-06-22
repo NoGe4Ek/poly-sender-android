@@ -9,24 +9,7 @@ class ProfileReducer: Reducer<ProfileState, ProfileEffect, ProfileNews> {
         var reducedState: ProfileState? = null
         var reducedNews: ProfileNews? = null
         when (effect) {
-            is ProfileEffect.GetUserDetailsFailure -> {
-                reducedNews = ProfileNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is ProfileEffect.GetUserDetailsSuccess -> {
-                reducedState = state.copy(user = effect.user, friends = effect.friends)
-            }
-            is ProfileEffect.ExternalCallFailure -> {
-                reducedNews = ProfileNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is ProfileEffect.ExternalEmailFailure -> {
-                reducedNews = ProfileNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is ProfileEffect.ExternalMapFailure -> {
-                reducedNews = ProfileNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is ProfileEffect.ExternalSuccess -> {
-                //Do nothing, that's ok
-            }
+
         }
         return reducedState to reducedNews
     }

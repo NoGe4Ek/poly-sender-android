@@ -26,5 +26,5 @@ data class UserCacheEntity(
     val email: String,
 
     @ColumnInfo(name = "roles")
-    val roles: List<String>,
+    val roles: String,
 )

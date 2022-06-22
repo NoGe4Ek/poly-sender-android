@@ -31,9 +31,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_app_name_header"
-        tools:hint="Email">
+        android:hint="Email">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -53,9 +54,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_field_email"
-        tools:hint="Password">
+        android:hint="Password">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -70,7 +72,7 @@
         app:layout_constraintBottom_toTopOf="@id/button_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_field_password"
-        tools:text="Забыли пароль?" />
+        android:text="Забыли пароль?" />
 
     <Button
         android:id="@+id/button_login"
@@ -82,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_restore"
-        tools:text="Войти" />
+        android:text="Войти" />
 
     <Button
         android:id="@+id/button_register"
@@ -94,6 +96,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_login"
-        tools:text="Получить учетную запись" />
+        android:text="Получить учетную запись" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

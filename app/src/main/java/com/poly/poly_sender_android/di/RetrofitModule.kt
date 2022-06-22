@@ -2,7 +2,7 @@ package com.poly.poly_sender_android.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.poly.poly_sender_android.data.network.ApiUserRetrofit
+import com.poly.poly_sender_android.data.network.ApiRetrofit
 import com.poly.poly_sender_android.data.network.Constants
 import dagger.Module
 import dagger.Provides
@@ -20,7 +20,6 @@ class RetrofitModule {
     @Provides
     fun provideGsonBuilder(): Gson {
         return GsonBuilder()
-            .excludeFieldsWithoutExposeAnnotation()
             .create()
     }
 
@@ -28,15 +27,15 @@ class RetrofitModule {
     @Provides
     fun provideRetrofit(gson: Gson): Retrofit.Builder {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(Constants.API_ROOT_BASE)
             .addConverterFactory(GsonConverterFactory.create(gson))
     }
 
     @Singleton
     @Provides
-    fun provideUserService(retrofit: Retrofit.Builder): ApiUserRetrofit {
+    fun provideUserService(retrofit: Retrofit.Builder): ApiRetrofit {
         return retrofit
             .build()
-            .create(ApiUserRetrofit::class.java)
+            .create(ApiRetrofit::class.java)
     }
 }

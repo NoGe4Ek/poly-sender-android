@@ -1,4 +1,4 @@
-package com.poly.poly_sender_android.ui.filters.mvi
+package com.poly.poly_sender_android.ui.filters.creationFilter.mvi
 
 import com.poly.poly_sender_android.mvi.News
 

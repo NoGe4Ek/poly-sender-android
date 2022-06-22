@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class SettingsStore @Inject constructor(
     logger: Logger
-): Store<SettingsState, UserDetailsWish, SettingsEffect, SettingsNews>(logger) {
+): Store<SettingsState, SettingsWish, SettingsEffect, SettingsNews>(logger) {
     init {
         actor = SettingsActor()
         reducer = SettingsReducer()

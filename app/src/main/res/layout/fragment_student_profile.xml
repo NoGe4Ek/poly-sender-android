@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.studentProfile.StudentProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -129,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:textAlignment="center"
-                    app:layout_constraintBottom_toTopOf="text_view_student_profile_program_type"
+                    app:layout_constraintBottom_toTopOf="@id/text_view_student_profile_program_type_header"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.496"
                     app:layout_constraintStart_toStartOf="parent"

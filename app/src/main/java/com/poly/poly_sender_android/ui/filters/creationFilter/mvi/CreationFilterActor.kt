@@ -1,6 +1,9 @@
-package com.poly.poly_sender_android.ui.filters.mvi
+package com.poly.poly_sender_android.ui.filters.creationFilter.mvi
 
 import com.poly.poly_sender_android.mvi.Actor
+import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.CreationFilterEffect
+import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.CreationFilterState
+import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.CreationFilterWish
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -15,41 +18,6 @@ class CreationFilterActor : Actor<CreationFilterState, CreationFilterWish, Creat
         when (wish) {
             is CreationFilterWish.RefreshFromNetwork -> {
                 emit(CreationFilterEffect.RefreshInProcess(true))
-                try {
-                    val users = mainRepository.cacheAndGetUsers()
-                    if (users.isNotEmpty())
-                        emit(
-                            CreationFilterEffect.RefreshSuccess(
-                                false,
-                                users,
-                            )
-                        )
-                    else
-                        emit(CreationFilterEffect.RefreshFailure(false, "Users is missing"))
-
-                } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
-                    emit(CreationFilterEffect.RefreshFailure(false, errorMessage))
-                }
-            }
-
-            is CreationFilterWish.SmartRefresh -> {
-                emit(CreationFilterEffect.RefreshInProcess(true))
-                try {
-                    val users = mainRepository.spGetUsers()
-                    if (users.isNotEmpty())
-                        emit(
-                            CreationFilterEffect.RefreshSuccess(
-                                false,
-                                users,
-                            )
-                        )
-                    else
-                        emit(CreationFilterEffect.RefreshFailure(false, "Local users is missing"))
-                } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
-                    emit(CreationFilterEffect.RefreshFailure(false, errorMessage))
-                }
 
             }
         }

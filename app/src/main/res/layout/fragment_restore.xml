@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_app_name_header"
-        tools:hint="Email">
+        android:hint="Email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -50,6 +50,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_field_email"
-        tools:text="Восстановить пароль" />
+        android:text="Восстановить пароль" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

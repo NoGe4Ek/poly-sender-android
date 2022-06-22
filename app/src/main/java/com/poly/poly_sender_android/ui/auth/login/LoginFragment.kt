@@ -50,27 +50,29 @@ class LoginFragment : Fragment(), MviView<LoginState, LoginNews> {
         }
 
         binding.buttonLogin.setOnClickListener {
+            val login: String = binding.editTextEmail.string()
+            val password: String = binding.editTextPassword.string()
             when {
-                binding.textFieldEmail.editText == null -> binding.textFieldEmail.error =
+                login == "" -> binding.textFieldEmail.error =
                     EMPTY_FILL_ERROR
-                binding.textFieldPassword.editText == null -> binding.textFieldPassword.error =
+                password == "" -> binding.textFieldPassword.error =
                     EMPTY_FILL_ERROR
                 else -> {
                     loginViewModel.obtainWish(
                         LoginWish.SignIn(
-                            binding.textFieldEmail.editText!!.string(),
-                            binding.textFieldPassword.editText!!.string()
+                            login,
+                            password
                         )
                     )
                 }
             }
         }
+
         binding.buttonRegister.setOnClickListener {
             findNavController().navigate(
                 LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             )
         }
-
 
         binding.buttonRestore.setOnClickListener {
             findNavController().navigate(

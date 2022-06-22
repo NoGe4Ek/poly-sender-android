@@ -18,9 +18,9 @@ class MainRepositoryImpl @Inject constructor(
     private val createGroupResponseMapper: CreateGroupResponseMapper,
     private val filterMapper: FilterMapper,
     private val createAttributeResponseMapper: CreateAttributeResponseMapper,
-
-    override var user: User,
 ) : MainRepository {
+
+    override lateinit var user: User
 
     override suspend fun checkSignIn(login: String, password: String): User {
         val userNE = retrofit.checkSignIn(SignInBody(login, password))

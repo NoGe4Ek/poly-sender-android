@@ -9,24 +9,7 @@ class SettingsReducer: Reducer<SettingsState, SettingsEffect, SettingsNews> {
         var reducedState: SettingsState? = null
         var reducedNews: SettingsNews? = null
         when (effect) {
-            is SettingsEffect.GetUserDetailsFailure -> {
-                reducedNews = SettingsNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is SettingsEffect.GetUserDetailsSuccess -> {
-                reducedState = state.copy(user = effect.user, friends = effect.friends)
-            }
-            is SettingsEffect.ExternalCallFailure -> {
-                reducedNews = SettingsNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is SettingsEffect.ExternalEmailFailure -> {
-                reducedNews = SettingsNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is SettingsEffect.ExternalMapFailure -> {
-                reducedNews = SettingsNews.Message(Toast.LENGTH_SHORT, effect.errorMessage)
-            }
-            is SettingsEffect.ExternalSuccess -> {
-                //Do nothing, that's ok
-            }
+
         }
         return reducedState to reducedNews
     }

@@ -19,7 +19,7 @@ class LoginReducer : Reducer<LoginState, LoginEffect, LoginNews> {
                 val intent = Intent(App.appContext, MainActivity::class.java).apply {
                     putExtra("user", effect.user.toString())
                 }
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK and FLAG_ACTIVITY_CLEAR_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 App.appContext.startActivity(intent)
             }
             is LoginEffect.Failure -> {
