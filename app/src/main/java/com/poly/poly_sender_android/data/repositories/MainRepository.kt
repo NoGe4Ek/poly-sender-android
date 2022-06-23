@@ -7,6 +7,11 @@ import javax.inject.Singleton
 interface MainRepository {
     var user: User
 
+    suspend fun saveLocalUser(user: User)
+    suspend fun updateLocalUser(user: User)
+    suspend fun nukeTable()
+    suspend fun getLocalUser() : User
+
     suspend fun checkSignIn(login: String, password: String): User
 
     suspend fun getAccess(

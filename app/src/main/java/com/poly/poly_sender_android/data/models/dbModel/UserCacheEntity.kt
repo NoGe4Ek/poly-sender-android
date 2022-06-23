@@ -11,7 +11,7 @@ data class UserCacheEntity(
     val id: Int,
 
     @ColumnInfo(name = "status")
-    val status: Boolean,
+    val status: String,
 
     @ColumnInfo(name = "idStaff")
     val idStaff: String,
@@ -26,5 +26,5 @@ data class UserCacheEntity(
     val email: String,
 
     @ColumnInfo(name = "roles")
-    val roles: List<String>,
+    val roles: String,
 )

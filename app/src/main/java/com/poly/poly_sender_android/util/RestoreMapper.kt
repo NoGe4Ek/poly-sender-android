@@ -1,8 +1,6 @@
 package com.poly.poly_sender_android.util
 
-import com.poly.poly_sender_android.data.models.domainModel.GetAccessResponse
 import com.poly.poly_sender_android.data.models.domainModel.RestoreResponse
-import com.poly.poly_sender_android.data.models.networkModel.GetAccessResponseNetworkEntity
 import com.poly.poly_sender_android.data.models.networkModel.RestoreResponseNetworkEntity
 import javax.inject.Inject
 

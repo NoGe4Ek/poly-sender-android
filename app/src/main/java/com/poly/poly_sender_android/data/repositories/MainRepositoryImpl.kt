@@ -3,12 +3,14 @@ package com.poly.poly_sender_android.data.repositories
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.data.database.UserDao
 import com.poly.poly_sender_android.data.models.domainModel.*
 import com.poly.poly_sender_android.data.network.*
 import com.poly.poly_sender_android.util.*
 import javax.inject.Inject
 
 class MainRepositoryImpl @Inject constructor(
+    private val userDao: UserDao,
     private val retrofit: ApiRetrofit,
     private val studentMapper: StudentMapper,
     private val userMapper: UserMapper,
@@ -18,9 +20,27 @@ class MainRepositoryImpl @Inject constructor(
     private val createGroupResponseMapper: CreateGroupResponseMapper,
     private val filterMapper: FilterMapper,
     private val createAttributeResponseMapper: CreateAttributeResponseMapper,
+    private val cacheMapper: CacheMapper,
 ) : MainRepository {
 
     override lateinit var user: User
+
+    override suspend fun saveLocalUser(user: User) {
+        userDao.addUser(cacheMapper.mapToEntity(user))
+    }
+
+    override suspend fun updateLocalUser(user: User) {
+        userDao.updateUser(cacheMapper.mapToEntity(user))
+    }
+
+    override suspend fun nukeTable() {
+        userDao.nukeTable()
+    }
+
+    override suspend fun getLocalUser(): User {
+        val userCE = userDao.getUser(0)
+        return cacheMapper.mapFromEntity(userCE)
+    }
 
     override suspend fun checkSignIn(login: String, password: String): User {
         val userNE = retrofit.checkSignIn(SignInBody(login, password))

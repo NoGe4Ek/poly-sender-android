@@ -72,6 +72,7 @@ class FiltersFragment : Fragment(),
 
         binding.buttonFilter.setOnClickListener {
             //TODO
+            FiltersWish.Refresh(filtersSearchParam = FiltersSearchParam())
         }
 
         binding.floatingButtonAdd.setOnClickListener {

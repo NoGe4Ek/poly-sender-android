@@ -75,6 +75,9 @@ class StudentsActor :
                     )
                 )
             }
+            StudentsWish.FetchLocalUser -> {
+                mainRepository.getLocalUser()
+            }
         }
     }.flowOn(Dispatchers.IO)
 }

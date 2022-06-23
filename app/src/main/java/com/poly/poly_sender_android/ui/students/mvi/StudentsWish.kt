@@ -6,6 +6,8 @@ import com.poly.poly_sender_android.mvi.Wish
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeWish
 
 sealed interface StudentsWish : Wish {
+    object FetchLocalUser: StudentsWish
+
     data class RefreshStudents(val searchSelectedAttributes: List<Attribute>) :
         StudentsWish
 

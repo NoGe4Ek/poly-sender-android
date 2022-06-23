@@ -54,6 +54,8 @@ class StudentsFragment : Fragment(),
         studentsRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         studentsRecycler.adapter = studentsAdapter
 
+
+
         with(studentsSharedViewModel) {
             bind(viewLifecycleOwner.lifecycleScope, this@StudentsFragment)
         }
