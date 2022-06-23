@@ -14,7 +14,7 @@ class AttributeMapper @Inject constructor() :
                 owner = owner,
                 attributeName = attributeName,
                 groupName = groupName,
-                expression = expression,
+                expression = expression ?: "",
                 type = type,
                 link = link,
                 created = created,

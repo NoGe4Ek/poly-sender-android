@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class AttributeNetworkEntity(
     @SerializedName("id")
-    val id: Int,
+    val id: String,
 
     @SerializedName("owner")
     val owner: String,
@@ -16,7 +16,7 @@ data class AttributeNetworkEntity(
     val groupName: String,
 
     @SerializedName("expression")
-    val expression: String,
+    val expression: String?,
 
     @SerializedName("type")
     val type: String,

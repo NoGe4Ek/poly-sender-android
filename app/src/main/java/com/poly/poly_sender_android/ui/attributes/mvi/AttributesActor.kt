@@ -24,8 +24,6 @@ class AttributesActor : Actor<AttributesState, AttributesWish, AttributesEffect>
                     emit(AttributesEffect.Failure(errorMessage))
                 }
             }
-
-
         }
     }.flowOn(Dispatchers.IO)
 }

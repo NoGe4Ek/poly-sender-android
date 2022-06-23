@@ -1,7 +1,7 @@
 package com.poly.poly_sender_android.data.models.domainModel
 
 data class Attribute(
-    val id: Int,
+    val id: String,
     val owner: String,
     val attributeName: String,
     val groupName: String,

@@ -50,8 +50,8 @@ class LoginFragment : Fragment(), MviView<LoginState, LoginNews> {
         }
 
         binding.buttonLogin.setOnClickListener {
-            val login: String = binding.editTextEmail.string()
-            val password: String = binding.editTextPassword.string()
+            val login: String = "sargsyan.ee@edu.spbstu.ru"//binding.editTextEmail.string()
+            val password: String = "fDq%&?pkk#wt"//binding.editTextPassword.string() //TODO delete test
             when {
                 login == "" -> binding.textFieldEmail.error =
                     EMPTY_FILL_ERROR

@@ -8,7 +8,9 @@ import com.poly.poly_sender_android.data.models.domainModel.*
 import com.poly.poly_sender_android.data.network.*
 import com.poly.poly_sender_android.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class MainRepositoryImpl @Inject constructor(
     private val userDao: UserDao,
     private val retrofit: ApiRetrofit,
@@ -21,9 +23,12 @@ class MainRepositoryImpl @Inject constructor(
     private val filterMapper: FilterMapper,
     private val createAttributeResponseMapper: CreateAttributeResponseMapper,
     private val cacheMapper: CacheMapper,
+    private val sessionManager: SessionManager
 ) : MainRepository {
-
     override lateinit var user: User
+    override suspend fun saveAuthToken(user: User) {
+        sessionManager.saveAuthToken(user.token)
+    }
 
     override suspend fun saveLocalUser(user: User) {
         userDao.addUser(cacheMapper.mapToEntity(user))
@@ -77,13 +82,13 @@ class MainRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getDataAttributesCurrentStaff(id: String): List<Attribute> {
+        println("===================================================================================================== $retrofit")
         val attributesNE = retrofit.getDataAttributesCurrentStaff(CommonRequestBody(id))
-
         return attributeMapper.mapFromEntityList(attributesNE)
     }
 
     override suspend fun getDataAttributes(id: String): List<Attribute> {
-        val attributesNE = retrofit.getDataAttributes(CommonRequestBody(id))
+        val attributesNE = retrofit.getDataAttributes(CommonRequestBody(user.idStaff))
         return attributeMapper.mapFromEntityList(attributesNE)
     }
 
@@ -116,22 +121,5 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun getStudents(id: String): List<Student> {
         val studentsNE = retrofit.getAllStudents(CommonRequestBody(id))
         return studentMapper.mapFromEntityList(studentsNE)
-    }
-
-    fun getToken(): String? {
-        return settings.getString(PREFS_TOKEN, null)
-    }
-
-    fun setToken(token: String) {
-        settings.edit {
-            putString(PREFS_TOKEN, token)
-        }
-    }
-
-    companion object {
-        private const val PREFS_NAME = "PrefsFile"
-        private const val PREFS_TOKEN = "token"
-        val settings: SharedPreferences = App.appContext.getSharedPreferences(PREFS_NAME, 0)
-
     }
 }

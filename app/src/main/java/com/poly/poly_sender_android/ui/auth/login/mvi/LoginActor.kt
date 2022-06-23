@@ -19,8 +19,10 @@ class LoginActor : Actor<LoginState, LoginWish, LoginEffect>() {
                 try {
                     emit(LoginEffect.Loading)
                     val user = mainRepository.checkSignIn(wish.login, wish.password)
-                    mainRepository.saveLocalUser(user)
+
                     if (user.status) {
+                        mainRepository.saveLocalUser(user)
+                        mainRepository.saveAuthToken(user)
                         emit(LoginEffect.Success(user))
                     } else {
                         emit(LoginEffect.Failure(STATUS_FALSE))
