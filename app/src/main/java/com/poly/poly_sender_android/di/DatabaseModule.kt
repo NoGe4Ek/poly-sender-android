@@ -22,7 +22,7 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideUsersDao(appDatabase: AppDatabase): UserDao {
-        return appDatabase.usersDao()
+        return appDatabase.userDao()
     }
 
     @Provides

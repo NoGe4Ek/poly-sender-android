@@ -7,9 +7,9 @@ import com.poly.poly_sender_android.data.models.dbModel.UserCacheEntity
 @Database(entities = [UserCacheEntity::class], version = 1)
 abstract class AppDatabase: RoomDatabase() {
 
-    abstract fun usersDao(): UserDao
+    abstract fun userDao(): UserDao
 
     companion object {
-        const val DATABASE_NAME = "users"
+        const val DATABASE_NAME = "user"
     }
 }

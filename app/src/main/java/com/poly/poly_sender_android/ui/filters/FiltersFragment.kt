@@ -18,6 +18,7 @@ import com.poly.poly_sender_android.ui.adapters.FiltersAdapter
 import com.poly.poly_sender_android.ui.filters.mvi.FiltersNews
 import com.poly.poly_sender_android.ui.filters.mvi.FiltersState
 import com.poly.poly_sender_android.ui.filters.mvi.FiltersWish
+import com.poly.poly_sender_android.util.AppAnimations
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -37,6 +38,9 @@ class FiltersFragment : Fragment(),
     lateinit var filtersRecycler: RecyclerView
     lateinit var filtersAdapter: FiltersAdapter
 
+    private var clicked = false
+    private lateinit var appAnimations: AppAnimations
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,6 +55,7 @@ class FiltersFragment : Fragment(),
 
         logger.connect(javaClass)
 
+        appAnimations = AppAnimations(requireContext())
         filtersRecycler = binding.filterList
         filtersAdapter = FiltersAdapter(onItemClicked = {},
             onEditClicked = {},
@@ -67,6 +72,10 @@ class FiltersFragment : Fragment(),
 
         binding.buttonFilter.setOnClickListener {
             //TODO
+        }
+
+        binding.floatingButtonAdd.setOnClickListener {
+            clicked = appAnimations.onExpandedFloatingButtonClicked(clicked, binding.floatingButtonAdd, binding.floatingButtonAddFilter)
         }
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

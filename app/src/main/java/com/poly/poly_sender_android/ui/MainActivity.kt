@@ -1,23 +1,29 @@
 package com.poly.poly_sender_android.ui
 
+
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.*
+import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
+import com.google.android.material.navigation.NavigationView
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -29,9 +35,19 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
+        val drawerLayout: DrawerLayout = binding.drawerLayout
+        val navView: NavigationView = binding.navView
+        navController = findNavController(R.id.nav_host_fragment_content_main)
+
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.StudentsFragment,
+                R.id.AttributesFragment,
+                R.id.FiltersFragment
+            ), drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
+        NavigationUI.setupWithNavController(navView, navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -44,8 +60,16 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                navController.navigate(R.id.action_global_settingsFragment)
+                true
+            }
+            R.id.action_profile -> {
+                navController.navigate(R.id.action_global_profileFragment)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

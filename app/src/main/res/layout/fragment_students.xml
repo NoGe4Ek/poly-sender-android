@@ -51,14 +51,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toTopOf="@id/button_next"
+        app:layout_constraintBottom_toTopOf="@id/button_upload"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/md_all"
         tools:listitem="@layout/card_student" />
 
     <Button
-        android:id="@+id/button_next"
+        android:id="@+id/button_upload"
         style="@style/Widget.Material3.Button.TonalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,6 +66,6 @@
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Далее" />
+        android:text="Выгрузить" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,12 @@
         <item name="android:textSize">40sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="Theme.HiNote.TextView.AppHeaderSmall" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/comfortaa_bold</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
     <style name="Theme.HiNote.TextView.Header" parent="TextAppearance.Material3.HeadlineSmall">
         <item name="fontFamily">@font/comfortaa_bold</item>
         <item name="android:textSize">21sp</item>
@@ -13,6 +19,10 @@
     <style name="Theme.HiNote.TextView.Body" parent="TextAppearance.Material3.BodyMedium">
         <item name="fontFamily">@font/comfortaa_regular</item>
         <item name="android:textSize">17sp</item>
+    </style>
+    <style name="Theme.HiNote.TextView.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/comfortaa_regular</item>
+        <item name="android:textSize">14sp</item>
     </style>
     <style name="Theme.HiNote.TextView.Extra" parent="TextAppearance.Material3.LabelSmall">
         <item name="fontFamily">@font/comfortaa_light</item>

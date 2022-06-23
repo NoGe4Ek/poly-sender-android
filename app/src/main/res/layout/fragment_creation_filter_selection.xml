@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toBottomOf="@id/checkbox_all"
         app:layout_constraintStart_toEndOf="@id/checkbox_all"
         app:layout_constraintTop_toTopOf="@id/checkbox_all"
-        tools:text="Выбрать всех" />
+        android:text="Выбрать всех" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/md_all"
@@ -65,6 +65,6 @@
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Далее" />
+        android:text="Далее" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

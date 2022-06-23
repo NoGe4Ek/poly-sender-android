@@ -53,6 +53,6 @@
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Создать фильтр" />
+        android:text="Создать фильтр" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

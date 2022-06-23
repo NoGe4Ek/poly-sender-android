@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        tools:text="Изменить пароль" />
+        android:text="Изменить пароль" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_old_password"
@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_change_password"
-        tools:hint="Старый пароль">
+        android:hint="Старый пароль">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_field_old_password"
-        tools:hint="Новый пароль">
+        android:hint="Новый пароль">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -66,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_field_new_password"
-        tools:hint="Новый пароль">
+        android:hint="Новый пароль">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_field_new_password_again"
-        tools:text="Изменить" />
+        android:text="Изменить" />
 
     <TextView
         android:id="@+id/text_view_get_admin_access"
@@ -98,7 +98,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_change_password"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        tools:text="Запросить права администратора" />
+        android:text="Запросить права администратора" />
 
     <Button
         android:id="@+id/button_get_admin_access"
@@ -109,6 +109,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_get_admin_access"
-        tools:text="Запросить" />
+        android:text="Запросить" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
