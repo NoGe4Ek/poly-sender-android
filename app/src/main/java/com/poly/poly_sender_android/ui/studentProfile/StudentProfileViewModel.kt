@@ -12,7 +12,8 @@ class StudentProfileViewModel @Inject constructor() :
     BaseViewModel<StudentProfileState, StudentProfileWish, StudentProfileEffect, StudentProfileNews>() {
 
     private val initState = StudentProfileState(
-        student = null
+        isLoading = false,
+        student = null,
     )
     override val stateFlow = MutableStateFlow(initState)
     override val wishFlow = MutableSharedFlow<StudentProfileWish?>()

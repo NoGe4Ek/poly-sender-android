@@ -82,7 +82,6 @@ class MainRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getDataAttributesCurrentStaff(id: String): List<Attribute> {
-        println("===================================================================================================== $retrofit")
         val attributesNE = retrofit.getDataAttributesCurrentStaff(CommonRequestBody(id))
         return attributeMapper.mapFromEntityList(attributesNE)
     }

@@ -175,7 +175,7 @@
         tools:layout="@layout/fragment_student_profile">
         <argument
             android:name="student"
-            app:argType="string" />
+            app:argType="com.poly.poly_sender_android.data.models.domainModel.Student" />
     </fragment>
     <fragment
         android:id="@+id/ProfileFragment"
@@ -196,4 +196,6 @@
         app:destination="@id/ProfileFragment"/>
     <action android:id="@+id/action_global_settingsFragment"
         app:destination="@id/SettingsFragment"/>
+    <action android:id="@+id/action_global_studentProfileFragment"
+        app:destination="@id/StudentProfileFragment"/>
 </navigation>

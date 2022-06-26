@@ -7,39 +7,51 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <ImageView
-        android:id="@+id/image_view_profile_square"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="32dp"
-        android:contentDescription="@string/profile_square"
         android:src="@drawable/ic_profile_square"
+        android:layout_width="152dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="16dp"
+        app:cardElevation="3dp"
+        android:translationZ="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="transparent border" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_profile_square"
+        style="@style/Widget.Material3.CardView.Filled"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="32dp"
+        app:cardElevation="6dp"
         android:translationZ="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="?attr/colorPrimary" />
+        app:cardCornerRadius="30dp"
+        >
 
-    <TextView
-        style="@style/Theme.HiNote.TextView.AppHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:textColor="?attr/colorOnPrimary"
-        android:translationZ="30dp"
-        app:layout_constraintBottom_toBottomOf="@id/image_view_profile_square"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/image_view_profile_square"
-        app:tint="?attr/colorPrimary"
-        tools:text="СЭ" />
+        <TextView
+            android:id="@+id/text_view_square_avatar_text"
+            style="@style/Theme.PolySender.TextView.AppHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnSurface"
+            android:layout_marginBottom="2dp"
+            android:layout_gravity="center"
+            tools:text="СЭ" />
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        style="@style/Widget.PolySender.CardView.Profile"
+        android:id="@+id/card_view_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="32dp"
-        app:cardElevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -50,10 +62,10 @@
 
             <TextView
                 android:id="@+id/text_view_profile_name"
-                style="@style/Theme.HiNote.TextView.Header"
+                style="@style/Theme.PolySender.TextView.Header"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="64dp"
+                android:layout_marginTop="70dp"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@id/text_view_profile_role"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +77,7 @@
 
             <TextView
                 android:id="@+id/text_view_profile_role"
-                style="@style/Theme.HiNote.TextView.Extra"
+                style="@style/Theme.PolySender.TextView.Extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -73,15 +85,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_view_profile_name"
-                tools:text="Пользователь" />
+                tools:text="USER" />
 
             <TextView
                 android:id="@+id/text_view_profile_email"
-                style="@style/Theme.HiNote.TextView.Body"
+                style="@style/Theme.PolySender.TextView.Body"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="32dp"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

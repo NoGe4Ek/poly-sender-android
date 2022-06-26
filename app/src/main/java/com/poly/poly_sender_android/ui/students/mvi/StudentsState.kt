@@ -9,13 +9,13 @@ data class StudentsState(
     val isLoading: Boolean,
 
     //CreationAttributeSelection
-    val students: List<Student>,
-    val selectedStudents: List<Student>,
+    val students: Set<Student>,
+    val selectedStudents: Set<Student>,
 
     //CreationAttributeSelectionAttributing
     // Search Param // TODO pack to StudentsSearchParam like CreationAttributeSearchParam
     //val searchParam: CreationAttributeSearchParam,
-    val searchAttributes: List<Attribute>,
-    val searchSelectedAttributes: List<Attribute>,
+    val searchAttributes: Set<Attribute>,
+    val searchSelectedAttributes: Set<Attribute>,
     val searchSelectedSection: String, //TODO class sections
 ): State

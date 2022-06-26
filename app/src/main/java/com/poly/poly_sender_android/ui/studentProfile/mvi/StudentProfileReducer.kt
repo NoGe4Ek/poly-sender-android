@@ -2,6 +2,8 @@ package com.poly.poly_sender_android.ui.studentProfile.mvi
 
 import android.widget.Toast
 import com.poly.poly_sender_android.mvi.Reducer
+import com.poly.poly_sender_android.ui.students.mvi.StudentsEffect
+import com.poly.poly_sender_android.ui.students.mvi.StudentsNews
 
 class StudentProfileReducer: Reducer<StudentProfileState, StudentProfileEffect, StudentProfileNews> {
 
@@ -10,13 +12,15 @@ class StudentProfileReducer: Reducer<StudentProfileState, StudentProfileEffect, 
         var reducedNews: StudentProfileNews? = null
         when (effect) {
             is StudentProfileEffect.Loading -> {
-                // it's ok, you can implement necessary logic
+                reducedState = state.copy(isLoading = true)
             }
+
             is StudentProfileEffect.Success -> {
-                // it's ok, you can implement necessary logic
+                reducedState = state.copy(isLoading = false, student = effect.student)
             }
             is StudentProfileEffect.Failure -> {
-                // it's ok, you can implement necessary logic
+                reducedState = state.copy(isLoading = false)
+                reducedNews = StudentProfileNews.Message(effect.errorMessage)
             }
         }
         return reducedState to reducedNews

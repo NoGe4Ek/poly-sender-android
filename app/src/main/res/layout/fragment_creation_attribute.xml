@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/text_view_attribute_name"
-        style="@style/Theme.HiNote.TextView.Body"
+        style="@style/Theme.PolySender.TextView.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/text_view_student_count"
-        style="@style/Theme.HiNote.TextView.Body"
+        style="@style/Theme.PolySender.TextView.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -34,7 +34,7 @@
 
     <TextView
         android:id="@+id/text_view_section"
-        style="@style/Theme.HiNote.TextView.Body"
+        style="@style/Theme.PolySender.TextView.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/button_creation_attribute"

@@ -8,21 +8,21 @@
             <item
                 android:id="@+id/StudentsFragment"
                 android:checkable="true"
-                android:icon="@drawable/ic_card_edit"
+                android:icon="@drawable/ic_outline_students"
                 android:menuCategory="secondary"
                 android:title="Студенты"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/AttributesFragment"
                 android:checkable="true"
-                android:icon="@drawable/ic_card_edit"
+                android:icon="@drawable/ic_tags"
                 android:menuCategory="secondary"
                 android:title="Аттрибуты"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/FiltersFragment"
                 android:checkable="true"
-                android:icon="@drawable/ic_card_edit"
+                android:icon="@drawable/ic_filters"
                 android:menuCategory="secondary"
                 android:title="Фильтры"
                 app:showAsAction="ifRoom" />
@@ -35,14 +35,14 @@
             <item
                 android:id="@+id/ProfileFragment"
                 android:checkable="true"
-                android:icon="@drawable/ic_card_edit"
+                android:icon="@drawable/ic_profile"
                 android:menuCategory="secondary"
                 android:title="Профиль"
                 app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/SettingsFragment"
                 android:checkable="true"
-                android:icon="@drawable/ic_card_edit"
+                android:icon="@drawable/ic_outline_settings"
                 android:menuCategory="secondary"
                 android:title="Настройки"
                 app:showAsAction="ifRoom" />

@@ -4,5 +4,6 @@ import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.mvi.State
 
 data class StudentProfileState(
+    val isLoading: Boolean,
     val student: Student?
 ) : State

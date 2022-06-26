@@ -12,7 +12,8 @@ class ProfileViewModel @Inject constructor() :
     BaseViewModel<ProfileState, ProfileWish, ProfileEffect, ProfileNews>() {
 
     private val initState = ProfileState(
-        r = ""
+        isLoading = false,
+        user = null,
     )
     override val stateFlow = MutableStateFlow(initState)
     override val wishFlow = MutableSharedFlow<ProfileWish?>()

@@ -7,15 +7,23 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
+import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.common.Logger
+import com.poly.poly_sender_android.data.models.domainModel.Student
+import com.poly.poly_sender_android.data.models.domainModel.StudentAttributesItem
 import com.poly.poly_sender_android.databinding.FragmentStudentsBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.adapters.StudentsAdapter
+import com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragmentDirections
 import com.poly.poly_sender_android.ui.students.mvi.StudentsNews
 import com.poly.poly_sender_android.ui.students.mvi.StudentsState
+import com.poly.poly_sender_android.ui.students.mvi.StudentsWish
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -50,27 +58,58 @@ class StudentsFragment : Fragment(),
         logger.connect(javaClass)
 
         studentsRecycler = binding.studentList
-        studentsAdapter = StudentsAdapter(onItemClicked = {}) //TODO add student to selected list in state & set student.isChecked to true OR VISE VERSA
+        studentsAdapter = StudentsAdapter(
+            onItemClicked = { student, card ->
+                if (card.isChecked) {
+                    studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents - student)
+                    studentsSharedViewModel.obtainWish(StudentsWish.DismissStudent(student))
+                } else {
+                    studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents + student)
+                    studentsSharedViewModel.obtainWish(StudentsWish.SelectStudent(student))
+                }
+                card.isChecked = !card.isChecked
+            },
+            onItemLongClicked = { student ->
+                val studentProfileFragment =
+                    StudentProfileFragmentDirections.actionGlobalStudentProfileFragment(student)
+                findNavController().navigate(studentProfileFragment)
+            }) //TODO add student to selected list in state & set student.isChecked to true OR VISE VERSA
+        studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents)
         studentsRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         studentsRecycler.adapter = studentsAdapter
-
-
 
         with(studentsSharedViewModel) {
             bind(viewLifecycleOwner.lifecycleScope, this@StudentsFragment)
         }
 
+        //WARN: wish caught 2 times after navigate from fragment with the same VM, but state obtained correctly
+        studentsSharedViewModel.obtainWish(
+            StudentsWish.RefreshStudents(
+                searchSelectedAttributes = studentsSharedViewModel.nmState.searchSelectedAttributes
+            )
+        )
+
         binding.buttonUpload.setOnClickListener {
             //TODO
         }
         binding.buttonFilter.setOnClickListener {
-            //TODO navigate to searchPage
+            val studentsAttributingFragment =
+                StudentsFragmentDirections.actionStudentsFragmentToStudentsAttributingFragment()
+            findNavController().navigate(studentsAttributingFragment)
         }
         binding.checkboxAll.setOnCheckedChangeListener { compoundButton, b ->
             if (b) {
-                //TODO add all students in selectedList & set student.isChecked to true & refresh students
+                for (student in studentsSharedViewModel.nmState.students) {
+                    studentsSharedViewModel.obtainWish(StudentsWish.SelectStudent(student))
+                }
+                studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.students)
+                studentsAdapter.notifyDataSetChanged()
             } else {
-                //TODO delete all students from selectedList & set student.isChecked to false & refresh students
+                for (student in studentsSharedViewModel.nmState.students) {
+                    studentsSharedViewModel.obtainWish(StudentsWish.DismissStudent(student))
+                }
+                studentsAdapter.setSelectedStudents(emptySet())
+                studentsAdapter.notifyDataSetChanged()
             }
         }
     }
@@ -81,7 +120,8 @@ class StudentsFragment : Fragment(),
     }
 
     override fun renderState(state: StudentsState) {
-        studentsAdapter.submitList(state.students)
+        binding.buttonFilter.isSelected = state.searchSelectedAttributes.isNotEmpty()
+        studentsAdapter.submitList(state.students.toList())
     }
 
     override fun renderNews(new: StudentsNews) {

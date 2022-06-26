@@ -2,8 +2,10 @@ package com.poly.poly_sender_android.ui
 
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -13,6 +15,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import com.google.android.material.navigation.NavigationView
+import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +27,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private var timerInProgress = false
+    private var timer = object : CountDownTimer(3000, 1) {
+        override fun onTick(p0: Long) {
+
+        }
+
+        override fun onFinish() {
+            timerInProgress = false
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -48,6 +62,8 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         NavigationUI.setupWithNavController(navView, navController)
+
+        App.mCurrentActivity = this
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -74,9 +90,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        when {
+            navController.backQueue.size == 2 && !timerInProgress -> {
+                timer.start()
+                timerInProgress = true
+                Toast.makeText(applicationContext, "Вы уверены, что хотите выйти?", Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                super.onBackPressed()
+            }
+        }
+    }
+
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
 }

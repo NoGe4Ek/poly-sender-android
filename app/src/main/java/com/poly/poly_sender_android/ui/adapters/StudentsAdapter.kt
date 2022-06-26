@@ -2,16 +2,18 @@ package com.poly.poly_sender_android.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.databinding.CardStudentBinding
 
 class StudentsAdapter(
-    private val onItemClicked: (Student) -> Unit
-): ListAdapter<Student, StudentsAdapter.StudentViewHolder>(DiffCallback)
-{
+    private val onItemClicked: (Student, MaterialCardView) -> Unit,
+    private val onItemLongClicked: (Student) -> Unit,
+) : ListAdapter<Student, StudentsAdapter.StudentViewHolder>(DiffCallback) {
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Student>() {
             override fun areItemsTheSame(oldItem: Student, newItem: Student): Boolean {
@@ -22,6 +24,11 @@ class StudentsAdapter(
                 return oldItem == newItem
             }
         }
+    }
+    private val selectedStudents = mutableSetOf<Student>()
+    fun setSelectedStudents(selectedStudents: Set<Student>) {
+        this.selectedStudents.clear()
+        this.selectedStudents.addAll(selectedStudents)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
@@ -38,18 +45,35 @@ class StudentsAdapter(
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
         val student: Student = getItem(position)
         holder.bind(student)
+        val card = holder.binding.studentCard
 
-        holder.itemView.setOnClickListener {
-            onItemClicked(student)
+        card.setOnLongClickListener {
+            onItemLongClicked(student)
+            true
+        }
+
+        card.setOnClickListener {
+            onItemClicked(student, card)
         }
     }
 
-    inner class StudentViewHolder(private val binding: CardStudentBinding) :
+    inner class StudentViewHolder(val binding: CardStudentBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(student: Student) {
             binding.apply {
-                cardCheckBox.isChecked = student.isChecked
+                var isDismissed = true
+                for (selStudent in selectedStudents) {
+                    if (student == selStudent) {
+                        studentCard.isChecked = true
+                        isDismissed = false
+                        break
+                    }
+                }
+                if (isDismissed) {
+                    studentCard.isChecked = false
+                }
+
                 cardStudentName.text = student.name
                 cardStudentEmail.text = student.email
             }

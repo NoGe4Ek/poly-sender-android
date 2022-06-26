@@ -59,7 +59,7 @@
 
         <TextView
             android:id="@+id/card_filter_name"
-            style="@style/Theme.HiNote.TextView.Header"
+            style="@style/Theme.PolySender.TextView.Header"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -73,7 +73,7 @@
 
         <TextView
             android:id="@+id/card_filter_email"
-            style="@style/Theme.HiNote.TextView.Body"
+            style="@style/Theme.PolySender.TextView.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/card_filter_student_count"
@@ -84,7 +84,7 @@
 
         <TextView
             android:id="@+id/card_filter_student_count"
-            style="@style/Theme.HiNote.TextView.Body"
+            style="@style/Theme.PolySender.TextView.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/card_filter_creation_type"
@@ -95,7 +95,7 @@
 
         <TextView
             android:id="@+id/card_filter_creation_type"
-            style="@style/Theme.HiNote.TextView.Body"
+            style="@style/Theme.PolySender.TextView.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/card_filter_mode"
@@ -105,7 +105,7 @@
 
         <TextView
             android:id="@+id/card_filter_mode"
-            style="@style/Theme.HiNote.TextView.Body"
+            style="@style/Theme.PolySender.TextView.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/card_filter_creation_date"
@@ -115,7 +115,7 @@
 
         <TextView
             android:id="@+id/card_filter_creation_date"
-            style="@style/Theme.HiNote.TextView.Body"
+            style="@style/Theme.PolySender.TextView.Body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

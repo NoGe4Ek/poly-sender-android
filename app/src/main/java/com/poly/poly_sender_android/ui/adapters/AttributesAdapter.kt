@@ -5,16 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
+import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.databinding.CardAttributeBinding
 
 class AttributesAdapter(
-    private val onItemClicked: (Attribute) -> Unit,
-    private val onEditClicked: (Attribute) -> Unit,
-    private val onDeleteClicked: (Attribute) -> Unit,
-    private val onShareClicked: (Attribute) -> Unit
-): ListAdapter<Attribute, AttributesAdapter.AttributeViewHolder>(DiffCallback)
-{
+    private val onItemClicked: (Attribute, MaterialCardView) -> Unit,
+    private val onItemLongClicked: (Attribute) -> Unit
+) : ListAdapter<Attribute, AttributesAdapter.AttributeViewHolder>(DiffCallback) {
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Attribute>() {
             override fun areItemsTheSame(oldItem: Attribute, newItem: Attribute): Boolean {
@@ -25,6 +24,12 @@ class AttributesAdapter(
                 return oldItem == newItem
             }
         }
+    }
+
+    private val selectedAttributes = mutableSetOf<Attribute>()
+    fun setSelectedAttributes(selectedAttributes: Set<Attribute>) {
+        this.selectedAttributes.clear()
+        this.selectedAttributes.addAll(selectedAttributes)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttributeViewHolder {
@@ -41,26 +46,34 @@ class AttributesAdapter(
     override fun onBindViewHolder(holder: AttributeViewHolder, position: Int) {
         val attribute: Attribute = getItem(position)
         holder.bind(attribute)
+        val card = holder.binding.attributeCard
 
-        holder.itemView.setOnClickListener {
-            onItemClicked(attribute)
+        card.setOnLongClickListener {
+            onItemLongClicked(attribute)
+            true
         }
-        holder.binding.cardAttributeButtonEdit.setOnClickListener {
-            onEditClicked(attribute)
-        }
-        holder.binding.cardAttributeButtonDelete.setOnClickListener {
-            onDeleteClicked(attribute)
-        }
-        holder.binding.cardAttributeButtonShare.setOnClickListener {
-            onShareClicked(attribute)
+        card.setOnClickListener {
+            onItemClicked(attribute, card)
         }
     }
+
 
     inner class AttributeViewHolder(val binding: CardAttributeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(attribute: Attribute) {
             binding.apply {
+                var isDismissed = true
+                for (selAttribute in selectedAttributes) {
+                    if (attribute == selAttribute) {
+                        attributeCard.isChecked = true
+                        isDismissed = false
+                        break
+                    }
+                }
+                if (isDismissed) {
+                    attributeCard.isChecked = false
+                }
                 cardAttributeName.text = attribute.attributeName
                 cardAttributeSection.text = attribute.groupName
                 cardAttributeStudentCount.text = attribute.students.size.toString()

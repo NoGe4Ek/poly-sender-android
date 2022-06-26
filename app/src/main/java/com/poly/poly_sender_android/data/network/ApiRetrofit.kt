@@ -7,12 +7,15 @@ import retrofit2.http.POST
 
 interface ApiRetrofit {
 
+    @PublicAPI
     @POST(Constants.URL_check)
     suspend fun checkSignIn(@Body signInBody: SignInBody): UserNetworkEntity
 
+    @PublicAPI
     @POST(Constants.URL_getAccess)
     suspend fun getAccess(@Body getAccessBody: GetAccessBody): GetAccessResponseNetworkEntity
 
+    @PublicAPI
     @POST(Constants.URL_reset)
     suspend fun restorePassword(@Body restoreBody: RestoreBody): RestoreResponseNetworkEntity
 

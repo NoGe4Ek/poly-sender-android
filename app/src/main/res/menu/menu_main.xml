@@ -7,8 +7,8 @@
         android:id="@+id/action_profile"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_card_edit"
-        app:iconTint="?attr/colorOnBackground"
+        android:icon="@drawable/ic_profile"
+        app:iconTint="?attr/colorOnSurface"
         android:title="Profile" />
 
     <item

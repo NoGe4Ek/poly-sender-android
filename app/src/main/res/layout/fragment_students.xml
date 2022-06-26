@@ -12,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        app:icon="@drawable/ic_filter"
-        app:layout_constraintBottom_toBottomOf="@id/checkbox_all"
+        app:icon="@drawable/sl_filter"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
@@ -21,40 +21,33 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:button="@drawable/sl_check_all"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_view_check_all"
-        style="@style/Theme.HiNote.TextView.Body"
-        android:layout_width="wrap_content"
+
+
+    <android.widget.SearchView
+        android:id="@+id/search_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/checkbox_all"
+        app:layout_constraintEnd_toStartOf="@id/button_filter"
         app:layout_constraintStart_toEndOf="@id/checkbox_all"
-        app:layout_constraintTop_toTopOf="@id/checkbox_all"
-        android:text="Выбрать всех" />
-
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/md_all"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_all" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/student_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/button_upload"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/md_all"
+        app:layout_constraintTop_toBottomOf="@id/checkbox_all"
+        app:layout_constraintVertical_bias="0"
         tools:listitem="@layout/card_student" />
 
     <Button
@@ -64,8 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:text="Выгрузить"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="Выгрузить" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

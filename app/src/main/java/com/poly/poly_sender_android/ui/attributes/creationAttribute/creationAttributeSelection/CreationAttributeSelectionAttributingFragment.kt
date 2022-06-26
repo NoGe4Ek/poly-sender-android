@@ -53,10 +53,7 @@ class CreationAttributeSelectionAttributingFragment : Fragment(),
         logger.connect(javaClass)
 
         attributesRecycler = binding.attributeList
-        attributesAdapter = AttributesAdapter(onItemClicked = {},
-            onShareClicked = {},
-            onEditClicked = {},
-            onDeleteClicked = {}) //TODO add attribute to selected list in state & set attribute.isChecked to true OR VISE VERSA
+        attributesAdapter = AttributesAdapter(onItemClicked = {attribute, card ->  }, onItemLongClicked = {}) //TODO add attribute to selected list in state & set attribute.isChecked to true OR VISE VERSA
         attributesRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         attributesRecycler.adapter = attributesAdapter
 

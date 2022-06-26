@@ -9,26 +9,18 @@ sealed interface StudentsEffect : Effect {
     object Loading : StudentsEffect
 
     //Success
-    data class RefreshStudentsSuccess(val students: List<Student>) : StudentsEffect
-    data class RefreshSearchingAttributesBySelectedSectionSuccess(val attributes: List<Attribute>) :
+    data class RefreshStudentsSuccess(val students: Set<Student>) : StudentsEffect
+    data class RefreshSearchingAttributesBySelectedSectionSuccess(val attributes: Set<Attribute>) :
         StudentsEffect
     object ClearSearchParamSuccess : StudentsEffect
+    data class SelectStudentSuccess(val student: Student) : StudentsEffect
+    data class DismissStudentSuccess(val student: Student) : StudentsEffect
+    data class SelectAttributeSuccess(val attribute: Attribute) : StudentsEffect
+    data class DismissAttributeSuccess(val attribute: Attribute) : StudentsEffect
 
     //Failure
     data class RefreshStudentsFailure(val errorMessage: String) : StudentsEffect
     data class RefreshSearchingAttributesBySelectedSectionFailure(val errorMessage: String) :
         StudentsEffect
     data class ClearSearchParamFailure(val errorMessage: String) : StudentsEffect
-
-    //Local Storage (only success)
-    data class UpdateSharedStorageByStudentsSuccess(
-        val students: List<Student>,
-        val selectedStudents: List<Student>
-    ) : StudentsEffect
-
-    data class UpdateSharedStorageByStudentsAttributingSuccess(
-        val searchAttributes: List<Attribute>,
-        val searchSelectedAttributes: List<Attribute>,
-        val searchSelectedSearchSection: String
-    ) : StudentsEffect
 }

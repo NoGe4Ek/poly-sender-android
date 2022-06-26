@@ -53,7 +53,7 @@ class CreationAttributeSelectionFragment : Fragment(),
         logger.connect(javaClass)
 
         studentsRecycler = binding.studentList
-        studentsAdapter = StudentsAdapter(onItemClicked = {}) //TODO add student to selected list in state & set student.isChecked to true OR VISE VERSA
+        studentsAdapter = StudentsAdapter(onItemClicked = {student, materialCardView -> }, onItemLongClicked = {student -> }) //TODO add student to selected list in state & set student.isChecked to true OR VISE VERSA
         studentsRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         studentsRecycler.adapter = studentsAdapter
 

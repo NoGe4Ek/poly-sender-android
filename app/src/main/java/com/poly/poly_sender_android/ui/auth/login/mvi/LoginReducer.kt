@@ -1,7 +1,7 @@
 package com.poly.poly_sender_android.ui.auth.login.mvi
 
+import android.app.Application
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.mvi.Reducer
 import com.poly.poly_sender_android.ui.MainActivity
@@ -19,8 +19,9 @@ class LoginReducer : Reducer<LoginState, LoginEffect, LoginNews> {
                 val intent = Intent(App.appContext, MainActivity::class.java).apply {
                     putExtra("user", effect.user.toString())
                 }
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                 App.appContext.startActivity(intent)
+                App.mCurrentActivity.finish()
             }
             is LoginEffect.Failure -> {
                 reducedState = state.copy(isLoading = false, password = "")

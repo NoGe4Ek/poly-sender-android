@@ -8,12 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.databinding.FragmentStudentsAttributingBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.adapters.AttributesAdapter
+import com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragmentDirections
 import com.poly.poly_sender_android.ui.students.mvi.StudentsNews
 import com.poly.poly_sender_android.ui.students.mvi.StudentsState
 import com.poly.poly_sender_android.ui.students.mvi.StudentsWish
@@ -52,10 +54,21 @@ class StudentsAttributingFragment : Fragment(),
         logger.connect(javaClass)
 
         attributesRecycler = binding.attributeList
-        attributesAdapter = AttributesAdapter(onItemClicked = {},
-            onShareClicked = {},
-            onEditClicked = {},
-            onDeleteClicked = {}) //TODO add attribute to selected list in state & set attribute.isChecked to true OR VISE VERSA
+        attributesAdapter = AttributesAdapter(
+            onItemClicked = { attribute, card ->
+                if (studentsSharedViewModel.nmState.searchSelectedAttributes.contains(attribute)) {
+                    attributesAdapter.setSelectedAttributes(studentsSharedViewModel.nmState.searchSelectedAttributes - attribute)
+                    studentsSharedViewModel.obtainWish(StudentsWish.DismissAttribute(attribute))
+                } else {
+                    attributesAdapter.setSelectedAttributes(studentsSharedViewModel.nmState.searchSelectedAttributes + attribute)
+                    studentsSharedViewModel.obtainWish(StudentsWish.SelectAttribute(attribute))
+                }
+                card.isChecked = !card.isChecked
+            },
+            onItemLongClicked = { attribute ->
+                //TODO navigate to attribute profile or add swipable card
+            }) //TODO add attribute to selected list in state & set attribute.isChecked to true OR VISE VERSA
+        attributesAdapter.setSelectedAttributes(studentsSharedViewModel.nmState.searchSelectedAttributes)
         attributesRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         attributesRecycler.adapter = attributesAdapter
 
@@ -66,23 +79,19 @@ class StudentsAttributingFragment : Fragment(),
             )
         }
 
-        binding.buttonApply.setOnClickListener {
+        studentsSharedViewModel.obtainWish(
+            StudentsWish.RefreshSearchingAttributesBySelectedSection(
+                ""
+            )
+        )
 
-            studentsSharedViewModel.apply {
-                obtainWish(
-                    StudentsWish.UpdateSharedStorageByStudentsAttributing(
-                        nmState.searchAttributes,
-                        nmState.searchSelectedAttributes,
-                        nmState.searchSelectedSection
-                    )
-                )
-            }
-            //TODO emit refresh students with searchParam on main screen
-            //TODO navigate to Attributes
+        binding.buttonApply.setOnClickListener {
+            val studentsFragment =
+                StudentsAttributingFragmentDirections.actionStudentsAttributingFragmentToStudentsFragment()
+            findNavController().navigate(studentsFragment)
         }
         binding.buttonClear.setOnClickListener {
             studentsSharedViewModel.obtainWish(StudentsWish.ClearSearchParam)
-            //TODO navigate to Attributes
         }
         //TODO add onChangeSection listener with UpdateSharedStorageBySelectionAttributing
     }
@@ -94,7 +103,7 @@ class StudentsAttributingFragment : Fragment(),
 
     override fun renderState(state: StudentsState) {
         binding.menuSection.editText?.setText(state.searchSelectedSection)
-        attributesAdapter.submitList(state.searchAttributes)
+        attributesAdapter.submitList(state.searchAttributes.toList())
     }
 
     override fun renderNews(new: StudentsNews) {

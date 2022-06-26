@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/text_view_change_password"
-        style="@style/Theme.HiNote.TextView.Body"
+        style="@style/Theme.PolySender.TextView.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -88,7 +88,7 @@
 
     <TextView
         android:id="@+id/text_view_get_admin_access"
-        style="@style/Theme.HiNote.TextView.Body"
+        style="@style/Theme.PolySender.TextView.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"

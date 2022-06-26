@@ -15,16 +15,29 @@
         <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/fragment_restore.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/fragment_student_profile.xml" value="0.33" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1455" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_card_delete.xml" value="0.139" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_card_edit.xml" value="0.139" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_card_profile_background.xml" value="0.139" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_card_share.xml" value="0.139" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_check_all.xml" value="0.1455" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_filter.xml" value="0.139" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_filters.xml" value="0.1025" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_hide.xml" value="0.139" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_outline_check_all.xml" value="0.1455" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_outline_filter.xml" value="0.139" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_outline_students.xml" value="0.1025" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_profile.xml" value="0.1025" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_profile_square.xml" value="0.139" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_tags_svgrepo_com.xml" value="0.1025" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/sl_check_all.xml" value="0.1455" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/sl_filter.xml" value="0.139" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/font/nunito.xml" value="0.23981481481481481" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/card_attribute.xml" value="0.264" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/card_filter.xml" value="0.25692137320044295" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/card_student.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/card_studentAttribute.xml" value="0.16822916666666668" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/content_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/filter_card.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_attributes.xml" value="0.264" />
@@ -41,14 +54,18 @@
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_creation_section.xml" value="0.253125" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_filters.xml" value="0.18984375" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_login.xml" value="0.264" />
-        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_register.xml" value="0.264" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_restore.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_settings.xml" value="0.253125" />
-        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_student_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_student_profile.xml" value="0.25594149908592323" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_students.xml" value="0.33544303797468356" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_students_attributing.xml" value="0.176" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_user_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/student_card.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/user_card.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/menu/activity_main_drawer.xml" value="0.13541666666666666" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/menu/menu_main.xml" value="0.13541666666666666" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/poly-sender-android/app/src/main/res/drawable/ic_card_edit.xml" value="0.1775" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/activity_auth.xml" value="0.358695652173913" />
         <entry key="..\:/Users/eriks/AndroidStudioProjects/poly-sender-android/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />

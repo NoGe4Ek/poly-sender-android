@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/text_view_app_name_header"
-        style="@style/Theme.HiNote.TextView.AppHeaderSmall"
+        style="@style/Theme.PolySender.TextView.AppHeaderSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -18,7 +18,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        style="@style/Theme.HiNote.TextView.BodySmall"
+        style="@style/Theme.PolySender.TextView.BodySmall"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"

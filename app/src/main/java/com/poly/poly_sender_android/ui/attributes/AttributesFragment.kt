@@ -61,10 +61,7 @@ class AttributesFragment : Fragment(),
 
         appAnimations = AppAnimations(requireContext())
         attributesRecycler = binding.attributeList
-        attributesAdapter = AttributesAdapter(onItemClicked = {},
-            onEditClicked = {},
-            onDeleteClicked = {},
-            onShareClicked = {}) //TODO
+        attributesAdapter = AttributesAdapter(onItemClicked = {attribute, card ->  }, onItemLongClicked = {}) //TODO
         attributesRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         attributesRecycler.adapter = attributesAdapter
 

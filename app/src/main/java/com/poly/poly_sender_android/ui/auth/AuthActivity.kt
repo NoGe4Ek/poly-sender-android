@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.databinding.ActivityAuthBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,5 +25,6 @@ class AuthActivity : AppCompatActivity() {
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        App.mCurrentActivity = this
     }
 }

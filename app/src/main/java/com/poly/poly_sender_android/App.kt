@@ -1,8 +1,10 @@
 package com.poly.poly_sender_android
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import dagger.hilt.android.HiltAndroidApp
+
 
 @HiltAndroidApp
 class App: Application() {
@@ -13,5 +15,6 @@ class App: Application() {
 
     companion object {
         lateinit  var appContext: Context
+        lateinit var mCurrentActivity: Activity
     }
 }

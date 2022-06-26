@@ -8,7 +8,7 @@ import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.Creation
 sealed interface StudentsWish : Wish {
     object FetchLocalUser: StudentsWish
 
-    data class RefreshStudents(val searchSelectedAttributes: List<Attribute>) :
+    data class RefreshStudents(val searchSelectedAttributes: Set<Attribute>) :
         StudentsWish
 
     data class RefreshSearchingAttributesBySelectedSection(val selectedSearchSection: String) :
@@ -17,14 +17,9 @@ sealed interface StudentsWish : Wish {
     object ClearSearchParam :
         StudentsWish // delete selected attributes + reload all students(not selected)
 
-    data class UpdateSharedStorageByStudents(
-        val students: List<Student>,
-        val selectedStudents: List<Student>
-    ) : StudentsWish
+    data class SelectStudent(val student: Student): StudentsWish
+    data class DismissStudent(val student: Student): StudentsWish
 
-    data class UpdateSharedStorageByStudentsAttributing(
-        val searchAttributes: List<Attribute>,
-        val searchSelectedAttributes: List<Attribute>,
-        val searchSelectedSearchSection: String
-    ) : StudentsWish
+    data class SelectAttribute(val attribute: Attribute): StudentsWish
+    data class DismissAttribute(val attribute: Attribute): StudentsWish
 }

@@ -15,10 +15,10 @@ class StudentsSharedViewModel @Inject constructor() :
 
     private val initState = StudentsState(
         isLoading = false,
-        students = emptyList(),
-        selectedStudents = emptyList(),
-        searchAttributes = emptyList(),
-        searchSelectedAttributes = emptyList(),
+        students = emptySet(),
+        selectedStudents = emptySet(),
+        searchAttributes = emptySet(),
+        searchSelectedAttributes = emptySet(),
         searchSelectedSection = ""
     )
     override val stateFlow = MutableStateFlow(initState)

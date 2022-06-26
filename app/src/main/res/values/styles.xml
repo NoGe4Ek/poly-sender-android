@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.HiNote.TextView.AppHeader" parent="TextAppearance.Material3.HeadlineLarge">
+    <style name="Theme.PolySender.TextView.AppHeader" parent="TextAppearance.Material3.HeadlineLarge">
         <item name="fontFamily">@font/comfortaa_bold</item>
         <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:textSize">40sp</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="Theme.HiNote.TextView.AppHeaderSmall" parent="TextAppearance.Material3.HeadlineMedium">
+    <style name="Theme.PolySender.TextView.AppHeaderSmall" parent="TextAppearance.Material3.HeadlineMedium">
         <item name="fontFamily">@font/comfortaa_bold</item>
         <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:textSize">30sp</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="Theme.HiNote.TextView.Header" parent="TextAppearance.Material3.HeadlineSmall">
+    <style name="Theme.PolySender.TextView.Header" parent="TextAppearance.Material3.HeadlineSmall">
         <item name="fontFamily">@font/comfortaa_bold</item>
         <item name="android:textSize">21sp</item>
     </style>
-    <style name="Theme.HiNote.TextView.Body" parent="TextAppearance.Material3.BodyMedium">
+    <style name="Theme.PolySender.TextView.Body" parent="TextAppearance.Material3.BodyMedium">
         <item name="fontFamily">@font/comfortaa_regular</item>
         <item name="android:textSize">17sp</item>
     </style>
-    <style name="Theme.HiNote.TextView.BodySmall" parent="TextAppearance.Material3.BodySmall">
+    <style name="Theme.PolySender.TextView.BodySmall" parent="TextAppearance.Material3.BodySmall">
         <item name="fontFamily">@font/comfortaa_regular</item>
         <item name="android:textSize">14sp</item>
     </style>
-    <style name="Theme.HiNote.TextView.Extra" parent="TextAppearance.Material3.LabelSmall">
+    <style name="Theme.PolySender.TextView.Extra" parent="TextAppearance.Material3.LabelSmall">
         <item name="fontFamily">@font/comfortaa_light</item>
         <item name="android:textStyle">italic</item>
         <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Widget.PolySender.CardView.Profile" parent="Widget.Material3.CardView.Outlined">
+        <item name="cardElevation">2dp</item>
+        <item name="cardCornerRadius">30dp</item>
+        <item name="strokeWidth">30dp</item>
+        <item name="strokeColor">?attr/colorOutline</item>
+        <item name="android:strokeWidth">?attr/colorOutline</item>
+        <item name="android:strokeColor">?attr/colorOutline</item>
     </style>
 </resources>
