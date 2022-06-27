@@ -1,7 +1,6 @@
 package com.poly.poly_sender_android.ui.students.mvi
 
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.mvi.Reducer
@@ -73,6 +72,15 @@ class StudentsReducer :
                 reducedState = state.copy(
                     searchSelectedAttributes = selectedAttributes
                 )
+            }
+            is StudentsEffect.RefreshSectionsFailure -> {
+                reducedNews = StudentsNews.Message(effect.errorMessage)
+            }
+            is StudentsEffect.RefreshSectionsSuccess -> {
+                reducedState = state.copy(searchSections = effect.searchSections)
+            }
+            is StudentsEffect.RefreshSelectedSectionSuccess -> {
+                reducedState = state.copy(searchSelectedSection = effect.searchSelectedSection)
             }
         }
         return reducedState to reducedNews

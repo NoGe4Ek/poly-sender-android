@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -11,11 +13,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.common.Logger
+import com.poly.poly_sender_android.common.string
+import com.poly.poly_sender_android.data.models.domainModel.Section
 import com.poly.poly_sender_android.databinding.FragmentStudentsAttributingBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.adapters.AttributesAdapter
-import com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragmentDirections
 import com.poly.poly_sender_android.ui.students.mvi.StudentsNews
 import com.poly.poly_sender_android.ui.students.mvi.StudentsState
 import com.poly.poly_sender_android.ui.students.mvi.StudentsWish
@@ -37,6 +42,7 @@ class StudentsAttributingFragment : Fragment(),
 
     lateinit var attributesRecycler: RecyclerView
     lateinit var attributesAdapter: AttributesAdapter
+    lateinit var adapter: ArrayAdapter<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -79,11 +85,14 @@ class StudentsAttributingFragment : Fragment(),
             )
         }
 
+        studentsSharedViewModel.obtainWish(StudentsWish.RefreshSections)
+
         studentsSharedViewModel.obtainWish(
             StudentsWish.RefreshSearchingAttributesBySelectedSection(
-                ""
+                studentsSharedViewModel.nmState.searchSelectedSection
             )
         )
+        binding.menuSection.editText?.setText(studentsSharedViewModel.nmState.searchSelectedSection?.sectionName ?: "Выберите раздел")
 
         binding.buttonApply.setOnClickListener {
             val studentsFragment =
@@ -93,7 +102,16 @@ class StudentsAttributingFragment : Fragment(),
         binding.buttonClear.setOnClickListener {
             studentsSharedViewModel.obtainWish(StudentsWish.ClearSearchParam)
         }
-        //TODO add onChangeSection listener with UpdateSharedStorageBySelectionAttributing
+        binding.menuSectionAuto.setOnItemClickListener { parent, view, position, id ->
+            if (adapter.getItem(position) == "Выберите раздел") {
+                studentsSharedViewModel.obtainWish(StudentsWish.RefreshSearchingAttributesBySelectedSection(null))
+                studentsSharedViewModel.obtainWish(StudentsWish.RefreshSelectedSection(null))
+            } else {
+                val selectedSection = studentsSharedViewModel.nmState.searchSections.find{ section -> section.sectionName ==  adapter.getItem(position)}
+                studentsSharedViewModel.obtainWish(StudentsWish.RefreshSearchingAttributesBySelectedSection(selectedSection))
+                studentsSharedViewModel.obtainWish(StudentsWish.RefreshSelectedSection(selectedSection))
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -102,7 +120,10 @@ class StudentsAttributingFragment : Fragment(),
     }
 
     override fun renderState(state: StudentsState) {
-        binding.menuSection.editText?.setText(state.searchSelectedSection)
+        adapter = ArrayAdapter(requireContext(), R.layout.list_item)
+        adapter.add("Выберите раздел")
+        adapter.addAll(state.searchSections.map { it.sectionName })
+        (binding.menuSection.editText as? AutoCompleteTextView)?.setAdapter(adapter)
         attributesAdapter.submitList(state.searchAttributes.toList())
     }
 

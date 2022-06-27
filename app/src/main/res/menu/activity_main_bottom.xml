@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_graph_students"
+        android:checkable="true"
+        android:icon="@drawable/ic_outline_students"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/nav_graph_attributes"
+        android:checkable="true"
+        android:icon="@drawable/ic_tags"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/nav_graph_filters"
+        android:checkable="true"
+        android:icon="@drawable/ic_filters"
+        app:showAsAction="ifRoom" />
+
+</menu>

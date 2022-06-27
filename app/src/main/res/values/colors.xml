@@ -36,10 +36,10 @@
 
     <color name="seed">#006a69</color>
 
-    <color name="md_theme_dark_primary">#4dd9e5</color>
-    <color name="md_theme_dark_onPrimary">#00363b</color>
-    <color name="md_theme_dark_primaryContainer">#4dd9e5</color>
-    <color name="md_theme_dark_onPrimaryContainer">#00363b</color>
+    <color name="md_theme_dark_primary">#B2DFDB</color>
+    <color name="md_theme_dark_onPrimary">#004D40</color>
+    <color name="md_theme_dark_primaryContainer">#B2DFDB</color>
+    <color name="md_theme_dark_onPrimaryContainer">#004D40</color>
 <!--    <color name="md_theme_dark_primaryContainer">#00504F</color>-->
 <!--    <color name="md_theme_dark_onPrimaryContainer">#6FF7F5</color>-->
 

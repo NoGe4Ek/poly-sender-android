@@ -25,6 +25,9 @@ interface ApiRetrofit {
     @POST(Constants.URL_getAttributes)
     suspend fun getDataAttributes(@Body commonRequestBody: CommonRequestBody): List<AttributeNetworkEntity>
 
+    @POST(Constants.URL_getGroupAttributes)
+    suspend fun getSections(@Body commonRequestBody: CommonRequestBody): List<SectionNetworkEntity>
+
     @POST(Constants.URL_createAttribute)
     suspend fun createAttribute(@Body createAttributeBody: CreateAttributeBody): CreateAttributeResponseNetworkEntity
 

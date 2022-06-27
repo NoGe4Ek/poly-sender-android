@@ -20,6 +20,7 @@
         app:layout_constraintVertical_chainStyle="spread_inside">
 
         <AutoCompleteTextView
+            android:id="@+id/menu_section_auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"

@@ -1,7 +1,7 @@
 package com.poly.poly_sender_android.ui.students
 
+import com.poly.poly_sender_android.data.models.domainModel.Section
 import com.poly.poly_sender_android.ui.BaseViewModel
-import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.*
 import com.poly.poly_sender_android.ui.students.mvi.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -19,7 +19,8 @@ class StudentsSharedViewModel @Inject constructor() :
         selectedStudents = emptySet(),
         searchAttributes = emptySet(),
         searchSelectedAttributes = emptySet(),
-        searchSelectedSection = ""
+        searchSections = emptySet(),
+        searchSelectedSection = null
     )
     override val stateFlow = MutableStateFlow(initState)
     val nmState: StudentsState

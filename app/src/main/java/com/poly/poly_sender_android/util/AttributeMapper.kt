@@ -21,7 +21,6 @@ class AttributeMapper @Inject constructor() :
                 students = students,
                 studentsDTO = studentsDTO,
                 status = status,
-                isChecked = false
             )
         }
     }

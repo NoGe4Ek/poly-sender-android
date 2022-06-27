@@ -23,6 +23,8 @@ class MainRepositoryImpl @Inject constructor(
     private val filterMapper: FilterMapper,
     private val createAttributeResponseMapper: CreateAttributeResponseMapper,
     private val cacheMapper: CacheMapper,
+    private val sectionMapper: SectionMapper,
+
     private val sessionManager: SessionManager
 ) : MainRepository {
     override lateinit var user: User
@@ -89,6 +91,11 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun getDataAttributes(id: String): List<Attribute> {
         val attributesNE = retrofit.getDataAttributes(CommonRequestBody(user.idStaff))
         return attributeMapper.mapFromEntityList(attributesNE)
+    }
+
+    override suspend fun getSections(id: String): List<Section> {
+        val sectionsNE = retrofit.getSections(CommonRequestBody(user.idStaff))
+        return sectionMapper.mapFromEntityList(sectionsNE)
     }
 
     override suspend fun createAttribute(

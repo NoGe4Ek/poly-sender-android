@@ -30,7 +30,7 @@ object Constants {
     private const val ATTRIBUTES = "/attributes"
     private const val ATTRIBUTES_ROOT = API_ROOT + API_PREFIX + ATTRIBUTES
 
-    const val URL_getGroupAttributes = "$ATTRIBUTES_ROOT/getGroupAttributes" // ВСЕ sections c х атрибутами
+    const val URL_getGroupAttributes = "$ATTRIBUTES_ROOT/getGroupAttributes" // ВСЕ sections c их атрибутами
     const val URL_getAttributes = "$ATTRIBUTES_ROOT/getAttributes" // ВСЕ
     const val URL_calculateAttribute = "$ATTRIBUTES_ROOT/calculate" // При создании/обновлении атрибута; calculateExpression
     const val URL_deleteAttribute = "$ATTRIBUTES_ROOT/deleteAttribute" // удалить атрибут

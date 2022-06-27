@@ -1,51 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/label_main_item"
-        android:title="Look up">
-        <menu>
-            <item
-                android:id="@+id/StudentsFragment"
-                android:checkable="true"
-                android:icon="@drawable/ic_outline_students"
-                android:menuCategory="secondary"
-                android:title="Студенты"
-                app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/AttributesFragment"
-                android:checkable="true"
-                android:icon="@drawable/ic_tags"
-                android:menuCategory="secondary"
-                android:title="Аттрибуты"
-                app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/FiltersFragment"
-                android:checkable="true"
-                android:icon="@drawable/ic_filters"
-                android:menuCategory="secondary"
-                android:title="Фильтры"
-                app:showAsAction="ifRoom" />
-        </menu>
-    </item>
+        android:id="@+id/ProfileFragment"
+        android:checkable="true"
+        android:icon="@drawable/ic_profile"
+        android:menuCategory="secondary"
+        android:title="Профиль"
+        app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/label_more_item"
-        android:title="More">
-        <menu>
-            <item
-                android:id="@+id/ProfileFragment"
-                android:checkable="true"
-                android:icon="@drawable/ic_profile"
-                android:menuCategory="secondary"
-                android:title="Профиль"
-                app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/SettingsFragment"
-                android:checkable="true"
-                android:icon="@drawable/ic_outline_settings"
-                android:menuCategory="secondary"
-                android:title="Настройки"
-                app:showAsAction="ifRoom" />
-        </menu>
-    </item>
+        android:id="@+id/SettingsFragment"
+        android:checkable="true"
+        android:icon="@drawable/ic_outline_settings"
+        android:menuCategory="secondary"
+        android:title="Настройки"
+        app:showAsAction="ifRoom" />
+
 </menu>

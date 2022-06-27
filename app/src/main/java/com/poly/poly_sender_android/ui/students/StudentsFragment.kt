@@ -43,6 +43,8 @@ class StudentsFragment : Fragment(),
     lateinit var studentsRecycler: RecyclerView
     lateinit var studentsAdapter: StudentsAdapter
 
+    private var deleteAllSelectedStudents = true
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,9 +63,16 @@ class StudentsFragment : Fragment(),
         studentsAdapter = StudentsAdapter(
             onItemClicked = { student, card ->
                 if (card.isChecked) {
+                    if (binding.checkboxAll.isChecked) {
+                        deleteAllSelectedStudents = false
+                        binding.checkboxAll.isChecked = false
+                    }
                     studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents - student)
                     studentsSharedViewModel.obtainWish(StudentsWish.DismissStudent(student))
                 } else {
+                    if (studentsSharedViewModel.nmState.students.size == studentsSharedViewModel.nmState.selectedStudents.size + 1) {
+                        binding.checkboxAll.isChecked = true
+                    }
                     studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents + student)
                     studentsSharedViewModel.obtainWish(StudentsWish.SelectStudent(student))
                 }
@@ -89,13 +98,13 @@ class StudentsFragment : Fragment(),
             )
         )
 
-        binding.buttonUpload.setOnClickListener {
-            //TODO
+        binding.floatingButtonUpload.setOnClickListener {
+
         }
         binding.buttonFilter.setOnClickListener {
             val studentsAttributingFragment =
                 StudentsFragmentDirections.actionStudentsFragmentToStudentsAttributingFragment()
-            findNavController().navigate(studentsAttributingFragment)
+            findNavController().navigate(R.id.action_StudentsFragment_to_StudentsAttributingFragment)
         }
         binding.checkboxAll.setOnCheckedChangeListener { compoundButton, b ->
             if (b) {
@@ -104,12 +113,15 @@ class StudentsFragment : Fragment(),
                 }
                 studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.students)
                 studentsAdapter.notifyDataSetChanged()
+                deleteAllSelectedStudents = true
             } else {
-                for (student in studentsSharedViewModel.nmState.students) {
-                    studentsSharedViewModel.obtainWish(StudentsWish.DismissStudent(student))
+                if (deleteAllSelectedStudents) {
+                    for (student in studentsSharedViewModel.nmState.students) {
+                        studentsSharedViewModel.obtainWish(StudentsWish.DismissStudent(student))
+                    }
+                    studentsAdapter.setSelectedStudents(emptySet())
+                    studentsAdapter.notifyDataSetChanged()
                 }
-                studentsAdapter.setSelectedStudents(emptySet())
-                studentsAdapter.notifyDataSetChanged()
             }
         }
     }
@@ -121,6 +133,7 @@ class StudentsFragment : Fragment(),
 
     override fun renderState(state: StudentsState) {
         binding.buttonFilter.isSelected = state.searchSelectedAttributes.isNotEmpty()
+        binding.textViewStudentCount.text = state.selectedStudents.size.toString()
         studentsAdapter.submitList(state.students.toList())
     }
 

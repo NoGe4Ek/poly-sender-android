@@ -7,13 +7,16 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.WindowCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.R
@@ -47,12 +50,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
+        val bottomNavView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         navController = findNavController(R.id.nav_host_fragment_content_main)
-
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.StudentsFragment,
@@ -60,8 +61,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.FiltersFragment
             ), drawerLayout
         )
+        setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        NavigationUI.setupWithNavController(navView, navController)
+        navView.setupWithNavController(navController)
+        bottomNavView.setupWithNavController(navController)
 
         App.mCurrentActivity = this
     }
@@ -92,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         when {
-            navController.backQueue.size == 2 && !timerInProgress -> {
+            navController.backQueue.size == 3 && !timerInProgress -> {
                 timer.start()
                 timerInProgress = true
                 Toast.makeText(applicationContext, "Вы уверены, что хотите выйти?", Toast.LENGTH_SHORT).show()

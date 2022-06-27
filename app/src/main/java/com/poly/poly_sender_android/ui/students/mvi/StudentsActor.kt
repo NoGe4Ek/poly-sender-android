@@ -68,13 +68,25 @@ class StudentsActor :
             is StudentsWish.RefreshSearchingAttributesBySelectedSection -> {
                 try {
                     emit(StudentsEffect.Loading)
-                    val attributes = mainRepository.getDataAttributes(mainRepository.user.idStaff).toSet()
-                    if (wish.selectedSearchSection != "") {
-                        //TODO add filter attributes by section in AdditionalLogicClass
-                    } else {
+
+                    val attributes =
+                        mainRepository.getDataAttributes(mainRepository.user.idStaff).toSet()
+                    if (wish.selectedSearchSection == null) {
                         emit(
                             StudentsEffect.RefreshSearchingAttributesBySelectedSectionSuccess(
                                 attributes
+                            )
+                        )
+                    } else {
+                        val sectionAttributes = mutableSetOf<Attribute>()
+                        for (attr in attributes) {
+                            if (attr.groupName == wish.selectedSearchSection.sectionName) {
+                                sectionAttributes.add(attr)
+                            }
+                        }
+                        emit(
+                            StudentsEffect.RefreshSearchingAttributesBySelectedSectionSuccess(
+                                sectionAttributes
                             )
                         )
                     }
@@ -101,6 +113,22 @@ class StudentsActor :
             }
             is StudentsWish.SelectAttribute -> {
                 emit(StudentsEffect.SelectAttributeSuccess(wish.attribute))
+            }
+            is StudentsWish.RefreshSections -> {
+                try {
+                    val sections = mainRepository.getSections(mainRepository.user.idStaff).toSet()
+                    emit(StudentsEffect.RefreshSectionsSuccess(sections))
+                } catch (e: Exception) {
+                    val errorMessage = e.message ?: "Unknown exception"
+                    emit(
+                        StudentsEffect.RefreshSectionsFailure(
+                            errorMessage
+                        )
+                    )
+                }
+            }
+            is StudentsWish.RefreshSelectedSection -> {
+                emit(StudentsEffect.RefreshSelectedSectionSuccess(wish.section))
             }
         }
     }.flowOn(Dispatchers.IO)

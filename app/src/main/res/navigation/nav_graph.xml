@@ -3,170 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/StudentsFragment"
-    tools:ignore="ExtraText">
+    app:startDestination="@id/nav_graph_students">
 
-    <fragment
-        android:id="@+id/StudentsFragment"
-        android:name="com.poly.poly_sender_android.ui.students.StudentsFragment"
-        android:label="Students"
-        tools:layout="@layout/fragment_students">
-
-        <action
-            android:id="@+id/action_StudentsFragment_to_StudentsAttributingFragment"
-            app:destination="@id/StudentsAttributingFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/StudentsAttributingFragment"
-        android:name="com.poly.poly_sender_android.ui.students.StudentsAttributingFragment"
-        android:label="StudentsAttributing"
-        tools:layout="@layout/fragment_students_attributing">
-
-        <action
-            android:id="@+id/action_StudentsAttributingFragment_to_StudentsFragment"
-            app:destination="@id/StudentsFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/AttributesFragment"
-        android:name="com.poly.poly_sender_android.ui.attributes.AttributesFragment"
-        android:label="Attributes"
-        tools:layout="@layout/fragment_attributes">
-
-        <action
-            android:id="@+id/action_AttributesFragment_to_CreationSectionFragment"
-            app:destination="@id/CreationSectionFragment" />
-        <action
-            android:id="@+id/action_AttributesFragment_to_CreationAttributeParamFragment"
-            app:destination="@id/CreationAttributeParamFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/CreationSectionFragment"
-        android:name="com.poly.poly_sender_android.ui.attributes.creationSection.CreationSectionFragment"
-        android:label="CreationSection"
-        tools:layout="@layout/fragment_creation_section">
-
-        <action
-            android:id="@+id/action_CreationSectionFragment_to_AttributesFragment"
-            app:destination="@id/AttributesFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/CreationAttributeParamFragment"
-        android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeParamFragment"
-        android:label="Creation Attribute Param"
-        tools:layout="@layout/fragment_creation_attribute_param">
-
-        <action
-            android:id="@+id/action_CreationAttributeParamFragment_to_AttributesFragment"
-            app:destination="@id/AttributesFragment" />
-        <action
-            android:id="@+id/action_CreationAttributeParamFragment_to_CreationAttributeSelectionFragment"
-            app:destination="@id/CreationAttributeSelectionFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/CreationAttributeSelectionFragment"
-        android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionFragment"
-        android:label="Creation Attribute Selection"
-        tools:layout="@layout/fragment_creation_attribute_selection">
-
-        <action
-            android:id="@+id/action_CreationAttributeSelectionFragment_to_CreationAttributeParamFragment"
-            app:destination="@id/CreationAttributeParamFragment" />
-        <action
-            android:id="@+id/action_CreationAttributeSelectionFragment_to_CreationAttributeSelectionAttributingFragment"
-            app:destination="@id/CreationAttributeSelectionAttributingFragment" />
-        <action
-            android:id="@+id/action_CreationAttributeSelectionFragment_to_CreationAttributeFragment"
-            app:destination="@id/CreationAttributeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/CreationAttributeSelectionAttributingFragment"
-        android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionAttributingFragment"
-        android:label="Creation Attribute Selection Attributing"
-        tools:layout="@layout/fragment_creation_attribute_selection_attributing">
-
-        <action
-            android:id="@+id/action_CreationAttributeSelectionAttributingFragment_to_CreationAttributeSelectionFragment"
-            app:destination="@id/CreationAttributeSelectionFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/CreationAttributeFragment"
-        android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeFragment"
-        android:label="Creation Attribute"
-        tools:layout="@layout/fragment_creation_attribute">
-
-        <action
-            android:id="@+id/action_CreationAttributeFragment_to_CreationAttributeSelectionFragment"
-            app:destination="@id/CreationAttributeSelectionFragment" />
-        <action
-            android:id="@+id/action_CreationAttributeParamFragment_to_AttributesFragment"
-            app:destination="@id/AttributesFragment" />
-    </fragment>
-
-
-    <fragment
-        android:id="@+id/FiltersFragment"
-        android:name="com.poly.poly_sender_android.ui.filters.FiltersFragment"
-        android:label="Filters"
-        tools:layout="@layout/fragment_filters">
-
-        <action
-            android:id="@+id/action_FiltersFragment_to_CreationFilterParamFragment"
-            app:destination="@id/CreationFilterParamFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/CreationFilterParamFragment"
-        android:name="com.poly.poly_sender_android.ui.filters.creationFilter.CreationFilterParamFragment"
-        android:label="Creation Filter Param"
-        tools:layout="@layout/fragment_creation_filter_param">
-
-        <action
-            android:id="@+id/action_CreationFilterParamFragment_to_FiltersFragment"
-            app:destination="@id/FiltersFragment" />
-        <action
-            android:id="@+id/action_CreationFilterParamFragment_to_CreationFilterSelectionFragment"
-            app:destination="@id/CreationFilterSelectionFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/CreationFilterSelectionFragment"
-        android:name="com.poly.poly_sender_android.ui.filters.creationFilter.creationFilterSelection.CreationFilterSelectionFragment"
-        android:label="Creation Filter Selection"
-        tools:layout="@layout/fragment_creation_filter_selection">
-
-        <action
-            android:id="@+id/action_CreationFilterSelectionFragment_to_CreationFilterParamFragment"
-            app:destination="@id/CreationFilterParamFragment" />
-        <action
-            android:id="@+id/action_CreationFilterSelectionFragment_to_CreationFilterSelectionAttributingFragment"
-            app:destination="@id/CreationFilterSelectionAttributingFragment" />
-        <action
-            android:id="@+id/action_CreationFilterSelectionFragment_to_CreationFilterFragment"
-            app:destination="@id/CreationFilterFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/CreationFilterSelectionAttributingFragment"
-        android:name="com.poly.poly_sender_android.ui.filters.creationFilter.creationFilterSelection.CreationFilterSelectionAttributingFragment"
-        android:label="Creation Filter Selection Attributing"
-        tools:layout="@layout/fragment_creation_filter_selection_attributing">
-
-        <action
-            android:id="@+id/action_CreationFilterSelectionAttributingFragment_to_CreationFilterSelectionFragment"
-            app:destination="@id/CreationFilterSelectionFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/CreationFilterFragment"
-        android:name="com.poly.poly_sender_android.ui.filters.creationFilter.CreationFilterFragment"
-        android:label="Creation Filter"
-        tools:layout="@layout/fragment_creation_filter">
-
-        <action
-            android:id="@+id/action_CreationFilterFragment_to_CreationFilterSelectionFragment"
-            app:destination="@id/CreationFilterSelectionFragment" />
-        <action
-            android:id="@+id/action_CreationFilterFragment_to_FiltersFragment"
-            app:destination="@id/FiltersFragment" />
-    </fragment>
-
+    <include app:graph="@navigation/nav_graph_students" />
+    <include app:graph="@navigation/nav_graph_attributes" />
+    <include app:graph="@navigation/nav_graph_filters" />
 
     <fragment
         android:id="@+id/StudentProfileFragment"
@@ -181,21 +22,20 @@
         android:id="@+id/ProfileFragment"
         android:name="com.poly.poly_sender_android.ui.profile.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile">
-    </fragment>
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/SettingsFragment"
         android:name="com.poly.poly_sender_android.ui.settings.SettingsFragment"
         android:label="Settings"
-        tools:layout="@layout/fragment_settings">
-    </fragment>
+        tools:layout="@layout/fragment_settings" />
 
-
-
-    <action android:id="@+id/action_global_profileFragment"
-        app:destination="@id/ProfileFragment"/>
-    <action android:id="@+id/action_global_settingsFragment"
-        app:destination="@id/SettingsFragment"/>
-    <action android:id="@+id/action_global_studentProfileFragment"
-        app:destination="@id/StudentProfileFragment"/>
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/ProfileFragment" />
+    <action
+        android:id="@+id/action_global_settingsFragment"
+        app:destination="@id/SettingsFragment" />
+    <action
+        android:id="@+id/action_global_studentProfileFragment"
+        app:destination="@id/StudentProfileFragment" />
 </navigation>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_attributes"
+    app:startDestination="@id/AttributesFragment">
+
+    <fragment
+        android:id="@+id/AttributesFragment"
+        android:name="com.poly.poly_sender_android.ui.attributes.AttributesFragment"
+        android:label="Attributes"
+        tools:layout="@layout/fragment_attributes">
+
+        <action
+            android:id="@+id/action_AttributesFragment_to_CreationSectionFragment"
+            app:destination="@id/CreationSectionFragment" />
+        <action
+            android:id="@+id/action_AttributesFragment_to_CreationAttributeParamFragment"
+            app:destination="@id/CreationAttributeParamFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CreationSectionFragment"
+        android:name="com.poly.poly_sender_android.ui.attributes.creationSection.CreationSectionFragment"
+        android:label="CreationSection"
+        tools:layout="@layout/fragment_creation_section">
+
+        <action
+            android:id="@+id/action_CreationSectionFragment_to_AttributesFragment"
+            app:destination="@id/AttributesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CreationAttributeParamFragment"
+        android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeParamFragment"
+        android:label="Creation Attribute Param"
+        tools:layout="@layout/fragment_creation_attribute_param">
+
+        <action
+            android:id="@+id/action_CreationAttributeParamFragment_to_AttributesFragment"
+            app:destination="@id/AttributesFragment" />
+        <action
+            android:id="@+id/action_CreationAttributeParamFragment_to_CreationAttributeSelectionFragment"
+            app:destination="@id/CreationAttributeSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CreationAttributeSelectionFragment"
+        android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionFragment"
+        android:label="Creation Attribute Selection"
+        tools:layout="@layout/fragment_creation_attribute_selection">
+
+        <action
+            android:id="@+id/action_CreationAttributeSelectionFragment_to_CreationAttributeParamFragment"
+            app:destination="@id/CreationAttributeParamFragment" />
+        <action
+            android:id="@+id/action_CreationAttributeSelectionFragment_to_CreationAttributeSelectionAttributingFragment"
+            app:destination="@id/CreationAttributeSelectionAttributingFragment" />
+        <action
+            android:id="@+id/action_CreationAttributeSelectionFragment_to_CreationAttributeFragment"
+            app:destination="@id/CreationAttributeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CreationAttributeSelectionAttributingFragment"
+        android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionAttributingFragment"
+        android:label="Creation Attribute Selection Attributing"
+        tools:layout="@layout/fragment_creation_attribute_selection_attributing">
+
+        <action
+            android:id="@+id/action_CreationAttributeSelectionAttributingFragment_to_CreationAttributeSelectionFragment"
+            app:destination="@id/CreationAttributeSelectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CreationAttributeFragment"
+        android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeFragment"
+        android:label="Creation Attribute"
+        tools:layout="@layout/fragment_creation_attribute">
+
+        <action
+            android:id="@+id/action_CreationAttributeFragment_to_CreationAttributeSelectionFragment"
+            app:destination="@id/CreationAttributeSelectionFragment" />
+        <action
+            android:id="@+id/action_CreationAttributeParamFragment_to_AttributesFragment"
+            app:destination="@id/AttributesFragment" />
+    </fragment>
+
+</navigation>

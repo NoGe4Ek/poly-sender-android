@@ -31,6 +31,8 @@ interface MainRepository {
 
     suspend fun getDataAttributes(id: String): List<Attribute>
 
+    suspend fun getSections(id: String): List<Section>
+
     suspend fun createAttribute(
         idStaff: String,
         name: String,
