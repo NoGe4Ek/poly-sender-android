@@ -5,17 +5,20 @@
     <item
         android:id="@+id/nav_graph_students"
         android:checkable="true"
-        android:icon="@drawable/ic_outline_students"
-        app:showAsAction="ifRoom" />
+        android:icon="@drawable/sl_students"
+        app:showAsAction="ifRoom"
+        android:title="Students" />
     <item
         android:id="@+id/nav_graph_attributes"
         android:checkable="true"
-        android:icon="@drawable/ic_tags"
-        app:showAsAction="ifRoom" />
+        android:icon="@drawable/sl_attributes"
+        app:showAsAction="ifRoom"
+        android:title="Attributes" />
     <item
         android:id="@+id/nav_graph_filters"
         android:checkable="true"
-        android:icon="@drawable/ic_filters"
-        app:showAsAction="ifRoom" />
+        android:icon="@drawable/sl_filter"
+        app:showAsAction="ifRoom"
+        android:title="Filters" />
 
 </menu>

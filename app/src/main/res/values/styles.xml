@@ -24,6 +24,10 @@
         <item name="fontFamily">@font/comfortaa_regular</item>
         <item name="android:textSize">14sp</item>
     </style>
+    <style name="Theme.PolySender.TextView.BodySuperSmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/comfortaa_regular</item>
+        <item name="android:textSize">10sp</item>
+    </style>
     <style name="Theme.PolySender.TextView.Extra" parent="TextAppearance.Material3.LabelSmall">
         <item name="fontFamily">@font/comfortaa_light</item>
         <item name="android:textStyle">italic</item>
