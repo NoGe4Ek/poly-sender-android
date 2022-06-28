@@ -44,12 +44,16 @@ class AppAnimations(private val context: Context) {
             for (b in buttons) {
                 b.visibility = View.VISIBLE
                 b.startAnimation(fromBottom)
+                b.isClickable = true
+                b.isFocusable = true
             }
             mainButton.startAnimation(rotateOpen)
         } else {
             for (b in buttons) {
                 b.visibility = View.INVISIBLE
                 b.startAnimation(toBottom)
+                b.isClickable = false
+                b.isFocusable = false
             }
             mainButton.startAnimation(rotateClose)
         }

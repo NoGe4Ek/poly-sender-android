@@ -41,10 +41,6 @@ class AttributesFragment : Fragment(),
     lateinit var attributesRecycler: RecyclerView
     lateinit var attributesAdapter: AttributesAdapter
 
-    private var clicked = false
-    private lateinit var appAnimations: AppAnimations
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,7 +55,6 @@ class AttributesFragment : Fragment(),
 
         logger.connect(javaClass)
 
-        appAnimations = AppAnimations(requireContext())
         attributesRecycler = binding.attributeList
         attributesAdapter = AttributesAdapter(onItemClicked = {attribute, card ->  }, onItemLongClicked = {}) //TODO
         attributesRecycler.layoutManager = LinearLayoutManager(this.requireContext())
@@ -73,18 +68,6 @@ class AttributesFragment : Fragment(),
 
         binding.buttonFilter.setOnClickListener {
             //TODO
-        }
-
-        binding.floatingButtonAdd.setOnClickListener {
-            clicked = appAnimations.onExpandedFloatingButtonClicked(clicked, binding.floatingButtonAdd, binding.floatingButtonAddSection, binding.floatingButtonAddAttribute)
-        }
-
-        binding.floatingButtonAddSection.setOnClickListener {
-
-        }
-
-        binding.floatingButtonAddAttribute.setOnClickListener {
-
         }
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

@@ -42,4 +42,9 @@
         <item name="android:strokeWidth">?attr/colorOutline</item>
         <item name="android:strokeColor">?attr/colorOutline</item>
     </style>
+
+    <style name="Theme.PolySender.NavigationView" parent="Widget.Material3.NavigationView">
+        <item name="itemVerticalPadding">0dp</item>
+        <item name="itemTextAppearance">@style/Theme.PolySender.TextView.BodySmall</item>
+    </style>
 </resources>

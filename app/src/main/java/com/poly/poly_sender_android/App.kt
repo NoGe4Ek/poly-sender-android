@@ -3,6 +3,7 @@ package com.poly.poly_sender_android
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.HiltAndroidApp
 
 
@@ -15,6 +16,7 @@ class App: Application() {
 
     companion object {
         lateinit  var appContext: Context
-        lateinit var mCurrentActivity: Activity
+        lateinit var mCurrentActivity: AppCompatActivity
+        var test = true
     }
 }

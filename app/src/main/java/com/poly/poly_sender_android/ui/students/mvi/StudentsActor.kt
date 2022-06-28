@@ -1,5 +1,6 @@
 package com.poly.poly_sender_android.ui.students.mvi
 
+import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.mvi.Actor

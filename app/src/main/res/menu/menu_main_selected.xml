@@ -4,8 +4,16 @@
     tools:context="com.poly.poly_sender_android.ui.auth.MainActivity">
 
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/action_select_all"
+        android:icon="@drawable/sl_check_all"
         android:orderInCategory="100"
+        android:title="Profile"
+        app:iconTint="?attr/colorOnSurface"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="150"
         android:title="Search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom"

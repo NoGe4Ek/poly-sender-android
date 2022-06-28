@@ -1,7 +1,7 @@
 package com.poly.poly_sender_android.data.models.domainModel
 
 data class Filter(
-    val id: Int,
+    val id: String,
     val filterName: String,
     val mail: String,
     val expression: String?,

@@ -1,12 +1,18 @@
 package com.poly.poly_sender_android.ui.students.mvi
 
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.data.models.domainModel.Section
 import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.mvi.State
+import com.poly.poly_sender_android.ui.students.StudentsFragment
 
 data class StudentsState(
-    //CreationAttribute
+
+    val label: String,
+
     val isLoading: Boolean,
 
     //CreationAttributeSelection

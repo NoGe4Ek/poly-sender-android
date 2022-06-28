@@ -5,7 +5,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:openDrawer="end">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -20,9 +21,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:descendantFocusability="beforeDescendants"
+            android:fitsSystemWindows="true"
             android:focusableInTouchMode="true">
 
-            <!--            app:layout_scrollFlags="scroll|enterAlways|snap"-->
+            <!--      app:layout_scrollFlags="scroll|enterAlways|snap"      -->
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -32,6 +34,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -43,16 +46,86 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:defaultNavHost="true"
+                app:layout_anchor="@+id/frameLayout"
+                app:layout_anchorGravity="center"
                 app:navGraph="@navigation/nav_graph" />
+
         </FrameLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/floating_button_add_filter"
+            style="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:clickable="false"
+            android:contentDescription="@string/floating_button_add_filter"
+            android:focusable="false"
+            android:translationY="4dp"
+            android:text="Фильтр"
+            android:visibility="invisible"
+            app:layout_anchor="@id/floating_button_add_section"
+            app:layout_anchorGravity="top|end"
+            app:icon="@drawable/ic_outline_filter" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/floating_button_add_section"
+            style="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:clickable="false"
+            android:layout_marginEnd="2dp"
+            android:contentDescription="@string/floating_button_add_section"
+            android:focusable="false"
+            android:text="Раздел"
+            android:visibility="invisible"
+            app:icon="@drawable/ic_outline_section"
+            app:layout_anchor="@id/floating_button_add_attribute"
+            app:layout_anchorGravity="top|end" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/floating_button_add_attribute"
+            style="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:translationY="14dp"
+            android:translationX="8dp"
+            android:clickable="false"
+            android:contentDescription="@string/floating_button_add_attribute"
+            android:focusable="false"
+            app:layout_anchor="@id/floating_button"
+            app:layout_anchorGravity="top|end"
+            android:text="Атрибут"
+            android:visibility="invisible"
+            app:icon="@drawable/ic_outline_attribute" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_button"
+            style="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:clickable="true"
+            android:contentDescription="floating button upload"
+            android:focusable="true"
+            android:layout_marginEnd="8dp"
+            app:layout_anchor="@id/bottom_navigation"
+            app:layout_anchorGravity="top|end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_add"
+            app:useCompatPadding="true" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             style="@style/Widget.Material3.BottomNavigationView"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:itemRippleColor="@null"
+            android:fitsSystemWindows="true"
             app:itemTextAppearanceActive="@style/Theme.PolySender.TextView.BodySuperSmall"
             app:labelVisibilityMode="selected"
             app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
@@ -62,11 +135,37 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        style="@style/Widget.Material3.NavigationView"
+        style="@style/Theme.PolySender.NavigationView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/text_view_app_name_header"
+                style="@style/Theme.PolySender.TextView.AppHeaderSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/application_name_header" />
+
+            <TextView
+                style="@style/Theme.PolySender.TextView.BodySmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="64dp"
+                android:text="Looking up easily!" />
+        </LinearLayout>
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

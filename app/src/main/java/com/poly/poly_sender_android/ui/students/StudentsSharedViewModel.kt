@@ -1,5 +1,8 @@
 package com.poly.poly_sender_android.ui.students
 
+import androidx.navigation.findNavController
+import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.data.models.domainModel.Section
 import com.poly.poly_sender_android.ui.BaseViewModel
 import com.poly.poly_sender_android.ui.students.mvi.*
@@ -14,6 +17,7 @@ class StudentsSharedViewModel @Inject constructor() :
     BaseViewModel<StudentsState, StudentsWish, StudentsEffect, StudentsNews>() {
 
     private val initState = StudentsState(
+        label = "Students",//App.mCurrentActivity.findNavController(R.id.nav_host_fragment_content_main).graph.label.toString(),
         isLoading = false,
         students = emptySet(),
         selectedStudents = emptySet(),

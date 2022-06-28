@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class FilterNetworkEntity (
         @SerializedName("id")
-        val id: Int,
+        val id: String,
 
         @SerializedName("filterName")
         val filterName: String,

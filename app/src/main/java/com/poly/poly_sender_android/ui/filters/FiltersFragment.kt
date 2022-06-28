@@ -38,9 +38,6 @@ class FiltersFragment : Fragment(),
     lateinit var filtersRecycler: RecyclerView
     lateinit var filtersAdapter: FiltersAdapter
 
-    private var clicked = false
-    private lateinit var appAnimations: AppAnimations
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,7 +52,6 @@ class FiltersFragment : Fragment(),
 
         logger.connect(javaClass)
 
-        appAnimations = AppAnimations(requireContext())
         filtersRecycler = binding.filterList
         filtersAdapter = FiltersAdapter(onItemClicked = {},
             onEditClicked = {},
@@ -73,10 +69,6 @@ class FiltersFragment : Fragment(),
         binding.buttonFilter.setOnClickListener {
             //TODO
             FiltersWish.Refresh(filtersSearchParam = FiltersSearchParam())
-        }
-
-        binding.floatingButtonAdd.setOnClickListener {
-            clicked = appAnimations.onExpandedFloatingButtonClicked(clicked, binding.floatingButtonAdd, binding.floatingButtonAddFilter)
         }
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
