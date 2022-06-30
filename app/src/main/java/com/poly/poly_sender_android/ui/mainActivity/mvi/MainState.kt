@@ -7,10 +7,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 data class MainState(
     val attributingEvent: Boolean,
-    val searchEvent: Boolean,
     val selectAllEvent: Boolean,
     val dismissAllEvent: Boolean,
     val applyEvent: Boolean,
     val clearEvent: Boolean,
-    val searchQuery: String
+    val nextEvent: Boolean,
 ) : State

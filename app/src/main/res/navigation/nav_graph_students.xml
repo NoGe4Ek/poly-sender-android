@@ -18,12 +18,15 @@
     <fragment
         android:id="@+id/StudentsAttributingFragment"
         android:name="com.poly.poly_sender_android.ui.students.StudentsAttributingFragment"
-        android:label="StudentsAttributing"
+        android:label="Students Attributing"
         tools:layout="@layout/fragment_students_attributing">
 
         <action
             android:id="@+id/action_StudentsAttributingFragment_to_StudentsFragment"
-            app:destination="@id/StudentsFragment" />
+            app:destination="@id/StudentsFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph_students"
+            app:popUpToInclusive="true"/>
     </fragment>
 
 </navigation>

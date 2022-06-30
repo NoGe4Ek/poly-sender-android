@@ -13,23 +13,17 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
 
     private val initState = MainState(
         attributingEvent = false,
-        searchEvent = false,
         selectAllEvent = false,
         dismissAllEvent = false,
         applyEvent = false,
         clearEvent = false,
-        searchQuery = ""
+        nextEvent = false,
     )
     val stateFlow = MutableStateFlow(initState)
+    val searchQueryStateFlow = MutableStateFlow("")
 
     fun triggerAttributingEvent(trigger: Boolean) {
         stateFlow.value = stateFlow.value.copy(attributingEvent = trigger)
-    }
-    fun triggerSearchEvent(trigger: Boolean) {
-        stateFlow.value = stateFlow.value.copy(searchEvent = trigger)
-    }
-    fun setSearchQuery(query: String) {
-        stateFlow.value = stateFlow.value.copy(searchQuery = query)
     }
     fun triggerSelectAllEvent(trigger: Boolean) {
         stateFlow.value = stateFlow.value.copy(selectAllEvent = trigger)
@@ -42,5 +36,8 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
     }
     fun triggerClear(trigger: Boolean) {
         stateFlow.value = stateFlow.value.copy(clearEvent = trigger)
+    }
+    fun triggerNext(trigger: Boolean) {
+        stateFlow.value = stateFlow.value.copy(nextEvent = trigger)
     }
 }

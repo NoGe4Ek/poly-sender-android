@@ -7,4 +7,6 @@ sealed interface LoginEffect : Effect {
     object Loading : LoginEffect
     data class Success(val user: User) : LoginEffect
     data class Failure(val errorMessage: String) : LoginEffect
+
+    object TryAutoSignInFailure : LoginEffect
 }

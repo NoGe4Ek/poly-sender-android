@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
 @HiltViewModel
@@ -13,14 +14,16 @@ class CreationAttributeSharedViewModel @Inject constructor() :
     BaseViewModel<CreationAttributeState, CreationAttributeWish, CreationAttributeEffect, CreationAttributeNews>() {
 
     private val initState = CreationAttributeState(
+        label = "Selection",
         isLoading = false,
         selectedName = "",
         selectedSection = "",
-        students = emptyList(),
-        selectedStudents = emptyList(),
-        searchAttributes = emptyList(),
-        searchSelectedAttributes = emptyList(),
-        searchSelectedSection = ""
+        students = emptySet(),
+        selectedStudents = emptySet(),
+        searchAttributes = emptySet(),
+        searchSelectedAttributes = emptySet(),
+        searchSelectedSection = null,
+        sections = emptySet(),
     )
     override val stateFlow = MutableStateFlow(initState)
     val nmState: CreationAttributeState

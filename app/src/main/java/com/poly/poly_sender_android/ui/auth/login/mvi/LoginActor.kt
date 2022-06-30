@@ -32,6 +32,15 @@ class LoginActor : Actor<LoginState, LoginWish, LoginEffect>() {
                     emit(LoginEffect.Failure(errorMessage))
                 }
             }
+            LoginWish.TryAutoSignIn -> {
+                emit(LoginEffect.Loading)
+                val user = mainRepository.tryAutoSignIn()
+                if (user != null) {
+                    emit(LoginEffect.Success(user))
+                } else {
+                    emit(LoginEffect.TryAutoSignInFailure)
+                }
+            }
         }
     }.flowOn(Dispatchers.IO)
 }

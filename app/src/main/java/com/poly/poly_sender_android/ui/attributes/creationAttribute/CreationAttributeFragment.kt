@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.common.string
 import com.poly.poly_sender_android.databinding.FragmentCreationAttributeBinding
@@ -15,7 +17,9 @@ import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeNews
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeState
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeWish
+import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 
@@ -27,6 +31,7 @@ class CreationAttributeFragment : Fragment(),
     lateinit var logger: Logger
 
     private val creationAttributeSharedViewModel: CreationAttributeSharedViewModel by activityViewModels()
+    private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
 
     private var _binding: FragmentCreationAttributeBinding? = null
     private val binding get() = _binding!!
@@ -42,19 +47,32 @@ class CreationAttributeFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         logger.connect(javaClass)
+
+        App.appBar = AppBar.CreationApplyBar
+        App.mCurrentActivity.invalidateOptionsMenu()
+
         with(creationAttributeSharedViewModel) {
             bind(viewLifecycleOwner.lifecycleScope, this@CreationAttributeFragment)
         }
 
-        binding.buttonCreationAttribute.setOnClickListener {
-            creationAttributeSharedViewModel.apply {
-                obtainWish(
-                    CreationAttributeWish.CreateAttribute(
-                        nmState.selectedName, nmState.selectedSection, nmState.selectedStudents
-                    )
-                )
+        binding.textViewAttributeName.text = creationAttributeSharedViewModel.nmState.selectedName
+        binding.textViewStudentCount.text = creationAttributeSharedViewModel.nmState.selectedStudents.size.toString()
+        binding.textViewSection.text = creationAttributeSharedViewModel.nmState.selectedSection
+
+        lifecycleScope.launchWhenResumed {
+            mainActivityViewModel.stateFlow.collect { state ->
+                if (state.applyEvent) {
+                    mainActivityViewModel.triggerApply(false)
+
+                    creationAttributeSharedViewModel.apply {
+                        obtainWish(
+                            CreationAttributeWish.CreateAttribute(
+                                nmState.selectedName, nmState.selectedSection, nmState.selectedStudents
+                            )
+                        )
+                    }
+                }
             }
         }
     }

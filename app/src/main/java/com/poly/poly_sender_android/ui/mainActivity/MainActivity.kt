@@ -20,9 +20,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
-import com.poly.poly_sender_android.App
-import com.poly.poly_sender_android.R
+import com.poly.poly_sender_android.*
 import com.poly.poly_sender_android.databinding.ActivityMainBinding
+import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeFragmentDirections
+import com.poly.poly_sender_android.ui.attributes.creationSection.CreationSectionFragmentDirections
+import com.poly.poly_sender_android.ui.auth.login.LoginFragmentDirections
+import com.poly.poly_sender_android.ui.filters.creationFilter.CreationFilterFragmentDirections
 import com.poly.poly_sender_android.util.AppAnimations
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,6 +72,10 @@ class MainActivity : AppCompatActivity() {
             val bottomViewNavigationBehavior =
                 layoutParams.behavior as HideBottomViewOnScrollBehavior
             bottomViewNavigationBehavior.slideUp(binding.bottomNavigation)
+
+            val searchViewMenuItem = binding.toolbar.menu.findItem(R.id.action_search)
+            val searchView = searchViewMenuItem?.actionView as? SearchView
+            searchView?.setQuery("",  true)
         }
         appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -93,11 +100,36 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.floatingButtonAddSection.setOnClickListener {
-
+            clicked = appAnimations.onExpandedFloatingButtonClicked(
+                true,
+                binding.floatingButton,
+                binding.floatingButtonAddAttribute,
+                binding.floatingButtonAddSection,
+                binding.floatingButtonAddFilter
+            )
+            navController.navigate(CreationSectionFragmentDirections.actionGlobalCreationSectionFragment())
         }
 
         binding.floatingButtonAddAttribute.setOnClickListener {
+            clicked = appAnimations.onExpandedFloatingButtonClicked(
+                true,
+                binding.floatingButton,
+                binding.floatingButtonAddAttribute,
+                binding.floatingButtonAddSection,
+                binding.floatingButtonAddFilter
+            )
+            navController.navigate(CreationAttributeFragmentDirections.actionGlobalCreationAttributeParamFragment())
+        }
 
+        binding.floatingButtonAddFilter.setOnClickListener {
+            clicked = appAnimations.onExpandedFloatingButtonClicked(
+                true,
+                binding.floatingButton,
+                binding.floatingButtonAddAttribute,
+                binding.floatingButtonAddSection,
+                binding.floatingButtonAddFilter
+            )
+            navController.navigate(CreationFilterFragmentDirections.actionGlobalCreationFilterParamFragment())
         }
 
         App.mCurrentActivity = this
@@ -120,10 +152,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             fun callSearch(query: String) {
-                activityViewModel.setSearchQuery(query)
-                if (query == "") {
-                    activityViewModel.triggerSearchEvent(true)
-                }
+                activityViewModel.searchQueryStateFlow.value = query
             }
 
         })
@@ -157,6 +186,10 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_clear -> {
                 activityViewModel.triggerClear(true)
+                true
+            }
+            R.id.action_next -> {
+                activityViewModel.triggerNext(true)
                 true
             }
             else -> super.onOptionsItemSelected(item)

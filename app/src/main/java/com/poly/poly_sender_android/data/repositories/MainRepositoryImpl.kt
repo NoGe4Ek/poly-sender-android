@@ -32,6 +32,10 @@ class MainRepositoryImpl @Inject constructor(
         sessionManager.saveAuthToken(user.token)
     }
 
+    override suspend fun fetchAuthToken() : String {
+        return sessionManager.fetchAuthToken() ?: ""
+    }
+
     override suspend fun saveLocalUser(user: User) {
         userDao.addUser(cacheMapper.mapToEntity(user))
     }
@@ -52,6 +56,16 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun checkSignIn(login: String, password: String): User {
         val userNE = retrofit.checkSignIn(SignInBody(login, password))
         user = userMapper.mapFromEntity(userNE)
+        return user
+    }
+
+    override suspend fun tryAutoSignIn(): User? {
+        var user: User? = null
+        if (fetchAuthToken() != "") {
+            user = getLocalUser()
+            this.user = user
+        }
+
         return user
     }
 

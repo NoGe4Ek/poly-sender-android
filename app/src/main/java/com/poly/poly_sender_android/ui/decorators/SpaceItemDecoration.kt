@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 
 
-class SpacesItemDecoration(private val space: Int, private val bottomNavSpace: Int) : ItemDecoration() {
+class SpacesItemDecoration : ItemDecoration() {
+    private val space = 10
+    private val bottomNavSpace = 200
+
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
@@ -17,8 +20,6 @@ class SpacesItemDecoration(private val space: Int, private val bottomNavSpace: I
         val itemPosition: Int = parent.getChildAdapterPosition(view)
         val itemCount = state.itemCount
 
-        outRect.left = space
-        outRect.right = space
         outRect.bottom = space
 
         // Add top margin only for the first item to avoid double space between items

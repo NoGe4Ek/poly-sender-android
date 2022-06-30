@@ -1,6 +1,19 @@
 package com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi
 
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.AppBar
+import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.mvi.Reducer
+import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeFragmentDirections
+import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeParamFragmentDirections
+import com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionAttributingFragmentDirections
+import com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionFragmentDirections
+import com.poly.poly_sender_android.ui.attributes.mvi.AttributesEffect
+import com.poly.poly_sender_android.ui.attributes.mvi.AttributesNews
+import com.poly.poly_sender_android.ui.students.StudentsAttributingFragmentDirections
+import com.poly.poly_sender_android.ui.students.mvi.StudentsEffect
 
 class CreationAttributeReducer :
     Reducer<CreationAttributeState, CreationAttributeEffect, CreationAttributeNews> {
@@ -18,7 +31,10 @@ class CreationAttributeReducer :
             CreationAttributeEffect.CreateAttributeSuccess -> {
                 reducedState = state.copy(isLoading = false)
                 reducedNews = CreationAttributeNews.Message("Attribute was successfully created")
-                //TODO navigate to attribute fragment
+                Navigation.findNavController(
+                    App.mCurrentActivity,
+                    R.id.nav_host_fragment_content_main
+                ).navigate(R.id.action_global_afterAttributeCreated)
             }
             is CreationAttributeEffect.CreateAttributeFailure -> {
                 reducedState = state.copy(isLoading = false)
@@ -44,7 +60,13 @@ class CreationAttributeReducer :
             }
 
             CreationAttributeEffect.ClearSearchParamSuccess -> {
-                reducedState = state.copy(searchSelectedAttributes = emptyList())
+                reducedState = state.copy(searchSelectedAttributes = emptySet())
+                val creationAttributeSelectionFragment =
+                    CreationAttributeSelectionAttributingFragmentDirections.actionCreationAttributeSelectionAttributingFragmentToCreationAttributeSelectionFragment()
+                Navigation.findNavController(
+                    App.mCurrentActivity,
+                    R.id.nav_host_fragment_content_main
+                ).navigate(creationAttributeSelectionFragment)
             }
             is CreationAttributeEffect.ClearSearchParamFailure -> {
                 reducedNews = CreationAttributeNews.Message(effect.errorMessage)
@@ -55,6 +77,12 @@ class CreationAttributeReducer :
                     selectedName = effect.selectedName,
                     selectedSection = effect.selectedSection
                 )
+                val creationAttributeSelectionFragment =
+                    CreationAttributeParamFragmentDirections.actionCreationAttributeParamFragmentToCreationAttributeSelectionFragment()
+                Navigation.findNavController(
+                    App.mCurrentActivity,
+                    R.id.nav_host_fragment_content_main
+                ).navigate(creationAttributeSelectionFragment)
             }
             is CreationAttributeEffect.UpdateSharedStorageBySelectionAttributingSuccess -> {
                 reducedState = state.copy(
@@ -68,8 +96,61 @@ class CreationAttributeReducer :
                     students = effect.students,
                     selectedStudents = effect.selectedStudents
                 )
+                val creationAttributeFragment =
+                    CreationAttributeSelectionFragmentDirections.actionCreationAttributeSelectionFragmentToCreationAttributeFragment()
+                Navigation.findNavController(
+                    App.mCurrentActivity,
+                    R.id.nav_host_fragment_content_main
+                ).navigate(creationAttributeFragment)
             }
+            is CreationAttributeEffect.RefreshSectionsFailure -> {
+                reducedNews = CreationAttributeNews.Message(effect.errorMessage)
+            }
+            is CreationAttributeEffect.RefreshSectionsSuccess -> {
+                reducedState = state.copy(sections = effect.searchSections)
+            }
+            is CreationAttributeEffect.DismissStudentSuccess -> {
+                val selectedStudents = state.selectedStudents.toMutableSet()
+                selectedStudents.remove(effect.student)
+                if (selectedStudents.isEmpty()) {
+                    App.mCurrentActivity.supportActionBar?.title = state.label
+                    App.appBar = AppBar.CreationSelectionBar
+                    App.mCurrentActivity.invalidateOptionsMenu()
+                } else {
+                    App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                }
 
+                reducedState = state.copy(
+                    selectedStudents = selectedStudents
+                )
+            }
+            is CreationAttributeEffect.SelectStudentSuccess -> {
+                val selectedStudents = state.selectedStudents.toMutableSet()
+                selectedStudents.add(effect.student)
+                App.appBar = AppBar.CreationSelectionSelectedBar
+                App.mCurrentActivity.invalidateOptionsMenu()
+                App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                reducedState = state.copy(
+                    selectedStudents = selectedStudents
+                )
+            }
+            is CreationAttributeEffect.DismissAttributeSuccess -> {
+                val selectedAttributes = state.searchSelectedAttributes.toMutableSet()
+                selectedAttributes.remove(effect.attribute)
+                reducedState = state.copy(
+                    searchSelectedAttributes = selectedAttributes
+                )
+            }
+            is CreationAttributeEffect.SelectAttributeSuccess -> {
+                val selectedAttributes = state.searchSelectedAttributes.toMutableSet()
+                selectedAttributes.add(effect.attribute)
+                reducedState = state.copy(
+                    searchSelectedAttributes = selectedAttributes
+                )
+            }
+            is CreationAttributeEffect.RefreshSelectedSectionSuccess -> {
+                reducedState = state.copy(searchSelectedSection = effect.searchSelectedSection)
+            }
         }
         return reducedState to reducedNews
     }

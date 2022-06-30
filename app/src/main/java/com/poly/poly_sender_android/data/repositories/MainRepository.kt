@@ -8,6 +8,7 @@ interface MainRepository {
     var user: User
 
     suspend fun saveAuthToken(user: User)
+    suspend fun fetchAuthToken() : String
 
     suspend fun saveLocalUser(user: User)
     suspend fun updateLocalUser(user: User)
@@ -15,6 +16,7 @@ interface MainRepository {
     suspend fun getLocalUser() : User
 
     suspend fun checkSignIn(login: String, password: String): User
+    suspend fun tryAutoSignIn() : User?
 
     suspend fun getAccess(
         firstName: String,

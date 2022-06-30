@@ -1,17 +1,12 @@
 package com.poly.poly_sender_android.ui.students.mvi
 
-import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.mvi.Actor
-import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeEffect
-import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeState
-import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeWish
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import org.w3c.dom.Attr
 
 class StudentsActor :
     Actor<StudentsState, StudentsWish, StudentsEffect>() {
@@ -107,9 +102,6 @@ class StudentsActor :
                         )
                     )
                 }
-            }
-            StudentsWish.FetchLocalUser -> {
-                mainRepository.getLocalUser()
             }
             is StudentsWish.DismissStudent -> {
                 emit(StudentsEffect.DismissStudentSuccess(wish.student))

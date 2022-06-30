@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,7 @@ import com.poly.poly_sender_android.data.models.domainModel.Section
 import com.poly.poly_sender_android.databinding.FragmentStudentsAttributingBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.adapters.AttributesAdapter
+import com.poly.poly_sender_android.ui.decorators.SpacesItemDecoration
 import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
 import com.poly.poly_sender_android.ui.students.mvi.StudentsNews
 import com.poly.poly_sender_android.ui.students.mvi.StudentsState
@@ -49,6 +51,7 @@ class StudentsAttributingFragment : Fragment(),
     lateinit var attributesRecycler: RecyclerView
     lateinit var attributesAdapter: AttributesAdapter
     lateinit var adapter: ArrayAdapter<String>
+    private val itemDecoration = SpacesItemDecoration()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,6 +90,8 @@ class StudentsAttributingFragment : Fragment(),
         attributesRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         attributesRecycler.adapter = attributesAdapter
 
+        attributesRecycler.addItemDecoration(itemDecoration)
+
         with(studentsSharedViewModel) {
             bind(
                 viewLifecycleOwner.lifecycleScope,
@@ -117,9 +122,7 @@ class StudentsAttributingFragment : Fragment(),
         lifecycleScope.launchWhenStarted {
             mainActivityViewModel.stateFlow.collect { state ->
                 if (state.applyEvent) {
-                    val studentsFragment =
-                        StudentsAttributingFragmentDirections.actionStudentsAttributingFragmentToStudentsFragment()
-                    findNavController().navigate(studentsFragment)
+                    findNavController().navigateUp()
                     mainActivityViewModel.triggerApply(false)
                 }
                 if (state.clearEvent) {
@@ -140,7 +143,12 @@ class StudentsAttributingFragment : Fragment(),
         adapter.add("Выберите раздел")
         adapter.addAll(state.searchSections.map { it.sectionName })
         (binding.menuSection.editText as? AutoCompleteTextView)?.setAdapter(adapter)
-        attributesAdapter.submitList(state.searchAttributes.toList())
+        attributesAdapter.submitList(state.searchAttributes.toList()) {
+            //fix redundant space after attributing
+            _binding?.attributeList?.post {
+                attributesRecycler.invalidateItemDecorations()
+            }
+        }
     }
 
     override fun renderNews(new: StudentsNews) {

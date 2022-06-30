@@ -1,37 +1,48 @@
 package com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi
 
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
+import com.poly.poly_sender_android.data.models.domainModel.Section
 import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.mvi.Wish
 import com.poly.poly_sender_android.ui.attributes.creationSection.mvi.CreationSectionWish
+import com.poly.poly_sender_android.ui.students.mvi.StudentsWish
 
 sealed interface CreationAttributeWish : Wish {
-    data class RefreshStudents(val searchSelectedAttributes: List<Attribute>) :
+    data class RefreshStudents(val searchSelectedAttributes: Set<Attribute>, val query: String) :
         CreationAttributeWish
 
-    data class RefreshSearchingAttributesBySelectedSection(val selectedSearchSection: String) :
+    data class RefreshSearchingAttributesBySelectedSection(val selectedSearchSection: Section?) :
         CreationAttributeWish
+
+    object RefreshSections : CreationAttributeWish
+    data class RefreshSelectedSection(val section: Section?) : CreationAttributeWish
 
     data class CreateAttribute(
         val attributeName: String,
         val section: String,
-        val students: List<Student>
+        val students: Set<Student>
     ) : CreationAttributeWish
 
     object ClearSearchParam : CreationAttributeWish // delete selected attributes + reload all students(not selected)
+
+    data class SelectStudent(val student: Student): CreationAttributeWish
+    data class DismissStudent(val student: Student): CreationAttributeWish
+
+    data class SelectAttribute(val attribute: Attribute): CreationAttributeWish
+    data class DismissAttribute(val attribute: Attribute): CreationAttributeWish
 
     //Local Storage for SharedViewModel restore states
     data class UpdateSharedStorageByParam(val selectedName: String, val selectedSection: String) :
         CreationAttributeWish
 
     data class UpdateSharedStorageBySelection(
-        val students: List<Student>,
-        val selectedStudents: List<Student>
+        val students: Set<Student>,
+        val selectedStudents: Set<Student>
     ) : CreationAttributeWish
 
     data class UpdateSharedStorageBySelectionAttributing(
-        val searchAttributes: List<Attribute>,
-        val searchSelectedAttributes: List<Attribute>,
-        val searchSelectedSearchSection: String
+        val searchAttributes: Set<Attribute>,
+        val searchSelectedAttributes: Set<Attribute>,
+        val searchSelectedSearchSection: Section?
     ) : CreationAttributeWish
 }

@@ -12,6 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.data.models.domainModel.Student
@@ -53,8 +55,10 @@ class StudentProfileFragment : Fragment(), MviView<StudentProfileState, StudentP
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         logger.connect(javaClass)
+
+        App.appBar = AppBar.StudentBar
+        App.mCurrentActivity.invalidateOptionsMenu()
 
         studentAttributesRecycler = binding.studentAttributesList
         studentAttributesAdapter = StudentAttributesAdapter()

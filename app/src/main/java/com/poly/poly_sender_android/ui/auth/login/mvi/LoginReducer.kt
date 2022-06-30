@@ -26,6 +26,9 @@ class LoginReducer : Reducer<LoginState, LoginEffect, LoginNews> {
                 reducedState = state.copy(isLoading = false, password = "")
                 reducedNews = LoginNews.Message(effect.errorMessage)
             }
+            LoginEffect.TryAutoSignInFailure -> {
+                reducedState = state.copy(isLoading = false)
+            }
         }
         return reducedState to reducedNews
     }

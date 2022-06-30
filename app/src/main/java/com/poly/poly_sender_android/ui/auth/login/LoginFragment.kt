@@ -49,6 +49,8 @@ class LoginFragment : Fragment(), MviView<LoginState, LoginNews> {
             bind(viewLifecycleOwner.lifecycleScope, this@LoginFragment)
         }
 
+        loginViewModel.obtainWish(LoginWish.TryAutoSignIn)
+
         binding.buttonLogin.setOnClickListener {
             val login: String = "sargsyan.ee@edu.spbstu.ru"//binding.editTextEmail.string()
             val password: String = "fDq%&?pkk#wt"//binding.editTextPassword.string() //TODO delete test

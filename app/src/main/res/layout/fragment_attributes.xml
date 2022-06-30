@@ -6,35 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".ui.attributes.AttributesFragment">
 
-    <Button
-        android:id="@+id/button_filter"
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/menu_section"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_height="wrap_content"
-        app:icon="@drawable/ic_filter"
-        app:layout_constraintBottom_toBottomOf="@id/search_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/search_view" />
-
-    <android.widget.SearchView
-        android:id="@+id/search_view"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/attribute_list"
-        app:layout_constraintEnd_toStartOf="@id/button_filter"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Раздел"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside">
+
+        <AutoCompleteTextView
+            android:id="@+id/menu_section_auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            tools:ignore="LabelFor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/attribute_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_view"
+        app:layout_constraintTop_toBottomOf="@id/menu_section"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/card_attribute" />
 
