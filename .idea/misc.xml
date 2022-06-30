@@ -43,6 +43,7 @@
         <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/menu/activity_main_drawer.xml" value="0.365625" />
         <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/menu/menu_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Kirill.Timofeev/AndroidStudioProjects/poly-sender-android/app/src/main/res/menu/menu_main_selected.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_add.xml" value="0.1605" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_card_delete.xml" value="0.139" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_card_edit.xml" value="0.139" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/drawable/ic_card_share.xml" value="0.139" />
@@ -74,9 +75,14 @@
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_restore.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_settings.xml" value="0.253125" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_student_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_students.xml" value="0.2" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_students_attributing.xml" value="0.2" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/fragment_user_details.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/nav_header_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/student_card.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/layout/user_card.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/menu/menu_main_attributing.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Kirill/AndroidStudioProjects/polysenderandroid/app/src/main/res/menu/menu_main_selected.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

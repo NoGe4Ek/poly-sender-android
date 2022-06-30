@@ -9,7 +9,7 @@ import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.Creation
 sealed interface StudentsWish : Wish {
     object FetchLocalUser: StudentsWish
 
-    data class RefreshStudents(val searchSelectedAttributes: Set<Attribute>) :
+    data class RefreshStudents(val searchSelectedAttributes: Set<Attribute>, val query: String) :
         StudentsWish
 
     data class RefreshSearchingAttributesBySelectedSection(val selectedSearchSection: Section?) :

@@ -63,7 +63,7 @@
             android:focusable="false"
             android:translationY="4dp"
             android:text="Фильтр"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_anchor="@id/floating_button_add_section"
             app:layout_anchorGravity="top|end"
             app:icon="@drawable/ic_outline_filter" />
@@ -79,7 +79,7 @@
             android:contentDescription="@string/floating_button_add_section"
             android:focusable="false"
             android:text="Раздел"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:icon="@drawable/ic_outline_section"
             app:layout_anchor="@id/floating_button_add_attribute"
             app:layout_anchorGravity="top|end" />
@@ -98,7 +98,7 @@
             app:layout_anchor="@id/floating_button"
             app:layout_anchorGravity="top|end"
             android:text="Атрибут"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:icon="@drawable/ic_outline_attribute" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -153,15 +153,14 @@
                 style="@style/Theme.PolySender.TextView.AppHeaderSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_gravity="center"
                 android:text="@string/application_name_header" />
 
             <TextView
                 style="@style/Theme.PolySender.TextView.BodySmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_gravity="center"
                 android:layout_marginBottom="64dp"
                 android:text="Looking up easily!" />
         </LinearLayout>

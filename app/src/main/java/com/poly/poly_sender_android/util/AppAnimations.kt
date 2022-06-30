@@ -10,25 +10,25 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.poly.poly_sender_android.R
 
 class AppAnimations(private val context: Context) {
-    val rotateOpen: Animation by lazy {
+    private val rotateOpen: Animation by lazy {
         AnimationUtils.loadAnimation(
             context,
             R.anim.rotate_open_anim
         )
     }
-    val rotateClose: Animation by lazy {
+    private val rotateClose: Animation by lazy {
         AnimationUtils.loadAnimation(
             context,
             R.anim.rotate_close_anim
         )
     }
-    val fromBottom: Animation by lazy {
+    private val fromBottom: Animation by lazy {
         AnimationUtils.loadAnimation(
             context,
             R.anim.from_bottom_anim
         )
     }
-    val toBottom: Animation by lazy {
+    private val toBottom: Animation by lazy {
         AnimationUtils.loadAnimation(
             context,
             R.anim.to_bottom_anim
@@ -40,6 +40,22 @@ class AppAnimations(private val context: Context) {
         mainButton: FloatingActionButton,
         vararg buttons: ExtendedFloatingActionButton
     ): Boolean {
+        val al = object : Animation.AnimationListener{
+            override fun onAnimationStart(p0: Animation?) {
+            }
+
+            override fun onAnimationEnd(p0: Animation?) {
+                mainButton.clearAnimation()
+                buttons.forEach { button -> button.clearAnimation() }
+            }
+
+            override fun onAnimationRepeat(p0: Animation?) {
+            }
+        }
+
+        rotateClose.setAnimationListener(al)
+        toBottom.setAnimationListener(al)
+
         if (!clicked) {
             for (b in buttons) {
                 b.visibility = View.VISIBLE
@@ -50,7 +66,7 @@ class AppAnimations(private val context: Context) {
             mainButton.startAnimation(rotateOpen)
         } else {
             for (b in buttons) {
-                b.visibility = View.INVISIBLE
+                b.visibility = View.GONE
                 b.startAnimation(toBottom)
                 b.isClickable = false
                 b.isFocusable = false

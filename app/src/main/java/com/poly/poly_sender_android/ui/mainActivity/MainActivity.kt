@@ -1,20 +1,15 @@
-package com.poly.poly_sender_android.ui
+package com.poly.poly_sender_android.ui.mainActivity
 
-import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.WindowInsets
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.updatePadding
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -69,8 +64,10 @@ class MainActivity : AppCompatActivity() {
         val bottomNavView: BottomNavigationView = binding.bottomNavigation
         navController = findNavController(R.id.nav_host_fragment_content_main)
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            val layoutParams = binding.bottomNavigation.layoutParams as CoordinatorLayout.LayoutParams
-            val bottomViewNavigationBehavior = layoutParams.behavior as HideBottomViewOnScrollBehavior
+            val layoutParams =
+                binding.bottomNavigation.layoutParams as CoordinatorLayout.LayoutParams
+            val bottomViewNavigationBehavior =
+                layoutParams.behavior as HideBottomViewOnScrollBehavior
             bottomViewNavigationBehavior.slideUp(binding.bottomNavigation)
         }
         appBarConfiguration = AppBarConfiguration(
@@ -106,37 +103,11 @@ class MainActivity : AppCompatActivity() {
         App.mCurrentActivity = this
     }
 
-    override fun onStop() {
-        super.onStop()
-
-        binding.floatingButtonAddFilter.visibility = View.INVISIBLE
-        binding.floatingButtonAddAttribute.visibility = View.INVISIBLE
-        binding.floatingButtonAddSection.visibility = View.INVISIBLE
-    }
-
-    override fun onStart() {
-        super.onStart()
-        ViewCompat.setOnApplyWindowInsetsListener(binding.floatingButton) { view, insets ->
-            val h = when {
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> {
-                    view.rootWindowInsets.getInsetsIgnoringVisibility(WindowInsets.Type.systemBars()).bottom
-                }
-                Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
-                    view.rootWindowInsets?.stableInsetTop ?: 0
-                }
-                else -> {
-                    0
-                }
-            }
-            binding.floatingButton.updatePadding(bottom = h)
-            insets
-        }
-    }
-
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         val searchViewMenuItem = menu?.findItem(R.id.action_search)
-        val searchView = searchViewMenuItem?.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        val searchView = searchViewMenuItem?.actionView as? SearchView
+
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {
                 callSearch(newText)
@@ -148,8 +119,11 @@ class MainActivity : AppCompatActivity() {
                 return false
             }
 
-            fun callSearch(query: String?) {
-                Toast.makeText(applicationContext, query, Toast.LENGTH_SHORT).show()
+            fun callSearch(query: String) {
+                activityViewModel.setSearchQuery(query)
+                if (query == "") {
+                    activityViewModel.triggerSearchEvent(true)
+                }
             }
 
         })
@@ -159,11 +133,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        if (App.test) {
-            menuInflater.inflate(R.menu.menu_main, menu)
-        } else {
-            menuInflater.inflate(R.menu.menu_main_selected, menu)
-        }
+        menuInflater.inflate(App.appBar.res, menu)
         return true
     }
 
@@ -174,7 +144,19 @@ class MainActivity : AppCompatActivity() {
 
         return when (item.itemId) {
             R.id.action_attributing -> {
-                activityViewModel.setStudentsAttributingEvent(true)
+                activityViewModel.triggerAttributingEvent(true)
+                true
+            }
+            R.id.action_select_all -> {
+                activityViewModel.triggerSelectAllEvent(true)
+                true
+            }
+            R.id.action_apply -> {
+                activityViewModel.triggerApply(true)
+                true
+            }
+            R.id.action_clear -> {
+                activityViewModel.triggerClear(true)
                 true
             }
             else -> super.onOptionsItemSelected(item)

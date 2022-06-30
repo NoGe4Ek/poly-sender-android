@@ -26,29 +26,37 @@ class StudentsActor :
                     emit(StudentsEffect.Loading)
                     val students = mutableSetOf<Student>()
                     students.addAll(mainRepository.getStudents(mainRepository.user.idStaff))
-                    if (wish.searchSelectedAttributes.isNotEmpty()) {
 
-                        var first = true
-                        val studentsUnion =
-                            wish.searchSelectedAttributes.fold(setOf<String>()) { acc, attribute ->
-                                if (first) {
-                                    first = false
-                                    wish.searchSelectedAttributes.first().students.toSet()
-                                } else acc intersect attribute.students.toSet()
-                            }
-
-
+                    if (wish.searchSelectedAttributes.isEmpty() && wish.query == "")
+                        emit(StudentsEffect.RefreshStudentsSuccess(students))
+                    else {
                         val sortedStudents = mutableSetOf<Student>()
-                        for (studentId in studentsUnion) {
-                            for (student in students) {
-                                if (student.id == studentId) {
-                                    sortedStudents.add(student)
+                        sortedStudents.addAll(students)
+                        if (wish.searchSelectedAttributes.isNotEmpty()) {
+                            sortedStudents.clear()
+                            var first = true
+                            val studentsUnion =
+                                wish.searchSelectedAttributes.fold(setOf<String>()) { acc, attribute ->
+                                    if (first) {
+                                        first = false
+                                        wish.searchSelectedAttributes.first().students.toSet()
+                                    } else acc intersect attribute.students.toSet()
+                                }
+                            for (studentId in studentsUnion) {
+                                for (student in students) {
+                                    if (student.id == studentId) {
+                                        sortedStudents.add(student)
+                                    }
                                 }
                             }
                         }
+                        if (wish.query != "") {
+                            sortedStudents.removeAll { student ->
+                                !student.name.contains(wish.query.toRegex())
+                            }
+                        }
+
                         emit(StudentsEffect.RefreshStudentsSuccess(sortedStudents))
-                    } else {
-                        emit(StudentsEffect.RefreshStudentsSuccess(students))
                     }
 
 

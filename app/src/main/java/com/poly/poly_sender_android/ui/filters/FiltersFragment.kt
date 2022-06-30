@@ -18,7 +18,6 @@ import com.poly.poly_sender_android.ui.adapters.FiltersAdapter
 import com.poly.poly_sender_android.ui.filters.mvi.FiltersNews
 import com.poly.poly_sender_android.ui.filters.mvi.FiltersState
 import com.poly.poly_sender_android.ui.filters.mvi.FiltersWish
-import com.poly.poly_sender_android.util.AppAnimations
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

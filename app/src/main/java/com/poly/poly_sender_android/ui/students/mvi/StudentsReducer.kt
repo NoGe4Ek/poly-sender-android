@@ -3,6 +3,7 @@ package com.poly.poly_sender_android.ui.students.mvi
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.Navigation.findNavController
 import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.mvi.Reducer
 import com.poly.poly_sender_android.ui.students.StudentsAttributingFragmentDirections
@@ -51,7 +52,7 @@ class StudentsReducer :
                 selectedStudents.remove(effect.student)
                 if (selectedStudents.isEmpty()) {
                     App.mCurrentActivity.supportActionBar?.title = state.label
-                    App.test = true
+                    App.appBar = AppBar.StudentsBar
                     App.mCurrentActivity.invalidateOptionsMenu()
                 } else {
                     App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
@@ -64,7 +65,7 @@ class StudentsReducer :
             is StudentsEffect.SelectStudentSuccess -> {
                 val selectedStudents = state.selectedStudents.toMutableSet()
                 selectedStudents.add(effect.student)
-                App.test = false
+                App.appBar = AppBar.StudentsSelectedBar
                 App.mCurrentActivity.invalidateOptionsMenu()
                 App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
                 reducedState = state.copy(

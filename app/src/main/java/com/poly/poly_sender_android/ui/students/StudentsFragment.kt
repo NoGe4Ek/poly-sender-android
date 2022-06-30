@@ -16,18 +16,25 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.poly.poly_sender_android.R
+import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.databinding.FragmentStudentsBinding
 import com.poly.poly_sender_android.mvi.MviView
-import com.poly.poly_sender_android.ui.MainActivityViewModel
 import com.poly.poly_sender_android.ui.adapters.StudentsAdapter
 import com.poly.poly_sender_android.ui.decorators.SpacesItemDecoration
+import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
 import com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragmentDirections
 import com.poly.poly_sender_android.ui.students.mvi.StudentsNews
 import com.poly.poly_sender_android.ui.students.mvi.StudentsState
 import com.poly.poly_sender_android.ui.students.mvi.StudentsWish
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.switchMap
 import javax.inject.Inject
 
 
@@ -46,8 +53,7 @@ class StudentsFragment : Fragment(),
 
     lateinit var studentsRecycler: RecyclerView
     lateinit var studentsAdapter: StudentsAdapter
-
-    private var deleteAllSelectedStudents = true
+    val itemDecoration = SpacesItemDecoration(8, 100)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,22 +66,22 @@ class StudentsFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         logger.connect(javaClass)
+
+        if (studentsSharedViewModel.nmState.selectedStudents.isEmpty()) {
+            App.appBar = AppBar.StudentsBar
+        } else {
+            App.appBar = AppBar.StudentsSelectedBar
+        }
+        App.mCurrentActivity.invalidateOptionsMenu()
+
         studentsRecycler = binding.studentList
         studentsAdapter = StudentsAdapter(
             onItemClicked = { student, card ->
                 if (card.isChecked) {
-//                    if (binding.checkboxAll.isChecked) {
-//                        deleteAllSelectedStudents = false
-//                        binding.checkboxAll.isChecked = false
-//                    }
                     studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents - student)
                     studentsSharedViewModel.obtainWish(StudentsWish.DismissStudent(student))
                 } else {
-//                    if (studentsSharedViewModel.nmState.students.size == studentsSharedViewModel.nmState.selectedStudents.size + 1) {
-//                        binding.checkboxAll.isChecked = true
-//                    }
                     studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents + student)
                     studentsSharedViewModel.obtainWish(StudentsWish.SelectStudent(student))
                 }
@@ -89,7 +95,7 @@ class StudentsFragment : Fragment(),
         studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents)
         studentsRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         studentsRecycler.adapter = studentsAdapter
-        val itemDecoration = SpacesItemDecoration(8)
+
         studentsRecycler.addItemDecoration(itemDecoration)
 
         //Fix recycler view padding bottom
@@ -116,37 +122,49 @@ class StudentsFragment : Fragment(),
         //WARN: wish caught 2 times after navigate from fragment with the same VM, but state obtained correctly
         studentsSharedViewModel.obtainWish(
             StudentsWish.RefreshStudents(
-                searchSelectedAttributes = studentsSharedViewModel.nmState.searchSelectedAttributes
+                searchSelectedAttributes = studentsSharedViewModel.nmState.searchSelectedAttributes,
+                ""
             )
         )
 
-        mainActivityViewModel.getStudentsAttributingEvent().observe(viewLifecycleOwner) { studentsAttributingEvent ->
-            if (studentsAttributingEvent == true) {
-                val studentsAttributingFragment =
-                    StudentsFragmentDirections.actionStudentsFragmentToStudentsAttributingFragment()
-                findNavController().navigate(R.id.action_StudentsFragment_to_StudentsAttributingFragment)
-                mainActivityViewModel.setStudentsAttributingEvent(false)
+        lifecycleScope.launchWhenStarted {
+            mainActivityViewModel.stateFlow.collect { state ->
+                if (state.attributingEvent) {
+                    val studentsAttributingFragment =
+                        StudentsFragmentDirections.actionStudentsFragmentToStudentsAttributingFragment()
+                    findNavController().navigate(studentsAttributingFragment)
+                    mainActivityViewModel.triggerAttributingEvent(false)
+                }
+
+                if (state.selectAllEvent) {
+                    if (studentsSharedViewModel.nmState.students.size != studentsSharedViewModel.nmState.selectedStudents.size) {
+                        for (student in studentsSharedViewModel.nmState.students) {
+                            studentsSharedViewModel.obtainWish(StudentsWish.SelectStudent(student))
+                        }
+                        studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.students)
+                        studentsAdapter.notifyDataSetChanged()
+                        mainActivityViewModel.triggerSelectAllEvent(false)
+                    } else {
+                        for (student in studentsSharedViewModel.nmState.students) {
+                            studentsSharedViewModel.obtainWish(StudentsWish.DismissStudent(student))
+                        }
+                        studentsAdapter.setSelectedStudents(emptySet())
+                        studentsAdapter.notifyDataSetChanged()
+                        mainActivityViewModel.triggerSelectAllEvent(false)
+                    }
+                }
+
+                if (state.searchQuery != "" || state.searchEvent) {
+                    studentsSharedViewModel.obtainWish(
+                        StudentsWish.RefreshStudents(
+                            studentsSharedViewModel.nmState.searchSelectedAttributes,
+                            state.searchQuery
+                        )
+                    )
+                    mainActivityViewModel.triggerSearchEvent(false)
+                }
             }
         }
-
-//        binding.checkboxAll.setOnCheckedChangeListener { compoundButton, b ->
-//            if (b) {
-//                for (student in studentsSharedViewModel.nmState.students) {
-//                    studentsSharedViewModel.obtainWish(StudentsWish.SelectStudent(student))
-//                }
-//                studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.students)
-//                studentsAdapter.notifyDataSetChanged()
-//                deleteAllSelectedStudents = true
-//            } else {
-//                if (deleteAllSelectedStudents) {
-//                    for (student in studentsSharedViewModel.nmState.students) {
-//                        studentsSharedViewModel.obtainWish(StudentsWish.DismissStudent(student))
-//                    }
-//                    studentsAdapter.setSelectedStudents(emptySet())
-//                    studentsAdapter.notifyDataSetChanged()
-//                }
-//            }
-//        }
     }
 
     override fun onDestroyView() {
@@ -155,7 +173,15 @@ class StudentsFragment : Fragment(),
     }
 
     override fun renderState(state: StudentsState) {
-        studentsAdapter.submitList(state.students.toList())
+        studentsRecycler.removeItemDecoration(itemDecoration)
+        studentsRecycler.addItemDecoration(itemDecoration)
+        studentsRecycler.invalidateItemDecorations()
+
+        studentsAdapter.submitList(state.students.toList()) {
+            itemDecoration.post { // or just "post" if you're inside View
+                studentsRecycler.invalidateItemDecorations()
+            }
+        }
     }
 
     override fun renderNews(new: StudentsNews) {

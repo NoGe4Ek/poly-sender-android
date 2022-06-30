@@ -1,5 +1,6 @@
 package com.poly.poly_sender_android.ui.students
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.common.string
@@ -21,10 +24,12 @@ import com.poly.poly_sender_android.data.models.domainModel.Section
 import com.poly.poly_sender_android.databinding.FragmentStudentsAttributingBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.adapters.AttributesAdapter
+import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
 import com.poly.poly_sender_android.ui.students.mvi.StudentsNews
 import com.poly.poly_sender_android.ui.students.mvi.StudentsState
 import com.poly.poly_sender_android.ui.students.mvi.StudentsWish
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 
@@ -36,6 +41,7 @@ class StudentsAttributingFragment : Fragment(),
     lateinit var logger: Logger
 
     private val studentsSharedViewModel: StudentsSharedViewModel by activityViewModels()
+    private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
 
     private var _binding: FragmentStudentsAttributingBinding? = null
     private val binding get() = _binding!!
@@ -51,13 +57,16 @@ class StudentsAttributingFragment : Fragment(),
 
         _binding =
             FragmentStudentsAttributingBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         logger.connect(javaClass)
+
+        App.appBar = AppBar.StudentsAttributing
+        App.mCurrentActivity.invalidateOptionsMenu()
 
         attributesRecycler = binding.attributeList
         attributesAdapter = AttributesAdapter(
@@ -94,14 +103,6 @@ class StudentsAttributingFragment : Fragment(),
         )
         binding.menuSection.editText?.setText(studentsSharedViewModel.nmState.searchSelectedSection?.sectionName ?: "Выберите раздел")
 
-        binding.buttonApply.setOnClickListener {
-            val studentsFragment =
-                StudentsAttributingFragmentDirections.actionStudentsAttributingFragmentToStudentsFragment()
-            findNavController().navigate(studentsFragment)
-        }
-        binding.buttonClear.setOnClickListener {
-            studentsSharedViewModel.obtainWish(StudentsWish.ClearSearchParam)
-        }
         binding.menuSectionAuto.setOnItemClickListener { parent, view, position, id ->
             if (adapter.getItem(position) == "Выберите раздел") {
                 studentsSharedViewModel.obtainWish(StudentsWish.RefreshSearchingAttributesBySelectedSection(null))
@@ -110,6 +111,21 @@ class StudentsAttributingFragment : Fragment(),
                 val selectedSection = studentsSharedViewModel.nmState.searchSections.find{ section -> section.sectionName ==  adapter.getItem(position)}
                 studentsSharedViewModel.obtainWish(StudentsWish.RefreshSearchingAttributesBySelectedSection(selectedSection))
                 studentsSharedViewModel.obtainWish(StudentsWish.RefreshSelectedSection(selectedSection))
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            mainActivityViewModel.stateFlow.collect { state ->
+                if (state.applyEvent) {
+                    val studentsFragment =
+                        StudentsAttributingFragmentDirections.actionStudentsAttributingFragmentToStudentsFragment()
+                    findNavController().navigate(studentsFragment)
+                    mainActivityViewModel.triggerApply(false)
+                }
+                if (state.clearEvent) {
+                    studentsSharedViewModel.obtainWish(StudentsWish.ClearSearchParam)
+                    mainActivityViewModel.triggerClear(false)
+                }
             }
         }
     }

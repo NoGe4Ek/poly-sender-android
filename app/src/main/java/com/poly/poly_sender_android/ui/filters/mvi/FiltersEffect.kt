@@ -9,5 +9,6 @@ sealed interface FiltersEffect : Effect {
     data class Success(val filters: List<Filter>, val filtersSearchParam: FiltersSearchParam) :
         FiltersEffect
 
-    data class Failure(val errorMessage: String) : FiltersEffect
+    data class Failure(val errorMessage: String) :
+        FiltersEffect
 }
