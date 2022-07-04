@@ -17,7 +17,7 @@ data class StudentsState(
 
     //CreationAttributeSelection
     val students: Set<Student>,
-    val selectedStudents: Set<Student>,
+    val selectedStudents: Set<String>,
 
     //CreationAttributeSelectionAttributing
     // Search Param // TODO pack to StudentsSearchParam like CreationAttributeSearchParam

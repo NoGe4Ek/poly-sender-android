@@ -95,6 +95,31 @@ class StudentsReducer :
             is StudentsEffect.RefreshSelectedSectionSuccess -> {
                 reducedState = state.copy(searchSelectedSection = effect.searchSelectedSection)
             }
+            is StudentsEffect.DismissStudentsSuccess -> {
+                val selectedStudents = state.selectedStudents.toMutableSet()
+                selectedStudents.removeAll(effect.students)
+                if (selectedStudents.isEmpty()) {
+                    App.mCurrentActivity.supportActionBar?.title = state.label
+                    App.appBar = AppBar.StudentsBar
+                    App.mCurrentActivity.invalidateOptionsMenu()
+                } else {
+                    App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                }
+
+                reducedState = state.copy(
+                    selectedStudents = selectedStudents
+                )
+            }
+            is StudentsEffect.SelectStudentsSuccess -> {
+                val selectedStudents = state.selectedStudents.toMutableSet()
+                selectedStudents.addAll(effect.students)
+                App.appBar = AppBar.StudentsSelectedBar
+                App.mCurrentActivity.invalidateOptionsMenu()
+                App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                reducedState = state.copy(
+                    selectedStudents = selectedStudents
+                )
+            }
         }
         return reducedState to reducedNews
     }

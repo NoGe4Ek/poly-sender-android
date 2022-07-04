@@ -18,12 +18,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.common.Logger
-import com.poly.poly_sender_android.common.string
-import com.poly.poly_sender_android.databinding.FragmentCreationAttributeBinding
 import com.poly.poly_sender_android.databinding.FragmentCreationAttributeSelectionBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.adapters.StudentsAdapter
-import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeParamFragmentDirections
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeSharedViewModel
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeNews
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeState
@@ -31,8 +28,6 @@ import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.Creation
 import com.poly.poly_sender_android.ui.decorators.SpacesItemDecoration
 import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
 import com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragmentDirections
-import com.poly.poly_sender_android.ui.students.StudentsFragmentDirections
-import com.poly.poly_sender_android.ui.students.mvi.StudentsWish
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
@@ -73,7 +68,8 @@ class CreationAttributeSelectionFragment : Fragment(),
             App.appBar = AppBar.CreationSelectionBar
         } else {
             App.appBar = AppBar.CreationSelectionSelectedBar
-            App.mCurrentActivity.supportActionBar?.title = "Selected: ${creationAttributeSharedViewModel.nmState.selectedStudents.size}"
+            App.mCurrentActivity.supportActionBar?.title =
+                "Selected: ${creationAttributeSharedViewModel.nmState.selectedStudents.size}"
         }
         App.mCurrentActivity.invalidateOptionsMenu()
 
@@ -81,11 +77,17 @@ class CreationAttributeSelectionFragment : Fragment(),
         studentsAdapter = StudentsAdapter(
             onItemClicked = { student, card ->
                 if (card.isChecked) {
-                    studentsAdapter.setSelectedStudents(creationAttributeSharedViewModel.nmState.selectedStudents - student)
-                    creationAttributeSharedViewModel.obtainWish(CreationAttributeWish.DismissStudent(student))
+                    creationAttributeSharedViewModel.obtainWish(
+                        CreationAttributeWish.DismissStudent(
+                            student.id
+                        )
+                    )
                 } else {
-                    studentsAdapter.setSelectedStudents(creationAttributeSharedViewModel.nmState.selectedStudents + student)
-                    creationAttributeSharedViewModel.obtainWish(CreationAttributeWish.SelectStudent(student))
+                    creationAttributeSharedViewModel.obtainWish(
+                        CreationAttributeWish.SelectStudent(
+                            student.id
+                        )
+                    )
                 }
                 card.isChecked = !card.isChecked
             },
@@ -97,7 +99,6 @@ class CreationAttributeSelectionFragment : Fragment(),
         studentsRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         studentsRecycler.adapter = studentsAdapter
 
-        studentsAdapter.setSelectedStudents(creationAttributeSharedViewModel.nmState.selectedStudents)
         studentsRecycler.addItemDecoration(itemDecoration)
 
         //Fix recycler view padding bottom
@@ -122,12 +123,6 @@ class CreationAttributeSelectionFragment : Fragment(),
         }
 
         //WARN: wish caught 2 times after navigate from fragment with the same VM, but state obtained correctly
-        creationAttributeSharedViewModel.obtainWish(
-            CreationAttributeWish.RefreshStudents(
-                searchSelectedAttributes = creationAttributeSharedViewModel.nmState.searchSelectedAttributes,
-                ""
-            )
-        )
 
         lifecycleScope.launchWhenResumed {
             mainActivityViewModel.searchQueryStateFlow.debounce(300).collect { query ->
@@ -154,7 +149,11 @@ class CreationAttributeSelectionFragment : Fragment(),
                             )
                         }
                     } else {
-                        Toast.makeText(requireContext(), "Ни один студент не выбран", Toast.LENGTH_SHORT).show() // TODO extract
+                        Toast.makeText(
+                            requireContext(),
+                            "Ни один студент не выбран",
+                            Toast.LENGTH_SHORT
+                        ).show() // TODO extract
                     }
                 }
                 if (state.attributingEvent) {
@@ -165,16 +164,24 @@ class CreationAttributeSelectionFragment : Fragment(),
                 }
                 if (state.selectAllEvent) {
                     if (creationAttributeSharedViewModel.nmState.students.size > creationAttributeSharedViewModel.nmState.selectedStudents.size) {
-                        for (student in creationAttributeSharedViewModel.nmState.students) {
-                            creationAttributeSharedViewModel.obtainWish(CreationAttributeWish.SelectStudent(student))
-                        }
-                        studentsAdapter.setSelectedStudents(creationAttributeSharedViewModel.nmState.students)
+                        creationAttributeSharedViewModel.obtainWish(
+                            CreationAttributeWish.SelectStudents(
+                                creationAttributeSharedViewModel.nmState.students.map { it.id }
+                                    .toSet()
+                            )
+                        )
+
+                        studentsAdapter.setSelectedStudents(creationAttributeSharedViewModel.nmState.students.map { it.id }
+                            .toSet())
                         studentsAdapter.notifyDataSetChanged()
                         mainActivityViewModel.triggerSelectAllEvent(false)
                     } else {
-                        for (student in creationAttributeSharedViewModel.nmState.students) {
-                            creationAttributeSharedViewModel.obtainWish(CreationAttributeWish.DismissStudent(student))
-                        }
+                        creationAttributeSharedViewModel.obtainWish(
+                            CreationAttributeWish.DismissStudents(
+                                creationAttributeSharedViewModel.nmState.students.map { it.id }
+                                    .toSet()
+                            )
+                        )
                         studentsAdapter.setSelectedStudents(emptySet())
                         studentsAdapter.notifyDataSetChanged()
                         mainActivityViewModel.triggerSelectAllEvent(false)
@@ -194,10 +201,14 @@ class CreationAttributeSelectionFragment : Fragment(),
             //TODO
         }
 
-        studentsAdapter.submitList(state.students.toList()){
-            //fix redundant space after attributing
-            binding.studentList.post {
-                studentsRecycler.invalidateItemDecorations()
+        studentsAdapter.setSelectedStudents(state.selectedStudents)
+        studentsAdapter.notifyDataSetChanged()
+        if (state.students.size != studentsAdapter.itemCount || state.selectedStudents.size != studentsAdapter.selectedStudents.size) {
+            studentsAdapter.submitList(state.students.toList()) {
+                //fix redundant space after attributing
+                binding.studentList.post {
+                    studentsRecycler.invalidateItemDecorations()
+                }
             }
         }
     }

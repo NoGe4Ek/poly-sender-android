@@ -57,7 +57,8 @@ class CreationAttributeFragment : Fragment(),
         }
 
         binding.textViewAttributeName.text = creationAttributeSharedViewModel.nmState.selectedName
-        binding.textViewStudentCount.text = creationAttributeSharedViewModel.nmState.selectedStudents.size.toString()
+        binding.textViewStudentCount.text =
+            creationAttributeSharedViewModel.nmState.selectedStudents.size.toString()
         binding.textViewSection.text = creationAttributeSharedViewModel.nmState.selectedSection
 
         lifecycleScope.launchWhenResumed {
@@ -66,11 +67,21 @@ class CreationAttributeFragment : Fragment(),
                     mainActivityViewModel.triggerApply(false)
 
                     creationAttributeSharedViewModel.apply {
-                        obtainWish(
-                            CreationAttributeWish.CreateAttribute(
-                                nmState.selectedName, nmState.selectedSection, nmState.selectedStudents
+                        if (creationAttributeSharedViewModel.nmState.isEdit) {
+                            obtainWish(CreationAttributeWish.UpdateAttribute(
+                                nmState.selectedName,
+                                nmState.selectedSection,
+                                nmState.selectedStudents
+                            ))
+                        } else {
+                            obtainWish(
+                                CreationAttributeWish.CreateAttribute(
+                                    nmState.selectedName,
+                                    nmState.selectedSection,
+                                    nmState.selectedStudents
+                                )
                             )
-                        )
+                        }
                     }
                 }
             }

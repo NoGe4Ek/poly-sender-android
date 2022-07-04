@@ -14,6 +14,11 @@
         android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeParamFragment"
         android:label="Parameters"
         tools:layout="@layout/fragment_creation_attribute_param">
+        <argument
+            android:name="attribute"
+            android:defaultValue="@null"
+            app:argType="com.poly.poly_sender_android.data.models.domainModel.Attribute"
+            app:nullable="true" />
 
         <action
             android:id="@+id/action_CreationAttributeParamFragment_to_CreationAttributeSelectionFragment"
@@ -46,7 +51,7 @@
             app:destination="@id/CreationAttributeSelectionFragment"
             app:launchSingleTop="true"
             app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/CreationAttributeFragment"
@@ -110,9 +115,17 @@
         android:id="@+id/CreationSectionFragment"
         android:name="com.poly.poly_sender_android.ui.attributes.creationSection.CreationSectionFragment"
         android:label="Confirmation"
-        tools:layout="@layout/fragment_creation_section">
-    </fragment>
+        tools:layout="@layout/fragment_creation_section"></fragment>
 
+    <fragment
+        android:id="@+id/AttributeProfileFragment"
+        android:name="com.poly.poly_sender_android.ui.attributeProfile.AttributeProfileFragment"
+        android:label="Attribute Profile"
+        tools:layout="@layout/fragment_attribute_profile">
+        <argument
+            android:name="attribute"
+            app:argType="com.poly.poly_sender_android.data.models.domainModel.Attribute" />
+    </fragment>
     <fragment
         android:id="@+id/StudentProfileFragment"
         android:name="com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragment"
@@ -138,7 +151,7 @@
         app:destination="@id/nav_graph"
         app:launchSingleTop="true"
         app:popUpTo="@+id/nav_graph"
-        app:popUpToInclusive="true"/>
+        app:popUpToInclusive="true" />
 
     <action
         android:id="@+id/action_global_creationAttributeParamFragment"
@@ -159,4 +172,7 @@
     <action
         android:id="@+id/action_global_studentProfileFragment"
         app:destination="@id/StudentProfileFragment" />
+    <action
+        android:id="@+id/action_global_attributeProfileFragment"
+        app:destination="@id/AttributeProfileFragment" />
 </navigation>

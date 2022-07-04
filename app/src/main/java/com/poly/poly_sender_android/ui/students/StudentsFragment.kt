@@ -68,7 +68,8 @@ class StudentsFragment : Fragment(),
             App.appBar = AppBar.StudentsBar
         } else {
             App.appBar = AppBar.StudentsSelectedBar
-            App.mCurrentActivity.supportActionBar?.title = "Selected: ${studentsSharedViewModel.nmState.selectedStudents.size}"
+            App.mCurrentActivity.supportActionBar?.title =
+                "Selected: ${studentsSharedViewModel.nmState.selectedStudents.size}"
         }
         App.mCurrentActivity.invalidateOptionsMenu()
 
@@ -76,11 +77,11 @@ class StudentsFragment : Fragment(),
         studentsAdapter = StudentsAdapter(
             onItemClicked = { student, card ->
                 if (card.isChecked) {
-                    studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents - student)
-                    studentsSharedViewModel.obtainWish(StudentsWish.DismissStudent(student))
+                    //studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents.map { it.id }.toMutableSet() - student.id)
+                    studentsSharedViewModel.obtainWish(StudentsWish.DismissStudent(student.id))
                 } else {
-                    studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents + student)
-                    studentsSharedViewModel.obtainWish(StudentsWish.SelectStudent(student))
+                    //studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents.map{ it.id }.toMutableSet() + student.id)
+                    studentsSharedViewModel.obtainWish(StudentsWish.SelectStudent(student.id))
                 }
                 card.isChecked = !card.isChecked
             },
@@ -89,7 +90,7 @@ class StudentsFragment : Fragment(),
                     StudentProfileFragmentDirections.actionGlobalStudentProfileFragment(student)
                 findNavController().navigate(studentProfileFragment)
             })
-        studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents)
+        //studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.selectedStudents.map { it.id }.toSet())
         studentsRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         studentsRecycler.adapter = studentsAdapter
 
@@ -117,13 +118,6 @@ class StudentsFragment : Fragment(),
         }
 
         //WARN: wish caught 2 times after navigate from fragment with the same VM, but state obtained correctly
-        studentsSharedViewModel.obtainWish(
-            StudentsWish.RefreshStudents(
-                searchSelectedAttributes = studentsSharedViewModel.nmState.searchSelectedAttributes,
-                ""
-            )
-        )
-
         lifecycleScope.launchWhenResumed {
             mainActivityViewModel.searchQueryStateFlow.debounce(300).collect { query ->
                 studentsSharedViewModel.obtainWish(
@@ -146,18 +140,14 @@ class StudentsFragment : Fragment(),
 
                 if (state.selectAllEvent) {
                     if (studentsSharedViewModel.nmState.students.size > studentsSharedViewModel.nmState.selectedStudents.size) {
-                        for (student in studentsSharedViewModel.nmState.students) {
-                            studentsSharedViewModel.obtainWish(StudentsWish.SelectStudent(student))
-                        }
-                        studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.students)
-                        studentsAdapter.notifyDataSetChanged()
+                        studentsSharedViewModel.obtainWish(StudentsWish.SelectStudents(studentsSharedViewModel.nmState.students.map { it.id }.toSet()))
+                        //studentsAdapter.setSelectedStudents(studentsSharedViewModel.nmState.students.map { it.id }.toSet())
+                        //studentsAdapter.notifyDataSetChanged()
                         mainActivityViewModel.triggerSelectAllEvent(false)
                     } else {
-                        for (student in studentsSharedViewModel.nmState.students) {
-                            studentsSharedViewModel.obtainWish(StudentsWish.DismissStudent(student))
-                        }
-                        studentsAdapter.setSelectedStudents(emptySet())
-                        studentsAdapter.notifyDataSetChanged()
+                        studentsSharedViewModel.obtainWish(StudentsWish.DismissStudents(studentsSharedViewModel.nmState.students.map { it.id }.toSet()))
+                        //studentsAdapter.setSelectedStudents(emptySet())
+                        //studentsAdapter.notifyDataSetChanged()
                         mainActivityViewModel.triggerSelectAllEvent(false)
                     }
                 }
@@ -175,10 +165,14 @@ class StudentsFragment : Fragment(),
             //TODO
         }
 
-        studentsAdapter.submitList(state.students.toList()) {
-            //fix redundant space after attributing
-            binding.studentList.post {
-                studentsRecycler.invalidateItemDecorations()
+        studentsAdapter.setSelectedStudents(state.selectedStudents)
+        studentsAdapter.notifyDataSetChanged()
+        if (state.students.size != studentsAdapter.itemCount || state.selectedStudents.size != studentsAdapter.selectedStudents.size) {
+            studentsAdapter.submitList(state.students.toList()) {
+                //fix redundant space after attributing
+                binding.studentList.post {
+                    studentsRecycler.invalidateItemDecorations()
+                }
             }
         }
     }

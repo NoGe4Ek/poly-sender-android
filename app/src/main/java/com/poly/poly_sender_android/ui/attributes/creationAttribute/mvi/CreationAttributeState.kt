@@ -9,6 +9,8 @@ data class CreationAttributeState(
     //CreationAttribute
     val label: String,
     val isLoading: Boolean,
+    val isEdit: Boolean,
+    val editableAttribute: Attribute?,
 
     //CreationAttributeParam
     val selectedName: String,
@@ -17,7 +19,7 @@ data class CreationAttributeState(
 
     //CreationAttributeSelection
     val students: Set<Student>,
-    val selectedStudents: Set<Student>,
+    val selectedStudents: Set<String>,
 
     //CreationAttributeSelectionAttributing
     // Search Param // TODO pack to CreationAttributeSearchParam

@@ -25,18 +25,24 @@ interface ApiRetrofit {
     @POST(Constants.URL_getAttributes)
     suspend fun getDataAttributes(@Body commonRequestBody: CommonRequestBody): List<AttributeNetworkEntity>
 
+    @POST(Constants.URL_getAttributeById)
+    suspend fun getAttributeById(@Body getAttrByIdRequestBody: GetAttrByIdRequestBody): AttributeNetworkEntity
+
     @POST(Constants.URL_getGroupAttributes)
     suspend fun getSections(@Body commonRequestBody: CommonRequestBody): List<SectionNetworkEntity>
 
     @POST(Constants.URL_createAttribute)
     suspend fun createAttribute(@Body createAttributeBody: CreateAttributeBody): CreateAttributeResponseNetworkEntity
 
+    @POST(Constants.URL_updateAttribute)
+    suspend fun updateAttribute(@Body updateAttributeBody: UpdateAttributeBody): UpdatedAttributeNetworkEntity
+
     @POST(Constants.URL_createGroupName)
     suspend fun createGroupName(@Body createGroupBody: CreateGroupBody): CreateGroupResponseNetworkEntity
 
     @POST(Constants.URL_getFilters)
-    suspend fun getFilters(@Body commonRequestBody: CommonRequestBody) : List<FilterNetworkEntity>
+    suspend fun getFilters(@Body commonRequestBody: CommonRequestBody): List<FilterNetworkEntity>
 
     @POST(Constants.URL_getAllStudents)
-    suspend fun getAllStudents(@Body commonRequestBody: CommonRequestBody) : List<StudentNetworkEntity>
+    suspend fun getAllStudents(@Body commonRequestBody: CommonRequestBody): List<StudentNetworkEntity>
 }

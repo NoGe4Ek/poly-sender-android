@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.common.string
+import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.databinding.FragmentCreationAttributeParamBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeNews
@@ -41,6 +43,9 @@ class CreationAttributeParamFragment : Fragment(),
     private var _binding: FragmentCreationAttributeParamBinding? = null
     private val binding get() = _binding!!
 
+    private val args: CreationAttributeParamFragmentArgs by navArgs()
+    private var attribute: Attribute? = null
+
     lateinit var adapter: ArrayAdapter<String>
 
     override fun onCreateView(
@@ -63,6 +68,12 @@ class CreationAttributeParamFragment : Fragment(),
             bind(viewLifecycleOwner.lifecycleScope, this@CreationAttributeParamFragment)
         }
 
+        attribute = args.attribute
+        if (attribute != null) {
+            creationAttributeSharedViewModel.obtainWish(CreationAttributeWish.SetSharedStorage(
+                attribute!!
+            ))
+        }
         creationAttributeSharedViewModel.obtainWish(CreationAttributeWish.RefreshSections)
 
         binding.editTextAttributeName.setText(creationAttributeSharedViewModel.nmState.selectedName)
@@ -98,6 +109,11 @@ class CreationAttributeParamFragment : Fragment(),
     }
 
     override fun renderState(state: CreationAttributeState) {
+        if (state.isEdit) {
+            binding.editTextAttributeName.setText(creationAttributeSharedViewModel.nmState.selectedName)
+            binding.editTextViewSection.setText(creationAttributeSharedViewModel.nmState.selectedSection)
+        }
+
         adapter = ArrayAdapter(requireContext(), R.layout.list_item)
         adapter.addAll(state.sections.map { it.sectionName })
         (binding.menuSection.editText as? AutoCompleteTextView)?.setAdapter(adapter)

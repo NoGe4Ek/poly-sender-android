@@ -12,4 +12,7 @@ data class MainState(
     val applyEvent: Boolean,
     val clearEvent: Boolean,
     val nextEvent: Boolean,
+    val editEvent: Boolean,
+    val shareEvent: Boolean,
+    val deleteEvent: Boolean,
 ) : State

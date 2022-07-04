@@ -27,55 +27,24 @@
             style="@style/Theme.PolySender.TextView.Header"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@id/card_attribute_section"
+            app:layout_constraintBottom_toTopOf="@id/card_attribute_student_count"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="4dp"
             app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintWidth_default="percent"
             tools:text="AttrName" />
 
         <TextView
-            android:id="@+id/card_attribute_section"
-            style="@style/Theme.PolySender.TextView.Body"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/card_attribute_student_count"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_attribute_name"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Раздел: Раздел_name" />
-
-        <TextView
             android:id="@+id/card_attribute_student_count"
-            style="@style/Theme.PolySender.TextView.Body"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/card_attribute_creation_type"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_attribute_section"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Студенты: 3" />
-
-        <TextView
-            android:id="@+id/card_attribute_creation_type"
-            style="@style/Theme.PolySender.TextView.Body"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/card_attribute_creation_date"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_attribute_student_count"
-            tools:text="Создан: из списка" />
-
-        <TextView
-            android:id="@+id/card_attribute_creation_date"
-            style="@style/Theme.PolySender.TextView.Body"
+            style="@style/Theme.PolySender.TextView.BodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_attribute_creation_type"
-            tools:text="Дата создания: dd.mm.yyyy" />
+            app:layout_constraintTop_toBottomOf="@id/card_attribute_name"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="3 students" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

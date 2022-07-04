@@ -192,6 +192,18 @@ class MainActivity : AppCompatActivity() {
                 activityViewModel.triggerNext(true)
                 true
             }
+            R.id.action_edit -> {
+                activityViewModel.triggerEdit(true)
+                true
+            }
+            R.id.action_share -> {
+                activityViewModel.triggerShare(true)
+                true
+            }
+            R.id.action_delete -> {
+                activityViewModel.triggerDelete(true)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

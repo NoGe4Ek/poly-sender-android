@@ -12,19 +12,23 @@ import javax.inject.Singleton
 @HiltViewModel
 class CreationAttributeSharedViewModel @Inject constructor() :
     BaseViewModel<CreationAttributeState, CreationAttributeWish, CreationAttributeEffect, CreationAttributeNews>() {
+    companion object {
+        val initState = CreationAttributeState(
+            label = "Selection",
+            isLoading = false,
+            isEdit = false,
+            editableAttribute = null,
+            selectedName = "",
+            selectedSection = "",
+            students = emptySet(),
+            selectedStudents = emptySet(),
+            searchAttributes = emptySet(),
+            searchSelectedAttributes = emptySet(),
+            searchSelectedSection = null,
+            sections = emptySet(),
+        )
+    }
 
-    private val initState = CreationAttributeState(
-        label = "Selection",
-        isLoading = false,
-        selectedName = "",
-        selectedSection = "",
-        students = emptySet(),
-        selectedStudents = emptySet(),
-        searchAttributes = emptySet(),
-        searchSelectedAttributes = emptySet(),
-        searchSelectedSection = null,
-        sections = emptySet(),
-    )
     override val stateFlow = MutableStateFlow(initState)
     val nmState: CreationAttributeState
         get() {

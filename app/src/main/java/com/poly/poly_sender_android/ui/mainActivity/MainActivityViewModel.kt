@@ -18,6 +18,9 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
         applyEvent = false,
         clearEvent = false,
         nextEvent = false,
+        editEvent = false,
+        shareEvent = false,
+        deleteEvent = false,
     )
     val stateFlow = MutableStateFlow(initState)
     val searchQueryStateFlow = MutableStateFlow("")
@@ -40,4 +43,13 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
     fun triggerNext(trigger: Boolean) {
         stateFlow.value = stateFlow.value.copy(nextEvent = trigger)
     }
+    fun triggerEdit(trigger: Boolean) {
+        stateFlow.value = stateFlow.value.copy(editEvent = trigger)
+    }
+    fun triggerShare(trigger: Boolean) {
+        stateFlow.value = stateFlow.value.copy(shareEvent = trigger)
+    }fun triggerDelete(trigger: Boolean) {
+        stateFlow.value = stateFlow.value.copy(deleteEvent = trigger)
+    }
+
 }

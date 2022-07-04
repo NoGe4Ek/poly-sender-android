@@ -1,18 +1,14 @@
 package com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi
 
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.mvi.Reducer
-import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeFragmentDirections
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeParamFragmentDirections
+import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeSharedViewModel
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionAttributingFragmentDirections
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionFragmentDirections
-import com.poly.poly_sender_android.ui.attributes.mvi.AttributesEffect
-import com.poly.poly_sender_android.ui.attributes.mvi.AttributesNews
-import com.poly.poly_sender_android.ui.students.StudentsAttributingFragmentDirections
 import com.poly.poly_sender_android.ui.students.mvi.StudentsEffect
 
 class CreationAttributeReducer :
@@ -29,7 +25,7 @@ class CreationAttributeReducer :
                 reducedState = state.copy(isLoading = true)
             }
             CreationAttributeEffect.CreateAttributeSuccess -> {
-                reducedState = state.copy(isLoading = false)
+                reducedState = CreationAttributeSharedViewModel.initState
                 reducedNews = CreationAttributeNews.Message("Attribute was successfully created")
                 Navigation.findNavController(
                     App.mCurrentActivity,
@@ -150,6 +146,57 @@ class CreationAttributeReducer :
             }
             is CreationAttributeEffect.RefreshSelectedSectionSuccess -> {
                 reducedState = state.copy(searchSelectedSection = effect.searchSelectedSection)
+            }
+            CreationAttributeEffect.ClearSharedStorageSuccess -> {
+                reducedState = CreationAttributeSharedViewModel.initState
+            }
+            is CreationAttributeEffect.SetSharedStorageSuccess -> {
+                reducedState = state.copy(
+                    label = "Selection",
+                    editableAttribute = effect.attribute,
+                    isEdit = true,
+                    isLoading = false,
+                    selectedName = effect.attribute.attributeName,
+                    selectedSection = effect.attribute.groupName,
+                    selectedStudents = effect.students.map{ it.id }.toSet(),
+                )
+            }
+            is CreationAttributeEffect.UpdateAttributeFailure -> {
+                reducedState = state.copy(isLoading = false)
+                reducedNews = CreationAttributeNews.Message(effect.errorMessage)
+            }
+            CreationAttributeEffect.UpdateAttributeSuccess -> {
+                reducedState = CreationAttributeSharedViewModel.initState
+                reducedNews = CreationAttributeNews.Message("Attribute was successfully updated")
+                Navigation.findNavController(
+                    App.mCurrentActivity,
+                    R.id.nav_host_fragment_content_main
+                ).navigate(R.id.action_global_afterAttributeCreated)
+            }
+            is CreationAttributeEffect.DismissStudentsSuccess -> {
+                val selectedStudents = state.selectedStudents.toMutableSet()
+                selectedStudents.removeAll(effect.students)
+                if (selectedStudents.isEmpty()) {
+                    App.mCurrentActivity.supportActionBar?.title = state.label
+                    App.appBar = AppBar.CreationSelectionBar
+                    App.mCurrentActivity.invalidateOptionsMenu()
+                } else {
+                    App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                }
+
+                reducedState = state.copy(
+                    selectedStudents = selectedStudents
+                )
+            }
+            is CreationAttributeEffect.SelectStudentsSuccess -> {
+                val selectedStudents = state.selectedStudents.toMutableSet()
+                selectedStudents.addAll(effect.students)
+                App.appBar = AppBar.CreationSelectionSelectedBar
+                App.mCurrentActivity.invalidateOptionsMenu()
+                App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                reducedState = state.copy(
+                    selectedStudents = selectedStudents
+                )
             }
         }
         return reducedState to reducedNews

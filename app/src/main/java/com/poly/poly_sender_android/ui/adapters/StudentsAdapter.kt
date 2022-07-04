@@ -2,7 +2,6 @@ package com.poly.poly_sender_android.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -21,14 +20,17 @@ class StudentsAdapter(
             }
 
             override fun areContentsTheSame(oldItem: Student, newItem: Student): Boolean {
-                return oldItem == newItem
+                return oldItem.id == newItem.id
             }
         }
     }
-    private val selectedStudents = mutableSetOf<Student>()
-    fun setSelectedStudents(selectedStudents: Set<Student>) {
-        this.selectedStudents.clear()
-        this.selectedStudents.addAll(selectedStudents)
+    private val _selectedStudents = mutableSetOf<String>()
+
+    val selectedStudents: Set<String> = _selectedStudents
+
+    fun setSelectedStudents(selectedStudents: Set<String>) {
+        this._selectedStudents.clear()
+        this._selectedStudents.addAll(selectedStudents)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
@@ -62,17 +64,7 @@ class StudentsAdapter(
 
         fun bind(student: Student) {
             binding.apply {
-                var isDismissed = true
-                for (selStudent in selectedStudents) {
-                    if (student == selStudent) {
-                        studentCard.isChecked = true
-                        isDismissed = false
-                        break
-                    }
-                }
-                if (isDismissed) {
-                    studentCard.isChecked = false
-                }
+                studentCard.isChecked = _selectedStudents.contains(student.id)
 
                 cardStudentName.text = student.name
                 cardStudentEmail.text = student.email

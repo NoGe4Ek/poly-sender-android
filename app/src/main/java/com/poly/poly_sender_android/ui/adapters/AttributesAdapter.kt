@@ -63,22 +63,9 @@ class AttributesAdapter(
 
         fun bind(attribute: Attribute) {
             binding.apply {
-                var isDismissed = true
-                for (selAttribute in selectedAttributes) {
-                    if (attribute == selAttribute) {
-                        attributeCard.isChecked = true
-                        isDismissed = false
-                        break
-                    }
-                }
-                if (isDismissed) {
-                    attributeCard.isChecked = false
-                }
+                attributeCard.isChecked = selectedAttributes.contains(attribute)
                 cardAttributeName.text = attribute.attributeName
-                cardAttributeSection.text = attribute.groupName
-                cardAttributeStudentCount.text = attribute.students.size.toString()
-                cardAttributeCreationType.text = attribute.type
-                cardAttributeCreationDate.text = attribute.created
+                cardAttributeStudentCount.text = "${attribute.students.size} students"
             }
         }
     }

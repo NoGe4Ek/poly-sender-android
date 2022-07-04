@@ -7,7 +7,7 @@
         android:id="@+id/action_select_all"
         android:icon="@drawable/sl_check_all"
         android:orderInCategory="50"
-        android:title="Profile"
+        android:title="SelectAll"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 
@@ -15,7 +15,7 @@
         android:id="@+id/action_attributing"
         android:icon="@drawable/ic_filters"
         android:orderInCategory="200"
-        android:title="Profile"
+        android:title="Attributing"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 

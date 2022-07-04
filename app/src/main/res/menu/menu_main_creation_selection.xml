@@ -15,7 +15,7 @@
         android:id="@+id/action_attributing"
         android:icon="@drawable/ic_filters"
         android:orderInCategory="200"
-        android:title="Profile"
+        android:title="Attributing"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 

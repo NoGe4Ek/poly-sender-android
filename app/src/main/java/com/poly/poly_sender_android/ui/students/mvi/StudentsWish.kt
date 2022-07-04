@@ -19,8 +19,10 @@ sealed interface StudentsWish : Wish {
     object ClearSearchParam :
         StudentsWish // delete selected attributes + reload all students(not selected)
 
-    data class SelectStudent(val student: Student): StudentsWish
-    data class DismissStudent(val student: Student): StudentsWish
+    data class SelectStudent(val student: String): StudentsWish
+    data class SelectStudents(val students: Set<String>): StudentsWish
+    data class DismissStudent(val student: String): StudentsWish
+    data class DismissStudents(val students: Set<String>): StudentsWish
 
     data class SelectAttribute(val attribute: Attribute): StudentsWish
     data class DismissAttribute(val attribute: Attribute): StudentsWish

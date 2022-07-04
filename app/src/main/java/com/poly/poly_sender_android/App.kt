@@ -40,4 +40,5 @@ sealed class AppBar(val res: Int) {
 
     //More
     object StudentBar : AppBar(R.menu.menu_main_empty)
+    object AttributeBar : AppBar(R.menu.menu_main_attribute_profile)
 }

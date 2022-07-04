@@ -17,8 +17,10 @@ sealed interface StudentsEffect : Effect {
     data class RefreshSelectedSectionSuccess(val searchSelectedSection: Section?) : StudentsEffect
 
     object ClearSearchParamSuccess : StudentsEffect
-    data class SelectStudentSuccess(val student: Student) : StudentsEffect
-    data class DismissStudentSuccess(val student: Student) : StudentsEffect
+    data class SelectStudentSuccess(val student: String) : StudentsEffect
+    data class DismissStudentSuccess(val student: String) : StudentsEffect
+    data class SelectStudentsSuccess(val students: Set<String>) : StudentsEffect
+    data class DismissStudentsSuccess(val students: Set<String>) : StudentsEffect
     data class SelectAttributeSuccess(val attribute: Attribute) : StudentsEffect
     data class DismissAttributeSuccess(val attribute: Attribute) : StudentsEffect
 

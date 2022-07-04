@@ -3,7 +3,6 @@ package com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.mvi.Actor
-import com.poly.poly_sender_android.ui.attributes.mvi.AttributesEffect
 import com.poly.poly_sender_android.ui.students.mvi.StudentsEffect
 import com.poly.poly_sender_android.ui.students.mvi.StudentsWish
 import kotlinx.coroutines.Dispatchers
@@ -79,7 +78,8 @@ class CreationAttributeActor :
                         name = wish.attributeName,
                         groupName = wish.section,
                         expression = "",
-                        studentsId = wish.students.map { it.id }) //TODO we don't need to use the result?
+                        studentsId = wish.students.toList()
+                    )//TODO we don't need to use the result?
                     emit(CreationAttributeEffect.CreateAttributeSuccess)
                 } catch (e: Exception) {
                     val errorMessage = e.message ?: "Unknown exception"
@@ -174,6 +174,48 @@ class CreationAttributeActor :
             }
             is CreationAttributeWish.RefreshSelectedSection -> {
                 emit(CreationAttributeEffect.RefreshSelectedSectionSuccess(wish.section))
+            }
+            CreationAttributeWish.ClearSharedStorage -> {
+                emit(CreationAttributeEffect.ClearSharedStorageSuccess)
+            }
+            is CreationAttributeWish.SetSharedStorage -> {
+                val students = mutableSetOf<Student>()
+                students.addAll(mainRepository.getStudents(mainRepository.user.idStaff))
+                val selectedStudents = mutableSetOf<Student>()
+                for (studentId in wish.attribute.students) {
+                    for (student in students) {
+                        if (student.id == studentId) {
+                            selectedStudents.add(student)
+                        }
+                    }
+                }
+                emit(CreationAttributeEffect.SetSharedStorageSuccess(wish.attribute, selectedStudents))
+            }
+            is CreationAttributeWish.UpdateAttribute -> {
+                try {
+                    emit(CreationAttributeEffect.Loading)
+                    state.editableAttribute?.copy(
+                        attributeName = wish.attributeName,
+                        groupName = wish.section,
+                        students = wish.students.toList()
+                    )?.let {
+                        mainRepository.updateAttribute(
+                            attribute = it
+                        )
+                        emit(CreationAttributeEffect.UpdateAttributeSuccess)
+                    } ?: run {
+                        emit(CreationAttributeEffect.UpdateAttributeFailure(""))
+                    } //TODO we don't need to use the result?
+                } catch (e: Exception) {
+                    val errorMessage = e.message ?: "Unknown exception"
+                    emit(CreationAttributeEffect.UpdateAttributeFailure(errorMessage))
+                }
+            }
+            is CreationAttributeWish.DismissStudents -> {
+                emit(CreationAttributeEffect.DismissStudentsSuccess(wish.students))
+            }
+            is CreationAttributeWish.SelectStudents -> {
+                emit(CreationAttributeEffect.SelectStudentsSuccess(wish.students))
             }
         }
     }.flowOn(Dispatchers.IO)

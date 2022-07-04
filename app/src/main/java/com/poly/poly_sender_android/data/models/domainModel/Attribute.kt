@@ -1,5 +1,9 @@
 package com.poly.poly_sender_android.data.models.domainModel
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Attribute(
     val id: String,
     val owner: String,
@@ -12,4 +16,4 @@ data class Attribute(
     val students: List<String>,
     val studentsDTO: List<String>,
     val status: String,
-)
+) : Parcelable

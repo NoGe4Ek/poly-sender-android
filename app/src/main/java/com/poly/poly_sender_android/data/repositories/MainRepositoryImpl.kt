@@ -1,8 +1,5 @@
 package com.poly.poly_sender_android.data.repositories
 
-import android.content.SharedPreferences
-import androidx.core.content.edit
-import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.data.database.UserDao
 import com.poly.poly_sender_android.data.models.domainModel.*
 import com.poly.poly_sender_android.data.network.*
@@ -32,7 +29,7 @@ class MainRepositoryImpl @Inject constructor(
         sessionManager.saveAuthToken(user.token)
     }
 
-    override suspend fun fetchAuthToken() : String {
+    override suspend fun fetchAuthToken(): String {
         return sessionManager.fetchAuthToken() ?: ""
     }
 
@@ -61,9 +58,15 @@ class MainRepositoryImpl @Inject constructor(
 
     override suspend fun tryAutoSignIn(): User? {
         var user: User? = null
-        if (fetchAuthToken() != "") {
-            user = getLocalUser()
-            this.user = user
+        val token = fetchAuthToken()
+        if (token != "") {
+            try {
+                user = getLocalUser()
+                retrofit.getDataAttributesCurrentStaff(CommonRequestBody(user.idStaff))
+                this.user = user
+            } catch (e: Exception) {
+                user = null
+            }
         }
 
         return user
@@ -105,6 +108,24 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun getDataAttributes(id: String): List<Attribute> {
         val attributesNE = retrofit.getDataAttributes(CommonRequestBody(user.idStaff))
         return attributeMapper.mapFromEntityList(attributesNE)
+    }
+
+    override suspend fun getAttribute(idAttribute: String): Attribute {
+        val attributeNE = retrofit.getAttributeById(GetAttrByIdRequestBody(idAttribute))
+        return attributeMapper.mapFromEntity(attributeNE)
+    }
+
+    override suspend fun updateAttribute(attribute: Attribute) {
+        retrofit.updateAttribute(
+            UpdateAttributeBody(
+                idStaff = user.idStaff,
+                idAttribute = attribute.id,
+                name = attribute.attributeName,
+                groupName = attribute.groupName,
+                expression = attribute.expression,
+                studentsId = attribute.students
+            )
+        )
     }
 
     override suspend fun getSections(id: String): List<Section> {

@@ -20,13 +20,21 @@ sealed interface CreationAttributeWish : Wish {
     data class CreateAttribute(
         val attributeName: String,
         val section: String,
-        val students: Set<Student>
+        val students: Set<String>
+    ) : CreationAttributeWish
+
+    data class UpdateAttribute(
+        val attributeName: String,
+        val section: String,
+        val students: Set<String>
     ) : CreationAttributeWish
 
     object ClearSearchParam : CreationAttributeWish // delete selected attributes + reload all students(not selected)
 
-    data class SelectStudent(val student: Student): CreationAttributeWish
-    data class DismissStudent(val student: Student): CreationAttributeWish
+    data class SelectStudent(val student: String): CreationAttributeWish
+    data class SelectStudents(val students: Set<String>): CreationAttributeWish
+    data class DismissStudent(val student: String): CreationAttributeWish
+    data class DismissStudents(val students: Set<String>): CreationAttributeWish
 
     data class SelectAttribute(val attribute: Attribute): CreationAttributeWish
     data class DismissAttribute(val attribute: Attribute): CreationAttributeWish
@@ -37,7 +45,7 @@ sealed interface CreationAttributeWish : Wish {
 
     data class UpdateSharedStorageBySelection(
         val students: Set<Student>,
-        val selectedStudents: Set<Student>
+        val selectedStudents: Set<String>
     ) : CreationAttributeWish
 
     data class UpdateSharedStorageBySelectionAttributing(
@@ -45,4 +53,7 @@ sealed interface CreationAttributeWish : Wish {
         val searchSelectedAttributes: Set<Attribute>,
         val searchSelectedSearchSection: Section?
     ) : CreationAttributeWish
+
+    object ClearSharedStorage : CreationAttributeWish
+    data class SetSharedStorage(val attribute: Attribute) : CreationAttributeWish
 }

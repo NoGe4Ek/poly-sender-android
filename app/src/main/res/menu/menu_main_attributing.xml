@@ -7,7 +7,7 @@
         android:id="@+id/action_apply"
         android:icon="@drawable/ic_apply"
         android:orderInCategory="100"
-        android:title="Search"
+        android:title="Apply"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 
@@ -15,7 +15,7 @@
         android:id="@+id/action_clear"
         android:icon="@drawable/ic_clear"
         android:orderInCategory="200"
-        android:title="Profile"
+        android:title="Clear"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 </menu>

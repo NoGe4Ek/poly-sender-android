@@ -131,6 +131,12 @@ class StudentsActor :
             is StudentsWish.RefreshSelectedSection -> {
                 emit(StudentsEffect.RefreshSelectedSectionSuccess(wish.section))
             }
+            is StudentsWish.DismissStudents -> {
+                emit(StudentsEffect.DismissStudentsSuccess(wish.students))
+            }
+            is StudentsWish.SelectStudents -> {
+                emit(StudentsEffect.SelectStudentsSuccess(wish.students))
+            }
         }
     }.flowOn(Dispatchers.IO)
 }

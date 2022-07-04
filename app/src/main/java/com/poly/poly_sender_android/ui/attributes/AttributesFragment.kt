@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.poly.poly_sender_android.App
@@ -27,11 +28,13 @@ import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.databinding.FragmentAttributesBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.adapters.AttributesAdapter
+import com.poly.poly_sender_android.ui.attributeProfile.AttributeProfileFragmentDirections
 import com.poly.poly_sender_android.ui.attributes.mvi.AttributesNews
 import com.poly.poly_sender_android.ui.attributes.mvi.AttributesState
 import com.poly.poly_sender_android.ui.attributes.mvi.AttributesWish
 import com.poly.poly_sender_android.ui.decorators.SpacesItemDecoration
 import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
+import com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragmentDirections
 import com.poly.poly_sender_android.ui.students.mvi.StudentsWish
 import com.poly.poly_sender_android.util.AppAnimations
 import dagger.hilt.android.AndroidEntryPoint
@@ -78,7 +81,12 @@ class AttributesFragment : Fragment(),
 
         attributesRecycler = binding.attributeList
         attributesAdapter =
-            AttributesAdapter(onItemClicked = { attribute, card -> }, onItemLongClicked = {}) //TODO
+            AttributesAdapter(onItemClicked = { attribute, card -> }, //TODO
+                onItemLongClicked = { attribute ->
+                    val attributeProfileFragment =
+                        AttributeProfileFragmentDirections.actionGlobalAttributeProfileFragment(attribute)
+                    findNavController().navigate(attributeProfileFragment)
+                })
         attributesRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         attributesRecycler.adapter = attributesAdapter
 
@@ -122,9 +130,14 @@ class AttributesFragment : Fragment(),
                 attributesViewModel.obtainWish(AttributesWish.RefreshSelectedSection(null))
             } else {
                 val selectedSection = attributesViewModel.nmState.searchSections.find { section ->
-                        section.sectionName == adapter.getItem(position)
-                    }
-                attributesViewModel.obtainWish(AttributesWish.RefreshAttributes(selectedSection, ""))
+                    section.sectionName == adapter.getItem(position)
+                }
+                attributesViewModel.obtainWish(
+                    AttributesWish.RefreshAttributes(
+                        selectedSection,
+                        ""
+                    )
+                )
                 attributesViewModel.obtainWish(AttributesWish.RefreshSelectedSection(selectedSection))
             }
         }

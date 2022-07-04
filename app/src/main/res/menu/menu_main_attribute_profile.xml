@@ -4,26 +4,26 @@
     tools:context="com.poly.poly_sender_android.ui.auth.MainActivity">
 
     <item
-        android:id="@+id/action_select_all"
-        android:icon="@drawable/sl_check_all"
+        android:id="@+id/action_edit"
+        android:icon="@drawable/ic_card_edit"
         android:orderInCategory="100"
-        android:title="SelectAll"
+        android:title="Edit"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_search"
-        android:orderInCategory="150"
-        android:title="Search"
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="ifRoom"
-        tools:ignore="Autofill" />
-
-    <item
-        android:id="@+id/action_attributing"
-        android:icon="@drawable/ic_filters"
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_card_share"
         android:orderInCategory="200"
-        android:title="Profile"
+        android:title="Share"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_delete"
+        android:icon="@drawable/ic_card_delete"
+        android:orderInCategory="300"
+        android:title="Delete"
+        app:iconTint="?attr/colorOnSurface"
+        app:showAsAction="never" />
 </menu>
