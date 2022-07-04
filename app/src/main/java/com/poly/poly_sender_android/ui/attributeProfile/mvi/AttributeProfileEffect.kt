@@ -7,4 +7,7 @@ sealed interface AttributeProfileEffect : Effect {
     object Loading : AttributeProfileEffect
     data class Success(val attribute: Attribute) : AttributeProfileEffect
     data class Failure(val errorMessage: String) : AttributeProfileEffect
+
+    data class DeleteAttributeSuccess(val attribute: Attribute) : AttributeProfileEffect
+    data class DeleteAttributeFailure(val errorMessage: String) : AttributeProfileEffect
 }

@@ -14,14 +14,13 @@ class FiltersReducer : Reducer<FiltersState, FiltersEffect, FiltersNews> {
             FiltersEffect.Loading -> {
                 reducedState = state.copy(isLoading = true)
             }
-            is FiltersEffect.Success -> {
+            is FiltersEffect.RefreshFiltersSuccess -> {
                 reducedState = state.copy(
                     isLoading = false,
                     filters = effect.filters,
-                    filtersSearchParam = effect.filtersSearchParam
                 )
             }
-            is FiltersEffect.Failure -> {
+            is FiltersEffect.RefreshFiltersFailure -> {
                 reducedState = state.copy(isLoading = false)
                 reducedNews = FiltersNews.Message(effect.errorMessage)
             }

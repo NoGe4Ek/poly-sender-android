@@ -19,6 +19,7 @@ class MainRepositoryImpl @Inject constructor(
     private val createGroupResponseMapper: CreateGroupResponseMapper,
     private val filterMapper: FilterMapper,
     private val createAttributeResponseMapper: CreateAttributeResponseMapper,
+    private val createFilterResponseMapper: CreateFilterResponseMapper,
     private val cacheMapper: CacheMapper,
     private val sectionMapper: SectionMapper,
 
@@ -128,6 +129,14 @@ class MainRepositoryImpl @Inject constructor(
         )
     }
 
+    override suspend fun deleteAttribute(attribute: Attribute) {
+        retrofit.deleteAttribute(
+            DeleteAttributeRequestBody(
+                idAttribute = attribute.id,
+            )
+        )
+    }
+
     override suspend fun getSections(id: String): List<Section> {
         val sectionsNE = retrofit.getSections(CommonRequestBody(user.idStaff))
         return sectionMapper.mapFromEntityList(sectionsNE)
@@ -157,6 +166,42 @@ class MainRepositoryImpl @Inject constructor(
         val filtersNE = retrofit.getFilters(CommonRequestBody(id))
 
         return filterMapper.mapFromEntityList(filtersNE)
+    }
+
+    override suspend fun deleteFilter(filter: Filter) {
+        retrofit.deleteFilter(
+            DeleteFilterRequestBody(
+                idFilter = filter.id,
+            )
+        )
+    }
+
+    override suspend fun updateFilter(filter: Filter) {
+        retrofit.updateFilter(
+            UpdateFilterBody(
+                idStaff = user.idStaff,
+                idFilter = filter.id,
+                name = filter.filterName,
+                mailOption = filter.mode,
+                expression = filter.expression,
+                studentsId = filter.students
+            )
+        )
+    }
+
+    override suspend fun createFilter(
+        idStaff: String,
+        name: String,
+        mailOption: String,
+        expression: String,
+        studentsId: List<String>
+    ): CreateFilterResponse {
+        val createFilterResponseNE = retrofit.createFilter(
+            CreateFilterBody(
+                idStaff, name, mailOption, expression, studentsId
+            )
+        )
+        return createFilterResponseMapper.mapFromEntity(createFilterResponseNE)
     }
 
     override suspend fun getStudents(id: String): List<Student> {

@@ -5,4 +5,5 @@ import com.poly.poly_sender_android.mvi.Wish
 
 sealed interface AttributeProfileWish : Wish {
     data class SetAttribute(val attribute: Attribute) : AttributeProfileWish
+    data class DeleteAttribute(val attribute: Attribute) : AttributeProfileWish
 }

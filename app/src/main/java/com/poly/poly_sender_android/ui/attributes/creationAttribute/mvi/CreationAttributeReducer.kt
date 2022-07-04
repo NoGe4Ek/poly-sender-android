@@ -9,7 +9,6 @@ import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttr
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeSharedViewModel
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionAttributingFragmentDirections
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionFragmentDirections
-import com.poly.poly_sender_android.ui.students.mvi.StudentsEffect
 
 class CreationAttributeReducer :
     Reducer<CreationAttributeState, CreationAttributeEffect, CreationAttributeNews> {
@@ -30,7 +29,7 @@ class CreationAttributeReducer :
                 Navigation.findNavController(
                     App.mCurrentActivity,
                     R.id.nav_host_fragment_content_main
-                ).navigate(R.id.action_global_afterAttributeCreated)
+                ).navigate(R.id.action_global_afterCreated)
             }
             is CreationAttributeEffect.CreateAttributeFailure -> {
                 reducedState = state.copy(isLoading = false)
@@ -171,7 +170,7 @@ class CreationAttributeReducer :
                 Navigation.findNavController(
                     App.mCurrentActivity,
                     R.id.nav_host_fragment_content_main
-                ).navigate(R.id.action_global_afterAttributeCreated)
+                ).navigate(R.id.action_global_afterCreated)
             }
             is CreationAttributeEffect.DismissStudentsSuccess -> {
                 val selectedStudents = state.selectedStudents.toMutableSet()

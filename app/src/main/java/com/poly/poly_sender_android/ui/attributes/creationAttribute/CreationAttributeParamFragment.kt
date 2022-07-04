@@ -43,10 +43,7 @@ class CreationAttributeParamFragment : Fragment(),
     private var _binding: FragmentCreationAttributeParamBinding? = null
     private val binding get() = _binding!!
 
-    private val args: CreationAttributeParamFragmentArgs by navArgs()
-    private var attribute: Attribute? = null
-
-    lateinit var adapter: ArrayAdapter<String>
+    private lateinit var adapter: ArrayAdapter<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,16 +65,26 @@ class CreationAttributeParamFragment : Fragment(),
             bind(viewLifecycleOwner.lifecycleScope, this@CreationAttributeParamFragment)
         }
 
-        attribute = args.attribute
-        if (attribute != null) {
-            creationAttributeSharedViewModel.obtainWish(CreationAttributeWish.SetSharedStorage(
-                attribute!!
-            ))
+        val args = CreationAttributeParamFragmentArgs.fromBundle(arguments!!) // need to clear start arg
+
+        if (args.attribute != null) {
+            creationAttributeSharedViewModel.obtainWish(
+                CreationAttributeWish.SetSharedStorage(
+                    args.attribute!!
+                )
+            )
+        } else {
+            if (args.start) {
+                creationAttributeSharedViewModel.obtainWish(CreationAttributeWish.ClearSharedStorage)
+                requireArguments().remove("start")
+            }
         }
-        creationAttributeSharedViewModel.obtainWish(CreationAttributeWish.RefreshSections)
+
+
 
         binding.editTextAttributeName.setText(creationAttributeSharedViewModel.nmState.selectedName)
         binding.editTextViewSection.setText(creationAttributeSharedViewModel.nmState.selectedSection)
+        creationAttributeSharedViewModel.obtainWish(CreationAttributeWish.RefreshSections)
 
         lifecycleScope.launchWhenResumed {
             mainActivityViewModel.stateFlow.collect { state ->
@@ -109,10 +116,8 @@ class CreationAttributeParamFragment : Fragment(),
     }
 
     override fun renderState(state: CreationAttributeState) {
-        if (state.isEdit) {
-            binding.editTextAttributeName.setText(creationAttributeSharedViewModel.nmState.selectedName)
-            binding.editTextViewSection.setText(creationAttributeSharedViewModel.nmState.selectedSection)
-        }
+        binding.editTextAttributeName.setText(creationAttributeSharedViewModel.nmState.selectedName)
+        binding.editTextViewSection.setText(creationAttributeSharedViewModel.nmState.selectedSection)
 
         adapter = ArrayAdapter(requireContext(), R.layout.list_item)
         adapter.addAll(state.sections.map { it.sectionName })

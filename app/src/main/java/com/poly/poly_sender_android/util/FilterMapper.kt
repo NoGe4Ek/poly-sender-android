@@ -13,7 +13,7 @@ class FilterMapper @Inject constructor() :
                                 id = id,
                                 filterName = filterName,
                                 mail = mail,
-                                expression = expression,
+                                expression = expression ?: "",
                                 type = type,
                                 mode = mode,
                                 created = created,

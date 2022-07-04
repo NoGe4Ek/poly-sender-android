@@ -22,6 +22,15 @@ class AttributeProfileActor :
                     emit(AttributeProfileEffect.Failure(errorMessage))
                 }
             }
+            is AttributeProfileWish.DeleteAttribute -> {
+                try {
+                    mainRepository.deleteAttribute(wish.attribute)
+                    emit(AttributeProfileEffect.DeleteAttributeSuccess(wish.attribute))
+                } catch (e: Exception) {
+                    val errorMessage = e.message ?: "Unknown exception"
+                    emit(AttributeProfileEffect.DeleteAttributeFailure(errorMessage))
+                }
+            }
         }
     }.flowOn(Dispatchers.IO)
 }

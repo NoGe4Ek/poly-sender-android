@@ -13,8 +13,7 @@ class FiltersViewModel @Inject constructor() :
 
     private val initState = FiltersState(
         isLoading = false,
-        filters = emptyList(),
-        filtersSearchParam = FiltersSearchParam()
+        filters = emptySet(),
     )
     override val stateFlow = MutableStateFlow(initState)
     override val wishFlow = MutableSharedFlow<FiltersWish?>()

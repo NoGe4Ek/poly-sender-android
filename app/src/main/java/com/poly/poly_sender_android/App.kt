@@ -30,7 +30,7 @@ sealed class AppBar(val res: Int) {
     object AttributesBar : AppBar(R.menu.menu_main_attributes)
 
     //Filters
-    object FiltersBar : AppBar(R.menu.menu_main_students)
+    object FiltersBar : AppBar(R.menu.menu_main_attributes)
 
     //Creation
     object CreationNextBar : AppBar(R.menu.menu_main_creation_next)

@@ -1,5 +1,8 @@
 package com.poly.poly_sender_android.ui.attributeProfile.mvi
 
+import androidx.navigation.findNavController
+import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.mvi.Reducer
 
 class AttributeProfileReducer :
@@ -22,6 +25,14 @@ class AttributeProfileReducer :
             is AttributeProfileEffect.Failure -> {
                 reducedState = state.copy(isLoading = false)
                 reducedNews = AttributeProfileNews.Message(effect.errorMessage)
+            }
+            is AttributeProfileEffect.DeleteAttributeFailure -> {
+                reducedState = state.copy(isLoading = false)
+                reducedNews = AttributeProfileNews.Message(effect.errorMessage)
+            }
+            is AttributeProfileEffect.DeleteAttributeSuccess -> {
+                reducedState = state.copy(isLoading = false)
+                App.mCurrentActivity.findNavController(R.id.nav_host_fragment_content_main).navigateUp()
             }
         }
         return reducedState to reducedNews

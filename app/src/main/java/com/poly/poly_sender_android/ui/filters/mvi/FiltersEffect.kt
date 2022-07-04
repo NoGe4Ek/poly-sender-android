@@ -6,9 +6,9 @@ import com.poly.poly_sender_android.ui.filters.FiltersSearchParam
 
 sealed interface FiltersEffect : Effect {
     object Loading : FiltersEffect
-    data class Success(val filters: List<Filter>, val filtersSearchParam: FiltersSearchParam) :
+    data class RefreshFiltersSuccess(val filters: Set<Filter>) :
         FiltersEffect
 
-    data class Failure(val errorMessage: String) :
+    data class RefreshFiltersFailure(val errorMessage: String) :
         FiltersEffect
 }

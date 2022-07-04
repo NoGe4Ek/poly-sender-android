@@ -37,11 +37,23 @@ interface ApiRetrofit {
     @POST(Constants.URL_updateAttribute)
     suspend fun updateAttribute(@Body updateAttributeBody: UpdateAttributeBody): UpdatedAttributeNetworkEntity
 
+    @POST(Constants.URL_deleteAttribute)
+    suspend fun deleteAttribute(@Body deleteAttributeRequestBody: DeleteAttributeRequestBody): DeleteAttributeResponseNetworkEntity
+
     @POST(Constants.URL_createGroupName)
     suspend fun createGroupName(@Body createGroupBody: CreateGroupBody): CreateGroupResponseNetworkEntity
 
     @POST(Constants.URL_getFilters)
     suspend fun getFilters(@Body commonRequestBody: CommonRequestBody): List<FilterNetworkEntity>
+
+    @POST(Constants.URL_deleteFilter)
+    suspend fun deleteFilter(@Body deleteFilterRequestBody: DeleteFilterRequestBody): DeleteFilterResponseNetworkEntity
+
+    @POST(Constants.URL_createFilter)
+    suspend fun createFilter(@Body createFilterBody: CreateFilterBody): CreateFilterResponseNetworkEntity
+
+    @POST(Constants.URL_updateFilter)
+    suspend fun updateFilter(@Body updateFilterBody: UpdateFilterBody): UpdatedFilterNetworkEntity
 
     @POST(Constants.URL_getAllStudents)
     suspend fun getAllStudents(@Body commonRequestBody: CommonRequestBody): List<StudentNetworkEntity>

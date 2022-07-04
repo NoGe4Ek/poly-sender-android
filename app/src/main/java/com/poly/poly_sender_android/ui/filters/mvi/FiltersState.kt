@@ -6,6 +6,5 @@ import com.poly.poly_sender_android.ui.filters.FiltersSearchParam
 
 data class FiltersState(
     val isLoading: Boolean,
-    val filters: List<Filter>,
-    val filtersSearchParam: FiltersSearchParam
+    val filters: Set<Filter>,
 ) : State

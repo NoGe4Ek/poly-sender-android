@@ -19,6 +19,10 @@
             android:defaultValue="@null"
             app:argType="com.poly.poly_sender_android.data.models.domainModel.Attribute"
             app:nullable="true" />
+        <argument
+            android:name="start"
+            android:defaultValue="false"
+            app:argType="boolean" />
 
         <action
             android:id="@+id/action_CreationAttributeParamFragment_to_CreationAttributeSelectionFragment"
@@ -69,6 +73,15 @@
         android:name="com.poly.poly_sender_android.ui.filters.creationFilter.CreationFilterParamFragment"
         android:label="Parameters"
         tools:layout="@layout/fragment_creation_filter_param">
+        <argument
+            android:name="filter"
+            android:defaultValue="@null"
+            app:argType="com.poly.poly_sender_android.data.models.domainModel.Filter"
+            app:nullable="true" />
+        <argument
+            android:name="start"
+            android:defaultValue="false"
+            app:argType="boolean" />
 
         <action
             android:id="@+id/action_CreationFilterParamFragment_to_CreationFilterSelectionFragment"
@@ -115,7 +128,7 @@
         android:id="@+id/CreationSectionFragment"
         android:name="com.poly.poly_sender_android.ui.attributes.creationSection.CreationSectionFragment"
         android:label="Confirmation"
-        tools:layout="@layout/fragment_creation_section"></fragment>
+        tools:layout="@layout/fragment_creation_section" />
 
     <fragment
         android:id="@+id/AttributeProfileFragment"
@@ -125,6 +138,15 @@
         <argument
             android:name="attribute"
             app:argType="com.poly.poly_sender_android.data.models.domainModel.Attribute" />
+    </fragment>
+    <fragment
+        android:id="@+id/FilterProfileFragment"
+        android:name="com.poly.poly_sender_android.ui.filterProfile.FilterProfileFragment"
+        android:label="Filter Profile"
+        tools:layout="@layout/fragment_filter_profile">
+        <argument
+            android:name="filter"
+            app:argType="com.poly.poly_sender_android.data.models.domainModel.Filter" />
     </fragment>
     <fragment
         android:id="@+id/StudentProfileFragment"
@@ -147,7 +169,7 @@
         tools:layout="@layout/fragment_settings" />
 
     <action
-        android:id="@+id/action_global_afterAttributeCreated"
+        android:id="@+id/action_global_afterCreated"
         app:destination="@id/nav_graph"
         app:launchSingleTop="true"
         app:popUpTo="@+id/nav_graph"
@@ -175,4 +197,7 @@
     <action
         android:id="@+id/action_global_attributeProfileFragment"
         app:destination="@id/AttributeProfileFragment" />
+    <action
+        android:id="@+id/action_global_filterProfileFragment"
+        app:destination="@id/FilterProfileFragment" />
 </navigation>

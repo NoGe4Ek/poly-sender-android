@@ -12,7 +12,7 @@
         android:padding="32dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_view_attribute_profile"
+            android:id="@+id/card_view_filter_profile"
             style="@style/Widget.Material3.CardView.Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
                 android:paddingBottom="32dp">
 
                 <TextView
-                    android:id="@+id/text_view_attribute_profile_name"
+                    android:id="@+id/text_view_filter_profile_name"
                     style="@style/Theme.PolySender.TextView.Header"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -42,44 +42,43 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Attribute" />
+                    tools:text="Filter" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/md"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintBottom_toTopOf="@id/text_view_attribute_profile_name_header"
-                    app:layout_constraintEnd_toEndOf="@id/text_view_attribute_profile_name"
-                    app:layout_constraintStart_toStartOf="@id/text_view_attribute_profile_name"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_attribute_profile_name" />
+                    app:layout_constraintBottom_toTopOf="@id/text_view_filter_profile_name_header"
+                    app:layout_constraintEnd_toEndOf="@id/text_view_filter_profile_name"
+                    app:layout_constraintStart_toStartOf="@id/text_view_filter_profile_name"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_filter_profile_name" />
 
                 <TextView
-                    android:id="@+id/text_view_attribute_profile_name_header"
+                    android:id="@+id/text_view_filter_profile_name_header"
                     style="@style/Theme.PolySender.TextView.BodySuperSmall"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
                     android:textAlignment="center"
+                    app:layout_constraintTop_toBottomOf="@id/md"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/md"
-                    android:text="Attribute" />
+                    android:text="Filter" />
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/card_view_attribute_profile_section"
+                    android:id="@+id/card_view_filter_profile_email"
                     style="@style/Widget.PolySender.CardView.Profile"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
-                    android:layout_marginEnd="4dp"
                     app:cardCornerRadius="30dp"
                     app:cardElevation="2dp"
-                    app:layout_constraintBottom_toBottomOf="@id/card_view_attribute_profile_date"
-                    app:layout_constraintEnd_toStartOf="@id/card_view_attribute_profile_students"
+                    app:layout_constraintBottom_toTopOf="@id/card_view_filter_profile_students"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_attribute_profile_name_header">
+                    app:layout_constraintTop_toBottomOf="@id/text_view_filter_profile_name_header">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -90,20 +89,20 @@
                         android:paddingBottom="32dp">
 
                         <TextView
-                            android:id="@+id/text_view_attribute_profile_section_header"
+                            android:id="@+id/text_view_filter_profile_email_header"
                             style="@style/Theme.PolySender.TextView.Body"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Section"
+                            android:text="Email"
                             android:textAlignment="center"
-                            app:layout_constraintBottom_toTopOf="@id/text_view_attribute_profile_section"
+                            app:layout_constraintBottom_toTopOf="@id/text_view_filter_profile_email"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_chainStyle="packed" />
 
                         <TextView
-                            android:id="@+id/text_view_attribute_profile_section"
+                            android:id="@+id/text_view_filter_profile_email"
                             style="@style/Theme.PolySender.TextView.BodySmall"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -112,24 +111,24 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/text_view_attribute_profile_section_header"
-                            tools:text="Section" />
+                            app:layout_constraintTop_toBottomOf="@id/text_view_filter_profile_email_header"
+                            tools:text="email@email.ru" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/card_view_attribute_profile_students"
+                    android:id="@+id/card_view_filter_profile_students"
                     style="@style/Widget.PolySender.CardView.Profile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="8dp"
                     app:cardCornerRadius="30dp"
                     app:cardElevation="2dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/card_view_attribute_profile_section"
-                    app:layout_constraintTop_toTopOf="@id/card_view_attribute_profile_section">
+                    app:layout_constraintEnd_toStartOf="@id/card_view_filter_profile_type"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_view_filter_profile_email">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -137,19 +136,19 @@
                         android:padding="32dp">
 
                         <TextView
-                            android:id="@+id/text_view_attribute_profile_students_header"
+                            android:id="@+id/text_view_filter_profile_students_header"
                             style="@style/Theme.PolySender.TextView.Body"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="Students"
                             android:textAlignment="center"
-                            app:layout_constraintBottom_toTopOf="@id/text_view_attribute_profile_students"
+                            app:layout_constraintBottom_toTopOf="@id/text_view_filter_profile_students"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/text_view_attribute_profile_students"
+                            android:id="@+id/text_view_filter_profile_students"
                             style="@style/Theme.PolySender.TextView.BodySmall"
                             android:layout_width="0dp"
                             android:layout_marginTop="4dp"
@@ -158,7 +157,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/text_view_attribute_profile_students_header"
+                            app:layout_constraintTop_toBottomOf="@id/text_view_filter_profile_students_header"
                             tools:text="12" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -166,64 +165,17 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/card_view_attribute_profile_type"
+                    android:id="@+id/card_view_filter_profile_type"
                     style="@style/Widget.PolySender.CardView.Profile"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     app:cardCornerRadius="30dp"
                     app:cardElevation="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/card_view_attribute_profile_section"
-                    app:layout_constraintTop_toBottomOf="@id/card_view_attribute_profile_students">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="16dp">
-
-                        <TextView
-                            android:id="@+id/text_view_attribute_profile_type_header"
-                            style="@style/Theme.PolySender.TextView.Body"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="Type"
-                            android:textAlignment="center"
-                            app:layout_constraintBottom_toTopOf="@id/text_view_attribute_profile_type"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/text_view_attribute_profile_type"
-                            style="@style/Theme.PolySender.TextView.BodySmall"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/text_view_attribute_profile_type_header"
-                            tools:text="from list" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_view_attribute_profile_date"
-                    style="@style/Widget.PolySender.CardView.Profile"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="2dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/card_view_attribute_profile_section"
-                    app:layout_constraintTop_toBottomOf="@id/card_view_attribute_profile_type">
+                    app:layout_constraintStart_toEndOf="@id/card_view_filter_profile_students"
+                    app:layout_constraintTop_toTopOf="@id/card_view_filter_profile_students"
+                    app:layout_constraintBottom_toBottomOf="@id/card_view_filter_profile_students">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -231,20 +183,67 @@
                         android:padding="32dp">
 
                         <TextView
-                            android:id="@+id/text_view_attribute_profile_date_header"
+                            android:id="@+id/text_view_filter_profile_type_header"
+                            style="@style/Theme.PolySender.TextView.Body"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Type"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toTopOf="@id/text_view_filter_profile_type"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/text_view_filter_profile_type"
+                            style="@style/Theme.PolySender.TextView.BodySmall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/text_view_filter_profile_type_header"
+                            tools:text="from list" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view_filter_profile_date"
+                    style="@style/Widget.PolySender.CardView.Profile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/card_view_filter_profile_mode"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_view_filter_profile_students">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="32dp">
+
+                        <TextView
+                            android:id="@+id/text_view_filter_profile_date_header"
                             style="@style/Theme.PolySender.TextView.Body"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="Date"
                             android:textAlignment="center"
                             android:layout_marginBottom="4dp"
-                            app:layout_constraintBottom_toTopOf="@id/text_view_attribute_profile_date"
+                            app:layout_constraintBottom_toTopOf="@id/text_view_filter_profile_date"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/text_view_attribute_profile_date"
+                            android:id="@+id/text_view_filter_profile_date"
                             style="@style/Theme.PolySender.TextView.BodySmall"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -252,13 +251,59 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/text_view_attribute_profile_date_header"
+                            app:layout_constraintTop_toBottomOf="@id/text_view_filter_profile_date_header"
                             tools:text="22-01-2002" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view_filter_profile_mode"
+                    style="@style/Widget.PolySender.CardView.Profile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="2dp"
+                    app:layout_constraintBottom_toBottomOf="@id/card_view_filter_profile_date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/card_view_filter_profile_date"
+                    app:layout_constraintTop_toTopOf="@id/card_view_filter_profile_date">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="32dp">
+
+                        <TextView
+                            android:id="@+id/text_view_filter_profile_mode_header"
+                            style="@style/Theme.PolySender.TextView.Body"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Mode"
+                            android:textAlignment="center"
+                            android:layout_marginBottom="4dp"
+                            app:layout_constraintBottom_toTopOf="@id/text_view_filter_profile_mode"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/text_view_filter_profile_mode"
+                            style="@style/Theme.PolySender.TextView.BodySmall"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/text_view_filter_profile_mode_header"
+                            tools:text="no-reply" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

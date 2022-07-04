@@ -1,4 +1,4 @@
-package com.poly.poly_sender_android.ui.attributeProfile
+package com.poly.poly_sender_android.ui.filterProfile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,55 +11,51 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
-import com.poly.poly_sender_android.data.models.domainModel.Student
+import com.poly.poly_sender_android.data.models.domainModel.Filter
 import com.poly.poly_sender_android.databinding.FragmentAttributeProfileBinding
-import com.poly.poly_sender_android.databinding.FragmentStudentProfileBinding
+import com.poly.poly_sender_android.databinding.FragmentFilterProfileBinding
 import com.poly.poly_sender_android.mvi.MviView
-import com.poly.poly_sender_android.ui.adapters.StudentAttributesAdapter
+import com.poly.poly_sender_android.ui.attributeProfile.AttributeProfileViewModel
 import com.poly.poly_sender_android.ui.attributeProfile.mvi.AttributeProfileNews
 import com.poly.poly_sender_android.ui.attributeProfile.mvi.AttributeProfileState
 import com.poly.poly_sender_android.ui.attributeProfile.mvi.AttributeProfileWish
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeParamFragmentDirections
+import com.poly.poly_sender_android.ui.filterProfile.mvi.FilterProfileNews
+import com.poly.poly_sender_android.ui.filterProfile.mvi.FilterProfileState
+import com.poly.poly_sender_android.ui.filterProfile.mvi.FilterProfileWish
+import com.poly.poly_sender_android.ui.filters.creationFilter.CreationFilterParamFragmentDirections
 import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
-import com.poly.poly_sender_android.ui.studentProfile.StudentProfileViewModel
-import com.poly.poly_sender_android.ui.studentProfile.mvi.StudentProfileNews
-import com.poly.poly_sender_android.ui.studentProfile.mvi.StudentProfileState
-import com.poly.poly_sender_android.ui.studentProfile.mvi.StudentProfileWish
-import com.poly.poly_sender_android.ui.students.StudentsFragmentDirections
-import com.poly.poly_sender_android.ui.students.mvi.StudentsWish
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AttributeProfileFragment : Fragment(), MviView<AttributeProfileState, AttributeProfileNews> {
+class FilterProfileFragment : Fragment(), MviView<FilterProfileState, FilterProfileNews> {
 
     @Inject
     lateinit var logger: Logger
 
-    private val attributeProfileViewModel: AttributeProfileViewModel by viewModels()
+    private val filterProfileViewModel: FilterProfileViewModel by viewModels()
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
 
-    private var _binding: FragmentAttributeProfileBinding? = null
+    private var _binding: FragmentFilterProfileBinding? = null
     private val binding get() = _binding!!
 
-    private val args: AttributeProfileFragmentArgs by navArgs()
-    private lateinit var attribute: Attribute
+    private val args: FilterProfileFragmentArgs by navArgs()
+    private lateinit var filter: Filter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentAttributeProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentFilterProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -70,28 +66,29 @@ class AttributeProfileFragment : Fragment(), MviView<AttributeProfileState, Attr
         App.appBar = AppBar.AttributeBar
         App.mCurrentActivity.invalidateOptionsMenu()
 
-        with(attributeProfileViewModel) {
-            bind(viewLifecycleOwner.lifecycleScope, this@AttributeProfileFragment)
+        with(filterProfileViewModel) {
+            bind(viewLifecycleOwner.lifecycleScope, this@FilterProfileFragment)
         }
 
         //binding.cardViewAttributeProfile.setBackgroundResource(R.drawable.ic_card_profile_background)
-        binding.cardViewAttributeProfileStudents.setBackgroundResource(R.drawable.ic_card_profile_background)
-        binding.cardViewAttributeProfileDate.setBackgroundResource(R.drawable.ic_card_profile_background)
-        binding.cardViewAttributeProfileSection.setBackgroundResource(R.drawable.ic_card_profile_background)
-        binding.cardViewAttributeProfileType.setBackgroundResource(R.drawable.ic_card_profile_background)
+        binding.cardViewFilterProfileDate.setBackgroundResource(R.drawable.ic_card_profile_background)
+        binding.cardViewFilterProfileEmail.setBackgroundResource(R.drawable.ic_card_profile_background)
+        binding.cardViewFilterProfileMode.setBackgroundResource(R.drawable.ic_card_profile_background)
+        binding.cardViewFilterProfileStudents.setBackgroundResource(R.drawable.ic_card_profile_background)
+        binding.cardViewFilterProfileType.setBackgroundResource(R.drawable.ic_card_profile_background)
 
-        attribute = args.attribute
-        attributeProfileViewModel.obtainWish(AttributeProfileWish.SetAttribute(attribute))
+        filter = args.filter
+        filterProfileViewModel.obtainWish(FilterProfileWish.SetFilter(filter))
 
         lifecycleScope.launchWhenResumed {
             mainActivityViewModel.stateFlow.collect { state ->
                 if (state.editEvent) {
-                    val creationAttributeParamFragment =
-                        CreationAttributeParamFragmentDirections.actionGlobalCreationAttributeParamFragment(
-                            attribute = attribute,
+                    val creationFilterParamFragment =
+                        CreationFilterParamFragmentDirections.actionGlobalCreationFilterParamFragment(
+                            filter = filter,
                             start = true
                         )
-                    findNavController().navigate(creationAttributeParamFragment)
+                    findNavController().navigate(creationFilterParamFragment)
                     mainActivityViewModel.triggerEdit(false)
                 }
                 if (state.shareEvent) {
@@ -101,7 +98,7 @@ class AttributeProfileFragment : Fragment(), MviView<AttributeProfileState, Attr
                     mainActivityViewModel.triggerDelete(false)
                     MaterialAlertDialogBuilder(requireContext())
                         .setTitle("Удаление")
-                        .setMessage("Вы уверены, что хотите удалить атрибут?")
+                        .setMessage("Вы уверены, что хотите удалить фильтр?")
                         .setNeutralButton("Отмена") { dialog, which ->
                             // Respond to neutral button press
                         }
@@ -109,7 +106,7 @@ class AttributeProfileFragment : Fragment(), MviView<AttributeProfileState, Attr
                             // Respond to negative button press
                         }
                         .setPositiveButton("Да") { dialog, which ->
-                            attributeProfileViewModel.obtainWish(AttributeProfileWish.DeleteAttribute(attribute))
+                            filterProfileViewModel.obtainWish(FilterProfileWish.DeleteFilter(filter))
                         }
                         .show()
                 }
@@ -122,25 +119,26 @@ class AttributeProfileFragment : Fragment(), MviView<AttributeProfileState, Attr
         _binding = null
     }
 
-    override fun renderState(state: AttributeProfileState) {
+    override fun renderState(state: FilterProfileState) {
         if (state.isLoading) {
             //TODO
         }
 
-        if (state.attribute != null) {
-            state.attribute.apply {
-                binding.textViewAttributeProfileName.text = attributeName
-                binding.textViewAttributeProfileSection.text = groupName
-                binding.textViewAttributeProfileStudents.text = students.size.toString()
-                binding.textViewAttributeProfileType.text = type
-                binding.textViewAttributeProfileDate.text = created
+        if (state.filter != null) {
+            state.filter.apply {
+                binding.textViewFilterProfileName.text = filterName
+                binding.textViewFilterProfileEmail.text = mail
+                binding.textViewFilterProfileStudents.text = students.size.toString()
+                binding.textViewFilterProfileType.text = type
+                binding.textViewFilterProfileDate.text = created
+                binding.textViewFilterProfileMode.text = mode
             }
         }
     }
 
-    override fun renderNews(new: AttributeProfileNews) {
+    override fun renderNews(new: FilterProfileNews) {
         when (new) {
-            is AttributeProfileNews.Message -> {
+            is FilterProfileNews.Message -> {
                 Toast.makeText(requireContext(), new.content, Toast.LENGTH_SHORT).show()
             }
         }

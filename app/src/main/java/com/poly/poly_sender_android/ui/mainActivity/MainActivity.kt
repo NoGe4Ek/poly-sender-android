@@ -88,7 +88,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         bottomNavView.setupWithNavController(navController)
-
         binding.floatingButton.setOnClickListener {
             clicked = appAnimations.onExpandedFloatingButtonClicked(
                 clicked,
@@ -118,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                 binding.floatingButtonAddSection,
                 binding.floatingButtonAddFilter
             )
-            navController.navigate(CreationAttributeFragmentDirections.actionGlobalCreationAttributeParamFragment())
+            navController.navigate(CreationAttributeFragmentDirections.actionGlobalCreationAttributeParamFragment(start = true))
         }
 
         binding.floatingButtonAddFilter.setOnClickListener {
@@ -129,7 +128,7 @@ class MainActivity : AppCompatActivity() {
                 binding.floatingButtonAddSection,
                 binding.floatingButtonAddFilter
             )
-            navController.navigate(CreationFilterFragmentDirections.actionGlobalCreationFilterParamFragment())
+            navController.navigate(CreationFilterFragmentDirections.actionGlobalCreationFilterParamFragment(start = true))
         }
 
         App.mCurrentActivity = this
