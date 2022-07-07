@@ -5,6 +5,7 @@ import android.net.Uri
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.data.models.domainModel.User
 import com.poly.poly_sender_android.mvi.Actor
+import com.poly.poly_sender_android.util.MessageConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -23,7 +24,7 @@ class RestoreActor : Actor<RestoreState, RestoreWish, RestoreEffect>() {
                     val restoreResponse = mainRepository.restorePassword(wish.login) //TODO do we use this response?
                     emit(RestoreEffect.Success)
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(RestoreEffect.Failure(errorMessage))
                 }
             }

@@ -134,8 +134,8 @@ class MainActivity : AppCompatActivity() {
         App.mCurrentActivity = this
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        val searchViewMenuItem = menu?.findItem(R.id.action_search)
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        val searchViewMenuItem = menu.findItem(R.id.action_search)
         val searchView = searchViewMenuItem?.actionView as? SearchView
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

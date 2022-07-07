@@ -45,8 +45,10 @@ interface MainRepository {
     ): CreateAttributeResponse
 
     suspend fun getSections(id: String): List<Section>
+    suspend fun getSectionTemplates(id: String): List<Section>
 
     suspend fun createGroupName(id: String, groupName: String): CreateGroupResponse
+    suspend fun deleteGroupName(id: String)
 
     suspend fun getFilters(id: String): List<Filter>
 

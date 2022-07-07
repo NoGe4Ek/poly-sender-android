@@ -28,8 +28,8 @@ import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.Creation
 import com.poly.poly_sender_android.ui.decorators.SpacesItemDecoration
 import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
 import com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragmentDirections
+import com.poly.poly_sender_android.util.MessageConstants
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import javax.inject.Inject
 
@@ -151,9 +151,9 @@ class CreationAttributeSelectionFragment : Fragment(),
                     } else {
                         Toast.makeText(
                             requireContext(),
-                            "Ни один студент не выбран",
+                            MessageConstants.ERROR_EMPTY_FILL,
                             Toast.LENGTH_SHORT
-                        ).show() // TODO extract
+                        ).show()
                     }
                 }
                 if (state.attributingEvent) {
@@ -198,7 +198,7 @@ class CreationAttributeSelectionFragment : Fragment(),
 
     override fun renderState(state: CreationAttributeState) {
         if (state.isLoading) {
-            //TODO
+            //TODO loading
         }
 
         studentsAdapter.setSelectedStudents(state.selectedStudents)

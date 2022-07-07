@@ -3,6 +3,7 @@ package com.poly.poly_sender_android.ui.filters.mvi
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.mvi.Actor
 import com.poly.poly_sender_android.ui.attributes.mvi.AttributesEffect
+import com.poly.poly_sender_android.util.MessageConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -30,7 +31,7 @@ class FiltersActor : Actor<FiltersState, FiltersWish, FiltersEffect>() {
                         emit(FiltersEffect.RefreshFiltersSuccess(filters))
                     }
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(FiltersEffect.RefreshFiltersFailure(errorMessage))
                 }
             }

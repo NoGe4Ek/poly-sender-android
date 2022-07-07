@@ -21,7 +21,7 @@
     <string name="attribute_card_button_share">attribute_card_button_share</string>
     <string name="profile_square">profile_square</string>
     <string name="student_profile_square">student_profile_square</string>
-    <string name="empty_field_error">This field can\'t be empty</string>
+    <string name="empty_field_error">Can\'t be empty</string>
     <string name="status_false">status: false</string>
     <string name="unknown_exception">Unknown exception</string>
 

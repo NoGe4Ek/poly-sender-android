@@ -18,6 +18,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
@@ -42,18 +43,21 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
 
+    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
+    implementation("com.squareup:javapoet:1.13.0")
+
     //Fragments
-    def fragment_version = "1.4.1"
+    def fragment_version = "1.5.0"
     implementation "androidx.fragment:fragment:$fragment_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
-    implementation "androidx.activity:activity-ktx:1.4.0"
+    implementation "androidx.activity:activity-ktx:$fragment_version"
 
     //UI
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.material:material:1.7.0-alpha02'
 
     //Nav
-    def nav_version = "2.4.2"
+    def nav_version = "2.5.0"
     implementation "androidx.navigation:navigation-runtime:$nav_version"
     implementation "androidx.navigation:navigation-runtime-ktx:$nav_version"
     implementation "androidx.navigation:navigation-fragment:$nav_version"
@@ -62,7 +66,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-
+    //Secure Shared Pref
     implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha03'
 
     //Network
@@ -81,7 +85,7 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
 
     // Dagger - Hilt
-    def hilt_version = "2.40.5"
+    def hilt_version = "2.42"
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 

@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.common.string
 import com.poly.poly_sender_android.databinding.FragmentCreationSectionBinding
@@ -15,6 +18,8 @@ import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.attributes.creationSection.mvi.CreationSectionNews
 import com.poly.poly_sender_android.ui.attributes.creationSection.mvi.CreationSectionState
 import com.poly.poly_sender_android.ui.attributes.creationSection.mvi.CreationSectionWish
+import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
+import com.poly.poly_sender_android.util.MessageConstants
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -25,6 +30,7 @@ class CreationSectionFragment : Fragment(), MviView<CreationSectionState, Creati
     lateinit var logger: Logger
 
     private val creationSectionViewModel: CreationSectionViewModel by viewModels()
+    private val mainActivityViewModel: MainActivityViewModel by activityViewModels()
 
     private var _binding: FragmentCreationSectionBinding? = null
     private val binding get() = _binding!!
@@ -40,21 +46,30 @@ class CreationSectionFragment : Fragment(), MviView<CreationSectionState, Creati
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         logger.connect(javaClass)
+
+        App.appBar = AppBar.CreationApplyBar
+        App.mCurrentActivity.invalidateOptionsMenu()
+
         with(creationSectionViewModel) {
             bind(viewLifecycleOwner.lifecycleScope, this@CreationSectionFragment)
         }
 
-        binding.buttonCreationSection.setOnClickListener {
-            if (binding.textFieldSectionName.editText == null) {
-                binding.textFieldSectionName.error =
-                    "This field can't be empty" //TODO export to resource and make constants error
-            } else {
-                creationSectionViewModel.obtainWish(
-                    CreationSectionWish
-                        .CreateSection(binding.textFieldSectionName.editText!!.string())
-                )
+        lifecycleScope.launchWhenResumed {
+            mainActivityViewModel.stateFlow.collect { state ->
+                if (state.applyEvent) {
+                    mainActivityViewModel.triggerApply(false)
+
+                    if (binding.editTextSectionName.string() == "") {
+                        binding.textFieldSectionName.error = MessageConstants.ERROR_EMPTY_FILL
+                    } else {
+                        creationSectionViewModel.obtainWish(
+                            CreationSectionWish.CreateSection(
+                                binding.editTextSectionName.string()
+                            )
+                        )
+                    }
+                }
             }
         }
     }
@@ -66,7 +81,7 @@ class CreationSectionFragment : Fragment(), MviView<CreationSectionState, Creati
 
     override fun renderState(state: CreationSectionState) {
         if (state.isLoading) {
-            //TODO
+            //TODO loading
         }
     }
 

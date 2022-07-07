@@ -46,7 +46,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class AttributesFragment : Fragment(),
-    MviView<AttributesState, AttributesNews> { //TODO animation floating buttons
+    MviView<AttributesState, AttributesNews> {
 
     @Inject
     lateinit var logger: Logger
@@ -161,7 +161,7 @@ class AttributesFragment : Fragment(),
 
     override fun renderState(state: AttributesState) {
         if (state.isLoading) {
-            //TODO
+            //TODO loading
         }
 
         adapter = ArrayAdapter(requireContext(), R.layout.list_item)

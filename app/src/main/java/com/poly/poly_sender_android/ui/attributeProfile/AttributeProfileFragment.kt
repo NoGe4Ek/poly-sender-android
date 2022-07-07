@@ -124,7 +124,7 @@ class AttributeProfileFragment : Fragment(), MviView<AttributeProfileState, Attr
 
     override fun renderState(state: AttributeProfileState) {
         if (state.isLoading) {
-            //TODO
+            //TODO loading
         }
 
         if (state.attribute != null) {

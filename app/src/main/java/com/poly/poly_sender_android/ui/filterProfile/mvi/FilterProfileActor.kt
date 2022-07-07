@@ -1,6 +1,7 @@
 package com.poly.poly_sender_android.ui.filterProfile.mvi
 
 import com.poly.poly_sender_android.mvi.Actor
+import com.poly.poly_sender_android.util.MessageConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,7 +19,7 @@ class FilterProfileActor :
                 try {
                     emit(FilterProfileEffect.Success(wish.filter))
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(FilterProfileEffect.Failure(errorMessage))
                 }
             }
@@ -27,7 +28,7 @@ class FilterProfileActor :
                     mainRepository.deleteFilter(wish.filter)
                     emit(FilterProfileEffect.DeleteFilterSuccess(wish.filter))
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(FilterProfileEffect.DeleteFilterFailure(errorMessage))
                 }
             }

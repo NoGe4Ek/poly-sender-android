@@ -5,6 +5,7 @@ import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.mvi.Actor
 import com.poly.poly_sender_android.ui.students.mvi.StudentsEffect
 import com.poly.poly_sender_android.ui.students.mvi.StudentsWish
+import com.poly.poly_sender_android.util.MessageConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -58,7 +59,7 @@ class CreationAttributeActor :
                     }
 
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(CreationAttributeEffect.RefreshStudentsFailure(errorMessage))
                 }
             }
@@ -66,7 +67,7 @@ class CreationAttributeActor :
                 try {
                     emit(CreationAttributeEffect.ClearSearchParamSuccess)
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(CreationAttributeEffect.ClearSearchParamFailure(errorMessage))
                 }
             }
@@ -79,10 +80,10 @@ class CreationAttributeActor :
                         groupName = wish.section,
                         expression = "",
                         studentsId = wish.students.toList()
-                    )//TODO we don't need to use the result?
+                    ) //TODO we don't need to use the result?
                     emit(CreationAttributeEffect.CreateAttributeSuccess)
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(CreationAttributeEffect.CreateAttributeFailure(errorMessage))
                 }
             }
@@ -113,7 +114,7 @@ class CreationAttributeActor :
                     }
 
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(
                         CreationAttributeEffect.RefreshSearchingAttributesBySelectedSectionFailure(
                             errorMessage
@@ -149,10 +150,10 @@ class CreationAttributeActor :
             }
             CreationAttributeWish.RefreshSections -> {
                 try {
-                    val sections = mainRepository.getSections(mainRepository.user.idStaff).toSet()
+                    val sections = mainRepository.getSectionTemplates(mainRepository.user.idStaff).toSet()
                     emit(CreationAttributeEffect.RefreshSectionsSuccess(sections))
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(
                         CreationAttributeEffect.RefreshSectionsFailure(
                             errorMessage
@@ -207,7 +208,7 @@ class CreationAttributeActor :
                         emit(CreationAttributeEffect.UpdateAttributeFailure(""))
                     } //TODO we don't need to use the result?
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(CreationAttributeEffect.UpdateAttributeFailure(errorMessage))
                 }
             }

@@ -1,6 +1,7 @@
 package com.poly.poly_sender_android.ui.attributeProfile.mvi
 
 import com.poly.poly_sender_android.mvi.Actor
+import com.poly.poly_sender_android.util.MessageConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -18,7 +19,7 @@ class AttributeProfileActor :
                 try {
                     emit(AttributeProfileEffect.Success(wish.attribute))
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(AttributeProfileEffect.Failure(errorMessage))
                 }
             }
@@ -27,7 +28,7 @@ class AttributeProfileActor :
                     mainRepository.deleteAttribute(wish.attribute)
                     emit(AttributeProfileEffect.DeleteAttributeSuccess(wish.attribute))
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(AttributeProfileEffect.DeleteAttributeFailure(errorMessage))
                 }
             }

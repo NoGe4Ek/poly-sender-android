@@ -27,6 +27,7 @@ import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.CreationFilter
 import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.CreationFilterState
 import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.CreationFilterWish
 import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
+import com.poly.poly_sender_android.util.MessageConstants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -92,10 +93,8 @@ class CreationFilterParamFragment : Fragment(),
                     mainActivityViewModel.triggerNext(false)
 
                     when {
-                        binding.editTextFilterName.string() == "" -> binding.textFieldFilterName.error =
-                            "This field can't be empty" //TODO export to resource and make constants error
-                        binding.editTextViewFilterMode.string() == "" -> binding.menuMailingMode.error =
-                            "This field can't be empty" //TODO export to resource and make constants error
+                        binding.editTextFilterName.string() == "" -> binding.textFieldFilterName.error = MessageConstants.ERROR_EMPTY_FILL
+                        binding.editTextViewFilterMode.string() == "" -> binding.menuMailingMode.error = MessageConstants.ERROR_EMPTY_FILL
                         else -> {
                             creationFilterSharedViewModel.obtainWish(
                                 CreationFilterWish.UpdateSharedStorageByParam(

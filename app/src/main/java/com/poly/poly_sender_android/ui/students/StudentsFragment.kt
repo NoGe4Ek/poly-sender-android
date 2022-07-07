@@ -162,7 +162,7 @@ class StudentsFragment : Fragment(),
 
     override fun renderState(state: StudentsState) {
         if (state.isLoading) {
-            //TODO
+            //TODO loading
         }
 
         studentsAdapter.setSelectedStudents(state.selectedStudents)

@@ -84,14 +84,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:paddingStart="8dp"
-                        android:paddingTop="32dp"
+                        android:paddingTop="8dp"
                         android:paddingEnd="8dp"
                         android:paddingBottom="32dp">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_email_copy"
+                            style="@style/Widget.Material3.Button.IconButton"
+                            app:icon="@drawable/ic_outline_copy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/text_view_filter_profile_email_header"
                             style="@style/Theme.PolySender.TextView.Body"
                             android:layout_width="0dp"
+                            android:layout_marginTop="24dp"
                             android:layout_height="wrap_content"
                             android:text="Email"
                             android:textAlignment="center"

@@ -82,7 +82,7 @@ class CreationFilterSelectionAttributingFragment : Fragment(),
             card.isChecked = !card.isChecked
         }, onItemLongClicked = {
             //TODO
-        }) //TODO add attribute to selected list in state & set attribute.isChecked to true OR VISE VERSA
+        })
         attributesRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         attributesRecycler.adapter = attributesAdapter
 

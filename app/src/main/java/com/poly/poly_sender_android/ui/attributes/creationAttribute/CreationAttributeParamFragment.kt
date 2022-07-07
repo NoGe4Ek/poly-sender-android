@@ -25,6 +25,7 @@ import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.Creation
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeWish
 import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
 import com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragmentDirections
+import com.poly.poly_sender_android.util.MessageConstants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -92,10 +93,8 @@ class CreationAttributeParamFragment : Fragment(),
                     mainActivityViewModel.triggerNext(false)
 
                     when {
-                        binding.editTextAttributeName.string() == "" -> binding.textFieldAttributeName.error =
-                            "This field can't be empty" //TODO export to resource and make constants error
-                        binding.editTextViewSection.string() == "" -> binding.menuSection.error =
-                            "This field can't be empty" //TODO export to resource and make constants error
+                        binding.editTextAttributeName.string() == "" -> binding.textFieldAttributeName.error = MessageConstants.ERROR_EMPTY_FILL
+                        binding.editTextViewSection.string() == "" -> binding.menuSection.error = MessageConstants.ERROR_EMPTY_FILL
                         else -> {
                             creationAttributeSharedViewModel.obtainWish(
                                 CreationAttributeWish.UpdateSharedStorageByParam(

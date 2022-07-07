@@ -3,6 +3,7 @@ package com.poly.poly_sender_android.ui.attributes.mvi
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.mvi.Actor
 import com.poly.poly_sender_android.ui.students.mvi.StudentsEffect
+import com.poly.poly_sender_android.util.MessageConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -40,7 +41,7 @@ class AttributesActor : Actor<AttributesState, AttributesWish, AttributesEffect>
                         emit(AttributesEffect.RefreshAttributesSuccess(sectionAttributes))
                     }
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(AttributesEffect.RefreshAttributesFailure(errorMessage))
                 }
             }
@@ -49,7 +50,7 @@ class AttributesActor : Actor<AttributesState, AttributesWish, AttributesEffect>
                     val sections = mainRepository.getSections(mainRepository.user.idStaff).toSet()
                     emit(AttributesEffect.RefreshSectionsSuccess(sections))
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(
                         AttributesEffect.RefreshSectionsFailure(
                             errorMessage

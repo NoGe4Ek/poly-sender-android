@@ -84,8 +84,8 @@ class StudentsAttributingFragment : Fragment(),
                 card.isChecked = !card.isChecked
             },
             onItemLongClicked = { attribute ->
-                //TODO navigate to attribute profile or add swipable card
-            }) //TODO add attribute to selected list in state & set attribute.isChecked to true OR VISE VERSA
+                //TODO navigate to attribute profile
+            })
         attributesAdapter.setSelectedAttributes(studentsSharedViewModel.nmState.searchSelectedAttributes)
         attributesRecycler.layoutManager = LinearLayoutManager(this.requireContext())
         attributesRecycler.adapter = attributesAdapter

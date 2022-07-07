@@ -81,7 +81,7 @@ class StudentProfileFragment : Fragment(), MviView<StudentProfileState, StudentP
 
     override fun renderState(state: StudentProfileState) {
         if (state.isLoading) {
-            //TODO
+            //TODO loading
         }
 
         if (state.student != null) {

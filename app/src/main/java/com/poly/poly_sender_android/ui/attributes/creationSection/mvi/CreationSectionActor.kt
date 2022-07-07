@@ -1,6 +1,7 @@
 package com.poly.poly_sender_android.ui.attributes.creationSection.mvi
 
 import com.poly.poly_sender_android.mvi.Actor
+import com.poly.poly_sender_android.util.MessageConstants
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -19,7 +20,7 @@ class CreationSectionActor : Actor<CreationSectionState, CreationSectionWish, Cr
                     val creationSectionResponse = mainRepository.createGroupName(mainRepository.user.idStaff, wish.sectionName)
                     emit(CreationSectionEffect.Success)
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(CreationSectionEffect.Failure(errorMessage))
                 }
             }

@@ -28,6 +28,7 @@ import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.CreationFilter
 import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.CreationFilterWish
 import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
 import com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragmentDirections
+import com.poly.poly_sender_android.util.MessageConstants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
@@ -150,9 +151,9 @@ class CreationFilterSelectionFragment : Fragment(),
                     } else {
                         Toast.makeText(
                             requireContext(),
-                            "Ни один студент не выбран",
+                            MessageConstants.ERROR_EMPTY_FILL,
                             Toast.LENGTH_SHORT
-                        ).show() // TODO extract
+                        ).show()
                     }
                 }
                 if (state.attributingEvent) {
@@ -197,7 +198,7 @@ class CreationFilterSelectionFragment : Fragment(),
 
     override fun renderState(state: CreationFilterState) {
         if (state.isLoading) {
-            //TODO
+            //TODO loading
         }
 
         studentsAdapter.setSelectedStudents(state.selectedStudents)

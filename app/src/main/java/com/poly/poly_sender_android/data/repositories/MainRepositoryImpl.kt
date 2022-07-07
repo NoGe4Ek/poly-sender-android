@@ -22,6 +22,7 @@ class MainRepositoryImpl @Inject constructor(
     private val createFilterResponseMapper: CreateFilterResponseMapper,
     private val cacheMapper: CacheMapper,
     private val sectionMapper: SectionMapper,
+    private val sectionTemplateMapper: SectionTemplateMapper,
 
     private val sessionManager: SessionManager
 ) : MainRepository {
@@ -142,6 +143,11 @@ class MainRepositoryImpl @Inject constructor(
         return sectionMapper.mapFromEntityList(sectionsNE)
     }
 
+    override suspend fun getSectionTemplates(id: String): List<Section> {
+        val sectionsNE = retrofit.getSectionTemplates(CommonRequestBody(user.idStaff))
+        return sectionTemplateMapper.mapFromEntityList(sectionsNE)
+    }
+
     override suspend fun createAttribute(
         idStaff: String,
         name: String,
@@ -160,6 +166,14 @@ class MainRepositoryImpl @Inject constructor(
     override suspend fun createGroupName(id: String, groupName: String): CreateGroupResponse {
         val createGroupResponseNE = retrofit.createGroupName(CreateGroupBody(id, groupName))
         return createGroupResponseMapper.mapFromEntity(createGroupResponseNE)
+    }
+
+    override suspend fun deleteGroupName(id: String) {
+        retrofit.deleteGroupName(
+            DeleteSectionRequestBody(
+                idGroupAttribute = id,
+            )
+        )
     }
 
     override suspend fun getFilters(id: String): List<Filter> {

@@ -8,6 +8,7 @@ import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.Creation
 import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.CreationFilterEffect
 import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.CreationFilterState
 import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.CreationFilterWish
+import com.poly.poly_sender_android.util.MessageConstants
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -60,7 +61,7 @@ class CreationFilterActor : Actor<CreationFilterState, CreationFilterWish, Creat
                     }
 
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(CreationFilterEffect.RefreshStudentsFailure(errorMessage))
                 }
             }
@@ -68,7 +69,7 @@ class CreationFilterActor : Actor<CreationFilterState, CreationFilterWish, Creat
                 try {
                     emit(CreationFilterEffect.ClearSearchParamSuccess)
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(CreationFilterEffect.ClearSearchParamFailure(errorMessage))
                 }
             }
@@ -84,7 +85,7 @@ class CreationFilterActor : Actor<CreationFilterState, CreationFilterWish, Creat
                     )//TODO we don't need to use the result?
                     emit(CreationFilterEffect.CreateFilterSuccess)
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(CreationFilterEffect.CreateFilterFailure(errorMessage))
                 }
             }
@@ -115,7 +116,7 @@ class CreationFilterActor : Actor<CreationFilterState, CreationFilterWish, Creat
                     }
 
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(
                         CreationFilterEffect.RefreshSearchingAttributesBySelectedSectionFailure(
                             errorMessage
@@ -154,7 +155,7 @@ class CreationFilterActor : Actor<CreationFilterState, CreationFilterWish, Creat
                     val sections = mainRepository.getSections(mainRepository.user.idStaff).toSet()
                     emit(CreationFilterEffect.RefreshSectionsSuccess(sections))
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(
                         CreationFilterEffect.RefreshSectionsFailure(
                             errorMessage
@@ -209,7 +210,7 @@ class CreationFilterActor : Actor<CreationFilterState, CreationFilterWish, Creat
                         emit(CreationFilterEffect.UpdateFilterFailure(""))
                     } //TODO we don't need to use the result?
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(CreationFilterEffect.UpdateFilterFailure(errorMessage))
                 }
             }

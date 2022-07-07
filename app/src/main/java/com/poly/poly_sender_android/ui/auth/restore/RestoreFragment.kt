@@ -15,6 +15,7 @@ import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.auth.restore.mvi.RestoreNews
 import com.poly.poly_sender_android.ui.auth.restore.mvi.RestoreState
 import com.poly.poly_sender_android.ui.auth.restore.mvi.RestoreWish
+import com.poly.poly_sender_android.util.MessageConstants
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -48,8 +49,7 @@ class RestoreFragment : Fragment(), MviView<RestoreState, RestoreNews> {
 
         binding.buttonRestore.setOnClickListener {
             if (binding.textFieldEmail.editText == null) {
-                binding.textFieldEmail.error =
-                    "This field can't be empty" //TODO export to resource and make constants error
+                binding.textFieldEmail.error = MessageConstants.ERROR_EMPTY_FILL
             } else {
                 restoreViewModel.obtainWish(RestoreWish.Restore(binding.textFieldEmail.editText!!.string()))
             }
@@ -63,7 +63,7 @@ class RestoreFragment : Fragment(), MviView<RestoreState, RestoreNews> {
 
     override fun renderState(state: RestoreState) {
         if (state.isLoading) {
-            //TODO
+            //TODO loading
         }
     }
 

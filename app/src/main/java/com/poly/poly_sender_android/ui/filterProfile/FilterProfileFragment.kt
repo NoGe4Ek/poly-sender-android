@@ -16,6 +16,7 @@ import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.common.Logger
+import com.poly.poly_sender_android.common.copyToClipboard
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.data.models.domainModel.Filter
 import com.poly.poly_sender_android.databinding.FragmentAttributeProfileBinding
@@ -80,6 +81,12 @@ class FilterProfileFragment : Fragment(), MviView<FilterProfileState, FilterProf
         filter = args.filter
         filterProfileViewModel.obtainWish(FilterProfileWish.SetFilter(filter))
 
+        binding.btnEmailCopy.setOnClickListener {
+            requireContext().copyToClipboard(filter.mail)
+
+            Toast.makeText(requireContext(), "Copied successfully", Toast.LENGTH_SHORT).show()
+        }
+
         lifecycleScope.launchWhenResumed {
             mainActivityViewModel.stateFlow.collect { state ->
                 if (state.editEvent) {
@@ -121,7 +128,7 @@ class FilterProfileFragment : Fragment(), MviView<FilterProfileState, FilterProf
 
     override fun renderState(state: FilterProfileState) {
         if (state.isLoading) {
-            //TODO
+            //TODO loading
         }
 
         if (state.filter != null) {

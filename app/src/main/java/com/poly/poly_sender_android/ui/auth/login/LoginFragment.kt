@@ -11,13 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 
 import com.poly.poly_sender_android.common.Logger
-import com.poly.poly_sender_android.common.string
 import com.poly.poly_sender_android.databinding.FragmentLoginBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.auth.login.mvi.LoginNews
 import com.poly.poly_sender_android.ui.auth.login.mvi.LoginState
 import com.poly.poly_sender_android.ui.auth.login.mvi.LoginWish
-import com.poly.poly_sender_android.util.ErrorConstants.EMPTY_FILL_ERROR
+import com.poly.poly_sender_android.util.MessageConstants.ERROR_EMPTY_FILL
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -56,9 +55,9 @@ class LoginFragment : Fragment(), MviView<LoginState, LoginNews> {
             val password: String = "fDq%&?pkk#wt"//binding.editTextPassword.string() //TODO delete test
             when {
                 login == "" -> binding.textFieldEmail.error =
-                    EMPTY_FILL_ERROR
+                    ERROR_EMPTY_FILL
                 password == "" -> binding.textFieldPassword.error =
-                    EMPTY_FILL_ERROR
+                    ERROR_EMPTY_FILL
                 else -> {
                     loginViewModel.obtainWish(
                         LoginWish.SignIn(
@@ -90,7 +89,7 @@ class LoginFragment : Fragment(), MviView<LoginState, LoginNews> {
 
     override fun renderState(state: LoginState) {
         if (state.isLoading) {
-            // TODO
+            // TODO loading
         }
 
         binding.textFieldPassword.editText?.setText(state.password)

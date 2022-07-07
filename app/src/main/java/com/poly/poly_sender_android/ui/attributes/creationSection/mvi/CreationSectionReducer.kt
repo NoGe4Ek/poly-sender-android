@@ -1,6 +1,11 @@
 package com.poly.poly_sender_android.ui.attributes.creationSection.mvi
 
+import androidx.navigation.Navigation
+import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.mvi.Reducer
+import com.poly.poly_sender_android.ui.attributes.creationSection.CreationSectionFragmentDirections
+import com.poly.poly_sender_android.util.MessageConstants
 
 class CreationSectionReducer: Reducer<CreationSectionState, CreationSectionEffect, CreationSectionNews> {
 
@@ -14,8 +19,13 @@ class CreationSectionReducer: Reducer<CreationSectionState, CreationSectionEffec
 
             is CreationSectionEffect.Success -> {
                 reducedState = state.copy(isLoading = false)
-                reducedNews = CreationSectionNews.Message("Section was successfully created")
-                //TODO navigate to attribute fragment
+                reducedNews = CreationSectionNews.Message(MessageConstants.INFO_CREATED)
+                val creationSectionFragment =
+                    CreationSectionFragmentDirections.actionGlobalAfterCreated()
+                Navigation.findNavController(
+                    App.mCurrentActivity,
+                    R.id.nav_host_fragment_content_main
+                ).navigate(creationSectionFragment)
             }
 
             is CreationSectionEffect.Failure -> {

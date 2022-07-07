@@ -31,6 +31,9 @@ interface ApiRetrofit {
     @POST(Constants.URL_getGroupAttributes)
     suspend fun getSections(@Body commonRequestBody: CommonRequestBody): List<SectionNetworkEntity>
 
+    @POST(Constants.URL_getGroupNames)
+    suspend fun getSectionTemplates(@Body commonRequestBody: CommonRequestBody): List<SectionTemplateNetworkEntity>
+
     @POST(Constants.URL_createAttribute)
     suspend fun createAttribute(@Body createAttributeBody: CreateAttributeBody): CreateAttributeResponseNetworkEntity
 
@@ -42,6 +45,9 @@ interface ApiRetrofit {
 
     @POST(Constants.URL_createGroupName)
     suspend fun createGroupName(@Body createGroupBody: CreateGroupBody): CreateGroupResponseNetworkEntity
+
+    @POST(Constants.URL_deleteGroupAttribute)
+    suspend fun deleteGroupName(@Body deleteGroupBody: DeleteSectionRequestBody): DeleteSectionResponseNetworkEntity
 
     @POST(Constants.URL_getFilters)
     suspend fun getFilters(@Body commonRequestBody: CommonRequestBody): List<FilterNetworkEntity>

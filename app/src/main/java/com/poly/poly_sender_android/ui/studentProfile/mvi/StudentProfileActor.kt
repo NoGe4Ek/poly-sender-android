@@ -6,6 +6,7 @@ import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.data.models.domainModel.User
 import com.poly.poly_sender_android.mvi.Actor
 import com.poly.poly_sender_android.ui.students.mvi.StudentsEffect
+import com.poly.poly_sender_android.util.MessageConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,7 +23,7 @@ class StudentProfileActor: Actor<StudentProfileState, StudentProfileWish, Studen
                 try {
                     emit(StudentProfileEffect.Success(wish.student))
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(StudentProfileEffect.Failure(errorMessage))
                 }
             }

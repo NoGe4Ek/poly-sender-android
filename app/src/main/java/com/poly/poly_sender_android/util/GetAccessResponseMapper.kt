@@ -21,8 +21,13 @@ class GetAccessResponseMapper @Inject constructor() :
     override fun mapToEntity(domainModel: GetAccessResponse): GetAccessResponseNetworkEntity {
         with(domainModel) {
             return GetAccessResponseNetworkEntity(
-                status = if (status) "success" else "failure" //TODO
+                status = if (status) Status.Success.str else Status.Failure.str
             )
         }
     }
+}
+
+enum class Status(val str: String) {
+    Success("success"),
+    Failure("failure")
 }

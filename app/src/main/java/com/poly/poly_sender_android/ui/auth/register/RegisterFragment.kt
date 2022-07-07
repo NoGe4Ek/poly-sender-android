@@ -13,11 +13,10 @@ import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.common.string
 import com.poly.poly_sender_android.databinding.FragmentRegisterBinding
 import com.poly.poly_sender_android.mvi.MviView
-import com.poly.poly_sender_android.ui.auth.login.LoginFragmentDirections
 import com.poly.poly_sender_android.ui.auth.register.mvi.RegisterNews
 import com.poly.poly_sender_android.ui.auth.register.mvi.RegisterState
 import com.poly.poly_sender_android.ui.auth.register.mvi.RegisterWish
-import com.poly.poly_sender_android.util.ErrorConstants.EMPTY_FILL_ERROR
+import com.poly.poly_sender_android.util.MessageConstants.ERROR_EMPTY_FILL
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -59,17 +58,17 @@ class RegisterFragment : Fragment(), MviView<RegisterState, RegisterNews> {
 
                 when {
                     textFieldFirstname.editText == null -> textFieldFirstname.error =
-                        EMPTY_FILL_ERROR
+                        ERROR_EMPTY_FILL
                     textFieldLastname.editText == null -> textFieldLastname.error =
-                        EMPTY_FILL_ERROR
+                        ERROR_EMPTY_FILL
                     textFieldPatronymic.editText == null -> textFieldPatronymic.error =
-                        EMPTY_FILL_ERROR
+                        ERROR_EMPTY_FILL
                     textFieldEmail.editText == null -> textFieldEmail.error =
-                        EMPTY_FILL_ERROR
+                        ERROR_EMPTY_FILL
                     menuDepartment.editText == null -> menuDepartment.error =
-                        EMPTY_FILL_ERROR
+                        ERROR_EMPTY_FILL
                     menuHighSchool.editText == null -> menuHighSchool.error =
-                        EMPTY_FILL_ERROR
+                        ERROR_EMPTY_FILL
                     else -> {
                         registerViewModel.obtainWish(
                             RegisterWish.GetAccess(
@@ -95,7 +94,7 @@ class RegisterFragment : Fragment(), MviView<RegisterState, RegisterNews> {
 
     override fun renderState(state: RegisterState) {
         if (state.isLoading) {
-            //TODO
+            //TODO loading
         }
     }
 

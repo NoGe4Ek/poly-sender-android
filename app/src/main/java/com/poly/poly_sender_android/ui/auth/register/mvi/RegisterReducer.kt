@@ -1,6 +1,10 @@
 package com.poly.poly_sender_android.ui.auth.register.mvi
 
+import androidx.navigation.Navigation
+import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.mvi.Reducer
+import com.poly.poly_sender_android.ui.auth.register.RegisterFragmentDirections
 
 class RegisterReducer: Reducer<RegisterState, RegisterEffect, RegisterNews> {
 
@@ -12,7 +16,12 @@ class RegisterReducer: Reducer<RegisterState, RegisterEffect, RegisterNews> {
                 reducedState = state.copy(isLoading = true)
             }
             is RegisterEffect.Success -> {
-                //TODO navigate to LoginFragment
+                val creationAttributeSelectionFragment =
+                    RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                Navigation.findNavController(
+                    App.mCurrentActivity,
+                    R.id.nav_host_fragment_content_auth
+                ).navigate(creationAttributeSelectionFragment)
             }
             is RegisterEffect.Failure -> {
                 reducedState = state.copy(isLoading = false)

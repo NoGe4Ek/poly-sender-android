@@ -3,6 +3,7 @@ package com.poly.poly_sender_android.ui.students.mvi
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.mvi.Actor
+import com.poly.poly_sender_android.util.MessageConstants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -57,7 +58,7 @@ class StudentsActor :
 
                     //TODO not necessary, add else branch to display empty list students. FOR ALL PLACES
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(StudentsEffect.RefreshStudentsFailure(errorMessage))
                 }
             }
@@ -65,7 +66,7 @@ class StudentsActor :
                 try {
                     emit(StudentsEffect.ClearSearchParamSuccess)
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(StudentsEffect.ClearSearchParamFailure(errorMessage))
                 }
             }
@@ -95,7 +96,7 @@ class StudentsActor :
                         )
                     }
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(
                         StudentsEffect.RefreshSearchingAttributesBySelectedSectionFailure(
                             errorMessage
@@ -120,7 +121,7 @@ class StudentsActor :
                     val sections = mainRepository.getSections(mainRepository.user.idStaff).toSet()
                     emit(StudentsEffect.RefreshSectionsSuccess(sections))
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: "Unknown exception"
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
                     emit(
                         StudentsEffect.RefreshSectionsFailure(
                             errorMessage

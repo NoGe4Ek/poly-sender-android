@@ -2,8 +2,8 @@ package com.poly.poly_sender_android.ui.auth.register.mvi
 
 import com.poly.poly_sender_android.data.models.domainModel.GetAccessResponse
 import com.poly.poly_sender_android.mvi.Actor
-import com.poly.poly_sender_android.util.ErrorConstants.STATUS_FALSE
-import com.poly.poly_sender_android.util.ErrorConstants.UNKNOWN_EXCEPTION
+import com.poly.poly_sender_android.util.MessageConstants.ERROR_STATUS_FALSE
+import com.poly.poly_sender_android.util.MessageConstants.ERROR_UNKNOWN_EXCEPTION
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -28,11 +28,11 @@ class RegisterActor : Actor<RegisterState, RegisterWish, RegisterEffect>() {
                     if (getAccessResponse.status) {
                         emit(RegisterEffect.Success)
                     } else {
-                        emit(RegisterEffect.Failure(STATUS_FALSE))
+                        emit(RegisterEffect.Failure(ERROR_STATUS_FALSE))
                     }
 
                 } catch (e: Exception) {
-                    val errorMessage = e.message ?: UNKNOWN_EXCEPTION
+                    val errorMessage = e.message ?: ERROR_UNKNOWN_EXCEPTION
                     emit(RegisterEffect.Failure(errorMessage))
                 }
             }

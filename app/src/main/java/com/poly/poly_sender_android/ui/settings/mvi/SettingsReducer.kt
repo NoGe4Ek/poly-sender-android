@@ -10,6 +10,7 @@ class SettingsReducer: Reducer<SettingsState, SettingsEffect, SettingsNews> {
         var reducedNews: SettingsNews? = null
         when (effect) {
 
+            else -> {}
         }
         return reducedState to reducedNews
     }

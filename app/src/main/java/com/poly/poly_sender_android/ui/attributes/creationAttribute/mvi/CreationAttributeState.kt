@@ -14,7 +14,7 @@ data class CreationAttributeState(
 
     //CreationAttributeParam
     val selectedName: String,
-    val selectedSection: String, //TODO class sections
+    val selectedSection: String,
     val sections: Set<Section>,
 
     //CreationAttributeSelection
