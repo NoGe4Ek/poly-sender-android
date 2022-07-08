@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FiltersFragment"
         android:name="com.poly.poly_sender_android.ui.filters.FiltersFragment"
-        android:label="Filters"
+        android:label="@string/label_filters"
         tools:layout="@layout/fragment_filters">
     </fragment>
 

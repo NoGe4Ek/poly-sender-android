@@ -138,7 +138,7 @@ class FilterProfileFragment : Fragment(), MviView<FilterProfileState, FilterProf
                 binding.textViewFilterProfileStudents.text = students.size.toString()
                 binding.textViewFilterProfileType.text = type
                 binding.textViewFilterProfileDate.text = created
-                binding.textViewFilterProfileMode.text = mode
+                binding.textViewFilterProfileMode.text = mode.str
             }
         }
     }

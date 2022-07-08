@@ -5,8 +5,7 @@ import com.poly.poly_sender_android.mvi.Store
 import javax.inject.Inject
 
 class LoginStore @Inject constructor(
-    logger: Logger
-) : Store<LoginState, LoginWish, LoginEffect, LoginNews>(logger) {
+) : Store<LoginState, LoginWish, LoginEffect, LoginNews>() {
     init {
         actor = LoginActor()
         reducer = LoginReducer()

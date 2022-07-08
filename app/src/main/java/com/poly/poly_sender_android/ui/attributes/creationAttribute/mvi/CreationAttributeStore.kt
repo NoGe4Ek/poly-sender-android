@@ -5,8 +5,7 @@ import com.poly.poly_sender_android.mvi.Store
 import javax.inject.Inject
 
 class CreationAttributeStore @Inject constructor(
-    logger: Logger
-): Store<CreationAttributeState, CreationAttributeWish, CreationAttributeEffect, CreationAttributeNews>(logger) {
+): Store<CreationAttributeState, CreationAttributeWish, CreationAttributeEffect, CreationAttributeNews>() {
     init {
         actor = CreationAttributeActor()
         reducer = CreationAttributeReducer()

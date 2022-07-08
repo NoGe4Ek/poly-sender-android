@@ -7,7 +7,7 @@
         android:id="@+id/action_select_all"
         android:icon="@drawable/sl_check_all"
         android:orderInCategory="50"
-        android:title="SelectAll"
+        android:title="@string/menu_select_all"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 
@@ -15,7 +15,7 @@
         android:id="@+id/action_attributing"
         android:icon="@drawable/ic_filters"
         android:orderInCategory="200"
-        android:title="Attributing"
+        android:title="@string/menu_attributing"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 
@@ -23,7 +23,7 @@
         android:id="@+id/action_next"
         android:icon="@drawable/ic_next"
         android:orderInCategory="300"
-        android:title="Search"
+        android:title="@string/menu_search"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 </menu>

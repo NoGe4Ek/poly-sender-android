@@ -5,8 +5,7 @@ import com.poly.poly_sender_android.mvi.Store
 import javax.inject.Inject
 
 class RegisterStore @Inject constructor(
-    logger: Logger
-): Store<RegisterState, RegisterWish, RegisterEffect, RegisterNews>(logger) {
+): Store<RegisterState, RegisterWish, RegisterEffect, RegisterNews>() {
     init {
         actor = RegisterActor()
         reducer = RegisterReducer()

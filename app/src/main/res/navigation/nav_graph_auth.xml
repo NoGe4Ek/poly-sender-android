@@ -2,13 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/nav_graph_auth"
     app:startDestination="@id/LoginFragment">
 
     <fragment
         android:id="@+id/LoginFragment"
         android:name="com.poly.poly_sender_android.ui.auth.login.LoginFragment"
-        android:label="Login"
+        android:label="@string/label_login"
         tools:layout="@layout/fragment_login">
 
         <action
@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/RegisterFragment"
         android:name="com.poly.poly_sender_android.ui.auth.register.RegisterFragment"
-        android:label="Register"
+        android:label="@string/label_register"
         tools:layout="@layout/fragment_register">
 
         <action
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/RestoreFragment"
         android:name="com.poly.poly_sender_android.ui.auth.restore.RestoreFragment"
-        android:label="Restore"
+        android:label="@string/label_restore"
         tools:layout="@layout/fragment_restore">
 
         <action

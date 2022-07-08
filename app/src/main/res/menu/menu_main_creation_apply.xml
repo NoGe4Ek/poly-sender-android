@@ -7,7 +7,7 @@
         android:id="@+id/action_apply"
         android:icon="@drawable/ic_apply"
         android:orderInCategory="100"
-        android:title="Apply"
+        android:title="@string/menu_apply"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 </menu>

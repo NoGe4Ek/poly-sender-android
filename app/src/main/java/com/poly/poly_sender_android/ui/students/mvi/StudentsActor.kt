@@ -1,5 +1,8 @@
 package com.poly.poly_sender_android.ui.students.mvi
 
+import android.widget.TextView
+import com.poly.poly_sender_android.App
+import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.mvi.Actor
@@ -20,6 +23,10 @@ class StudentsActor :
             is StudentsWish.RefreshStudents -> {
                 try {
                     emit(StudentsEffect.Loading)
+
+                    val userTextView = App.mCurrentActivity.findViewById<TextView>(R.id.text_view_profile_name) //TODO make setupWish in mainActivity
+                    userTextView.text = mainRepository.user.fullName
+
                     val students = mutableSetOf<Student>()
                     students.addAll(mainRepository.getStudents(mainRepository.user.idStaff))
 

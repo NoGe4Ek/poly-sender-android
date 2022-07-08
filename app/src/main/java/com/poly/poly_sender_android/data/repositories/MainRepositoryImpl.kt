@@ -196,7 +196,7 @@ class MainRepositoryImpl @Inject constructor(
                 idStaff = user.idStaff,
                 idFilter = filter.id,
                 name = filter.filterName,
-                mailOption = filter.mode,
+                mailOption = filter.mode.str,
                 expression = filter.expression,
                 studentsId = filter.students
             )

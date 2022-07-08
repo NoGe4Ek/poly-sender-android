@@ -5,8 +5,7 @@ import com.poly.poly_sender_android.mvi.Store
 import javax.inject.Inject
 
 class CreationFilterStore @Inject constructor(
-    logger: Logger
-): Store<CreationFilterState, CreationFilterWish, CreationFilterEffect, CreationFilterNews>(logger) {
+): Store<CreationFilterState, CreationFilterWish, CreationFilterEffect, CreationFilterNews>() {
     init {
         actor = CreationFilterActor()
         reducer = CreationFilterReducer()

@@ -57,7 +57,15 @@ class FiltersAdapter(
             binding.apply {
                 cardFilterName.text = filter.filterName
                 cardFilterEmail.text = filter.mail
-                cardFilterStudentCount.text = "${filter.students.size} students"
+
+                val countText = filter.students.size.let { count ->
+                    when(count) {
+                        1 -> "$count студент"
+                        in 2..4 -> "$count студента"
+                        else -> "$count студентов"
+                    }
+                }
+                cardFilterStudentCount.text = countText
             }
         }
     }

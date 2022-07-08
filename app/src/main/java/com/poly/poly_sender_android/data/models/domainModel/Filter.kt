@@ -10,7 +10,7 @@ data class Filter(
     val mail: String,
     val expression: String,
     val type: String,
-    val mode: String,
+    val mode: MailingMode,
     val created: String,
     val link: String,
     val mailCounter: String?,

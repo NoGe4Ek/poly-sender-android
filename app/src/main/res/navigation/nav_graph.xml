@@ -12,7 +12,7 @@
     <fragment
         android:id="@+id/CreationAttributeParamFragment"
         android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeParamFragment"
-        android:label="Parameters"
+        android:label="@string/label_creation_attribute"
         tools:layout="@layout/fragment_creation_attribute_param">
         <argument
             android:name="attribute"
@@ -31,7 +31,7 @@
     <fragment
         android:id="@+id/CreationAttributeSelectionFragment"
         android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionFragment"
-        android:label="Selection"
+        android:label="@string/label_creation_attribute"
         tools:layout="@layout/fragment_creation_attribute_selection">
 
         <action
@@ -47,7 +47,7 @@
     <fragment
         android:id="@+id/CreationAttributeSelectionAttributingFragment"
         android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionAttributingFragment"
-        android:label="Selection Attributing"
+        android:label="@string/label_creation_attribute"
         tools:layout="@layout/fragment_creation_attribute_selection_attributing">
 
         <action
@@ -60,7 +60,7 @@
     <fragment
         android:id="@+id/CreationAttributeFragment"
         android:name="com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeFragment"
-        android:label="Confirmation"
+        android:label="@string/label_creation_attribute"
         tools:layout="@layout/fragment_creation_attribute">
 
         <action
@@ -71,7 +71,7 @@
     <fragment
         android:id="@+id/CreationFilterParamFragment"
         android:name="com.poly.poly_sender_android.ui.filters.creationFilter.CreationFilterParamFragment"
-        android:label="Parameters"
+        android:label="@string/label_creation_filter"
         tools:layout="@layout/fragment_creation_filter_param">
         <argument
             android:name="filter"
@@ -90,7 +90,7 @@
     <fragment
         android:id="@+id/CreationFilterSelectionFragment"
         android:name="com.poly.poly_sender_android.ui.filters.creationFilter.creationFilterSelection.CreationFilterSelectionFragment"
-        android:label="Selection"
+        android:label="@string/label_creation_filter"
         tools:layout="@layout/fragment_creation_filter_selection">
 
         <action
@@ -106,7 +106,7 @@
     <fragment
         android:id="@+id/CreationFilterSelectionAttributingFragment"
         android:name="com.poly.poly_sender_android.ui.filters.creationFilter.creationFilterSelection.CreationFilterSelectionAttributingFragment"
-        android:label="Selection Attributing"
+        android:label="@string/label_creation_filter"
         tools:layout="@layout/fragment_creation_filter_selection_attributing">
 
         <action
@@ -116,7 +116,7 @@
     <fragment
         android:id="@+id/CreationFilterFragment"
         android:name="com.poly.poly_sender_android.ui.filters.creationFilter.CreationFilterFragment"
-        android:label="Confirmation"
+        android:label="@string/label_creation_filter"
         tools:layout="@layout/fragment_creation_filter">
 
         <action
@@ -127,13 +127,13 @@
     <fragment
         android:id="@+id/CreationSectionFragment"
         android:name="com.poly.poly_sender_android.ui.attributes.creationSection.CreationSectionFragment"
-        android:label="Confirmation"
+        android:label="@string/label_creation_section"
         tools:layout="@layout/fragment_creation_section" />
 
     <fragment
         android:id="@+id/AttributeProfileFragment"
         android:name="com.poly.poly_sender_android.ui.attributeProfile.AttributeProfileFragment"
-        android:label="Attribute Profile"
+        android:label="@string/label_attribute_profile"
         tools:layout="@layout/fragment_attribute_profile">
         <argument
             android:name="attribute"
@@ -142,7 +142,7 @@
     <fragment
         android:id="@+id/FilterProfileFragment"
         android:name="com.poly.poly_sender_android.ui.filterProfile.FilterProfileFragment"
-        android:label="Filter Profile"
+        android:label="@string/label_filter_profile"
         tools:layout="@layout/fragment_filter_profile">
         <argument
             android:name="filter"
@@ -151,7 +151,7 @@
     <fragment
         android:id="@+id/StudentProfileFragment"
         android:name="com.poly.poly_sender_android.ui.studentProfile.StudentProfileFragment"
-        android:label="Student Profile"
+        android:label="@string/label_student_profile"
         tools:layout="@layout/fragment_student_profile">
         <argument
             android:name="student"
@@ -160,12 +160,12 @@
     <fragment
         android:id="@+id/ProfileFragment"
         android:name="com.poly.poly_sender_android.ui.profile.ProfileFragment"
-        android:label="Profile"
+        android:label="@string/label_my_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/SettingsFragment"
         android:name="com.poly.poly_sender_android.ui.settings.SettingsFragment"
-        android:label="Settings"
+        android:label="@string/label_settings"
         tools:layout="@layout/fragment_settings" />
 
     <action

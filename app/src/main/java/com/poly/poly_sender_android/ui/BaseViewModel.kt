@@ -7,17 +7,16 @@ import androidx.lifecycle.viewModelScope
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.common.launchWhenStarted
 import com.poly.poly_sender_android.mvi.*
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 abstract class BaseViewModel<S: State, W: Wish, E: Effect, N: News>: ViewModel() {
 
-    @Inject
-    lateinit var logger: Logger
+    abstract val logger: Logger
 
     abstract val stateFlow: MutableStateFlow<S>
     abstract val newsFlow: MutableSharedFlow<N>

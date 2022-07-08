@@ -1,5 +1,7 @@
 package com.poly.poly_sender_android.ui.filters.creationFilter
 
+import com.poly.poly_sender_android.common.Logger
+import com.poly.poly_sender_android.mvi.Store
 import com.poly.poly_sender_android.ui.BaseViewModel
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.*
 import com.poly.poly_sender_android.ui.filters.creationFilter.mvi.*
@@ -9,7 +11,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class CreationFilterSharedViewModel @Inject constructor() :
+class CreationFilterSharedViewModel @Inject constructor(
+    override val logger: Logger,
+    override val store: CreationFilterStore
+) :
     BaseViewModel<CreationFilterState, CreationFilterWish, CreationFilterEffect, CreationFilterNews>() {
     companion object {
         val initState = CreationFilterState(
@@ -37,7 +42,4 @@ class CreationFilterSharedViewModel @Inject constructor() :
     override val wishFlow = MutableSharedFlow<CreationFilterWish?>()
     override val effectFlow = MutableSharedFlow<CreationFilterEffect?>()
     override val newsFlow = MutableSharedFlow<CreationFilterNews>()
-
-    @Inject
-    override lateinit var store: CreationFilterStore
 }

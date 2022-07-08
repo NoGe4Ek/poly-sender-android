@@ -21,7 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="transparent border" />
+            android:contentDescription="@string/desc_transparent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/image_view_student_profile_square"
@@ -99,7 +99,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_role"/>
+                    app:layout_constraintTop_toBottomOf="@id/text_view_student_profile_role"
+                    tools:listitem="@layout/card_student_attribute"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

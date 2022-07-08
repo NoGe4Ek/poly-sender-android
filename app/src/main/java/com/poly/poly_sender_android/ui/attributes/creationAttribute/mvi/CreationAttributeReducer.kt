@@ -1,5 +1,6 @@
 package com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi
 
+import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.AppBar
@@ -29,7 +30,7 @@ class CreationAttributeReducer :
                 Navigation.findNavController(
                     App.mCurrentActivity,
                     R.id.nav_host_fragment_content_main
-                ).navigate(R.id.action_global_afterCreated)
+                ).navigate(R.id.action_global_afterCreated, bundleOf("created" to true))
             }
             is CreationAttributeEffect.CreateAttributeFailure -> {
                 reducedState = state.copy(isLoading = false)
@@ -170,7 +171,7 @@ class CreationAttributeReducer :
                 Navigation.findNavController(
                     App.mCurrentActivity,
                     R.id.nav_host_fragment_content_main
-                ).navigate(R.id.action_global_afterCreated)
+                ).navigate(R.id.action_global_afterCreated, bundleOf("created" to true))
             }
             is CreationAttributeEffect.DismissStudentsSuccess -> {
                 val selectedStudents = state.selectedStudents.toMutableSet()

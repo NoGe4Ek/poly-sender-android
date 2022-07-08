@@ -7,7 +7,6 @@ import javax.inject.Inject
 class AttributeProfileStore @Inject constructor(
     logger: Logger
 ) : Store<AttributeProfileState, AttributeProfileWish, AttributeProfileEffect, AttributeProfileNews>(
-    logger
 ) {
     init {
         actor = AttributeProfileActor()

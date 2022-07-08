@@ -1,6 +1,7 @@
 package com.poly.poly_sender_android.ui.filters.creationFilter.mvi
 
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
+import com.poly.poly_sender_android.data.models.domainModel.MailingMode
 import com.poly.poly_sender_android.data.models.domainModel.Student
 import com.poly.poly_sender_android.mvi.Actor
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.CreationAttributeEffect
@@ -199,7 +200,7 @@ class CreationFilterActor : Actor<CreationFilterState, CreationFilterWish, Creat
                     emit(CreationFilterEffect.Loading)
                     state.editableFilter?.copy(
                         filterName = wish.filterName,
-                        mode = wish.mailingMode,
+                        mode = MailingMode.convert(wish.mailingMode),
                         students = wish.students.toList()
                     )?.let {
                         mainRepository.updateFilter(

@@ -62,7 +62,7 @@
             android:contentDescription="@string/floating_button_add_filter"
             android:focusable="false"
             android:translationY="4dp"
-            android:text="Фильтр"
+            android:text="@string/fab_filter"
             android:visibility="gone"
             app:layout_anchor="@id/floating_button_add_section"
             app:layout_anchorGravity="top|end"
@@ -78,7 +78,7 @@
             android:layout_marginEnd="2dp"
             android:contentDescription="@string/floating_button_add_section"
             android:focusable="false"
-            android:text="Раздел"
+            android:text="@string/fab_section"
             android:visibility="gone"
             app:icon="@drawable/ic_outline_section"
             app:layout_anchor="@id/floating_button_add_attribute"
@@ -97,7 +97,7 @@
             android:focusable="false"
             app:layout_anchor="@id/floating_button"
             app:layout_anchorGravity="top|end"
-            android:text="Атрибут"
+            android:text="@string/fab_attribute"
             android:visibility="gone"
             app:icon="@drawable/ic_outline_attribute" />
 
@@ -108,7 +108,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:clickable="true"
-            android:contentDescription="floating button upload"
             android:focusable="true"
             android:layout_marginEnd="8dp"
             app:layout_anchor="@id/bottom_navigation"
@@ -116,7 +115,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_add"
-            app:useCompatPadding="true" />
+            app:useCompatPadding="true"
+            android:contentDescription="@string/fab_desc_add" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -162,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="64dp"
-                android:text="Looking up easily!" />
+                android:text="@string/looking_up_easily" />
         </LinearLayout>
 
     </com.google.android.material.navigation.NavigationView>

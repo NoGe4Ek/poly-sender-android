@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        android:hint="Раздел">
+        android:hint="@string/hint_section">
 
         <AutoCompleteTextView
             android:id="@+id/menu_section_auto"

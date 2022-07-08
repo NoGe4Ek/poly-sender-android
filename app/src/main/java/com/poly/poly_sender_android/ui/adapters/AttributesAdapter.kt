@@ -65,7 +65,15 @@ class AttributesAdapter(
             binding.apply {
                 attributeCard.isChecked = selectedAttributes.contains(attribute)
                 cardAttributeName.text = attribute.attributeName
-                cardAttributeStudentCount.text = "${attribute.students.size} students"
+
+                val countText = attribute.students.size.let { count ->
+                    when(count) {
+                        1 -> "$count студент"
+                        in 2..4 -> "$count студента"
+                        else -> "$count студентов"
+                    }
+                }
+                cardAttributeStudentCount.text = countText
             }
         }
     }

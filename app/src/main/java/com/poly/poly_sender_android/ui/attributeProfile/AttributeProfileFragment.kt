@@ -11,11 +11,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.AppBar
+import com.poly.poly_sender_android.NavGraphDirections
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
@@ -27,6 +29,7 @@ import com.poly.poly_sender_android.ui.adapters.StudentAttributesAdapter
 import com.poly.poly_sender_android.ui.attributeProfile.mvi.AttributeProfileNews
 import com.poly.poly_sender_android.ui.attributeProfile.mvi.AttributeProfileState
 import com.poly.poly_sender_android.ui.attributeProfile.mvi.AttributeProfileWish
+import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeFragmentDirections
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeParamFragmentDirections
 import com.poly.poly_sender_android.ui.mainActivity.MainActivityViewModel
 import com.poly.poly_sender_android.ui.studentProfile.StudentProfileViewModel
@@ -87,11 +90,11 @@ class AttributeProfileFragment : Fragment(), MviView<AttributeProfileState, Attr
             mainActivityViewModel.stateFlow.collect { state ->
                 if (state.editEvent) {
                     val creationAttributeParamFragment =
-                        CreationAttributeParamFragmentDirections.actionGlobalCreationAttributeParamFragment(
+                        CreationAttributeFragmentDirections.actionGlobalCreationAttributeParamFragment(
                             attribute = attribute,
                             start = true
                         )
-                    findNavController().navigate(creationAttributeParamFragment)
+                    findNavController().navigate(R.id.action_global_creationAttributeParamFragment)
                     mainActivityViewModel.triggerEdit(false)
                 }
                 if (state.shareEvent) {

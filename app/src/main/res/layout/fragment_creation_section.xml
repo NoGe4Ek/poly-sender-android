@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        android:hint="Название раздела">
+        android:hint="@string/hint_section_name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_section_name"

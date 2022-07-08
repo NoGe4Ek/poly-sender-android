@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="transparent border" />
+        android:contentDescription="@string/desc_transparent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_profile_square"

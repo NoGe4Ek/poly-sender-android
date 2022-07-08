@@ -7,18 +7,18 @@
         android:checkable="true"
         android:icon="@drawable/sl_students"
         app:showAsAction="ifRoom"
-        android:title="Students" />
+        android:title="@string/menu_students" />
     <item
         android:id="@+id/nav_graph_attributes"
         android:checkable="true"
         android:icon="@drawable/sl_attributes"
         app:showAsAction="ifRoom"
-        android:title="Attributes" />
+        android:title="@string/menu_attributes" />
     <item
         android:id="@+id/nav_graph_filters"
         android:checkable="true"
         android:icon="@drawable/sl_filter"
         app:showAsAction="ifRoom"
-        android:title="Filters" />
+        android:title="@string/menu_filters" />
 
 </menu>

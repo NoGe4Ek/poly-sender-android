@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        android:hint="Название атрибута">
+        android:hint="@string/hint_attribute_name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_attribute_name"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_field_attribute_name"
-        android:hint="Раздел">
+        android:hint="@string/hint_section">
 
         <AutoCompleteTextView
             android:id="@+id/edit_text_view_section"

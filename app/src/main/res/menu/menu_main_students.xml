@@ -6,7 +6,7 @@
     <item
         android:id="@+id/action_search"
         android:orderInCategory="100"
-        android:title="Search"
+        android:title="@string/menu_search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="ifRoom"
         tools:ignore="Autofill" />
@@ -15,7 +15,7 @@
         android:id="@+id/action_attributing"
         android:icon="@drawable/ic_filters"
         android:orderInCategory="200"
-        android:title="Attributing"
+        android:title="@string/label_attributing"
         app:iconTint="?attr/colorOnSurface"
         app:showAsAction="ifRoom" />
 </menu>

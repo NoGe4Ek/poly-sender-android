@@ -5,10 +5,7 @@ import com.poly.poly_sender_android.mvi.Store
 import javax.inject.Inject
 
 class FilterProfileStore @Inject constructor(
-    logger: Logger
-) : Store<FilterProfileState, FilterProfileWish, FilterProfileEffect, FilterProfileNews>(
-    logger
-) {
+) : Store<FilterProfileState, FilterProfileWish, FilterProfileEffect, FilterProfileNews>(){
     init {
         actor = FilterProfileActor()
         reducer = FilterProfileReducer()

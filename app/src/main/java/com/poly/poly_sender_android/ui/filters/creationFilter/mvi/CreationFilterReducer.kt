@@ -5,6 +5,7 @@ import androidx.navigation.Navigation
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.R
+import com.poly.poly_sender_android.data.models.domainModel.MailingMode
 import com.poly.poly_sender_android.mvi.Reducer
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeParamFragmentDirections
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeSharedViewModel
@@ -159,7 +160,7 @@ class CreationFilterReducer: Reducer<CreationFilterState, CreationFilterEffect, 
                     isEdit = true,
                     isLoading = false,
                     selectedName = effect.filter.filterName,
-                    selectedMailingMode = effect.filter.mode,
+                    selectedMailingMode = effect.filter.mode.str,
                     selectedStudents = effect.students.map{ it.id }.toSet(),
                 )
             }

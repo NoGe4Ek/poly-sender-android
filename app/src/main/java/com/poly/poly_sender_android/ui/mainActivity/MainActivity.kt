@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.SearchView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.WindowCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -75,7 +79,16 @@ class MainActivity : AppCompatActivity() {
 
             val searchViewMenuItem = binding.toolbar.menu.findItem(R.id.action_search)
             val searchView = searchViewMenuItem?.actionView as? SearchView
-            searchView?.setQuery("",  true)
+            searchView?.setQuery("", true)
+//            when (destination.id) {
+//                R.id.StudentsFragment -> arguments?.let {
+//                    if (it.getBoolean("created") || lastPop?.id == R.id.CreationAttributeParamFragment)
+//                        binding.floatingButton.visibility = View.VISIBLE
+//                }
+//                R.id.CreationAttributeParamFragment -> binding.floatingButton.visibility = View.GONE
+//                R.id.CreationFilterParamFragment -> binding.floatingButton.visibility = View.GONE
+//                R.id.CreationSectionFragment -> binding.floatingButton.visibility = View.GONE
+//            }
         }
         appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -117,7 +130,11 @@ class MainActivity : AppCompatActivity() {
                 binding.floatingButtonAddSection,
                 binding.floatingButtonAddFilter
             )
-            navController.navigate(CreationAttributeFragmentDirections.actionGlobalCreationAttributeParamFragment(start = true))
+            navController.navigate(
+                CreationAttributeFragmentDirections.actionGlobalCreationAttributeParamFragment(
+                    start = true
+                )
+            )
         }
 
         binding.floatingButtonAddFilter.setOnClickListener {
@@ -128,7 +145,11 @@ class MainActivity : AppCompatActivity() {
                 binding.floatingButtonAddSection,
                 binding.floatingButtonAddFilter
             )
-            navController.navigate(CreationFilterFragmentDirections.actionGlobalCreationFilterParamFragment(start = true))
+            navController.navigate(
+                CreationFilterFragmentDirections.actionGlobalCreationFilterParamFragment(
+                    start = true
+                )
+            )
         }
 
         App.mCurrentActivity = this

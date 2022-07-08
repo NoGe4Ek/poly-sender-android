@@ -15,6 +15,7 @@ import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.common.string
+import com.poly.poly_sender_android.data.models.domainModel.MailingMode
 import com.poly.poly_sender_android.databinding.FragmentCreationAttributeParamBinding
 import com.poly.poly_sender_android.databinding.FragmentCreationFilterParamBinding
 import com.poly.poly_sender_android.mvi.MviView
@@ -120,7 +121,7 @@ class CreationFilterParamFragment : Fragment(),
 
         adapter = ArrayAdapter(requireContext(), R.layout.list_item)
         adapter.addAll(state.mailingModes.map { it })
-        adapter.add("no-reply")
+        adapter.addAll(MailingMode.values().map { it.str })
         (binding.menuMailingMode.editText as? AutoCompleteTextView)?.setAdapter(adapter)
     }
 

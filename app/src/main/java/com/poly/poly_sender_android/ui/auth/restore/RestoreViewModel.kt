@@ -1,5 +1,7 @@
 package com.poly.poly_sender_android.ui.auth.restore
 
+import com.poly.poly_sender_android.common.Logger
+import com.poly.poly_sender_android.mvi.Store
 import com.poly.poly_sender_android.ui.BaseViewModel
 import com.poly.poly_sender_android.ui.auth.restore.mvi.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,7 +10,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class RestoreViewModel @Inject constructor(): BaseViewModel<RestoreState, RestoreWish, RestoreEffect, RestoreNews>() {
+class RestoreViewModel @Inject constructor(
+    override val logger: Logger,
+    override val store: RestoreStore
+): BaseViewModel<RestoreState, RestoreWish, RestoreEffect, RestoreNews>() {
 
     private val initState = RestoreState(
         isLoading = false,
@@ -17,6 +22,4 @@ class RestoreViewModel @Inject constructor(): BaseViewModel<RestoreState, Restor
     override val wishFlow = MutableSharedFlow<RestoreWish?>()
     override val effectFlow = MutableSharedFlow<RestoreEffect?>()
     override val newsFlow = MutableSharedFlow<RestoreNews>()
-
-    @Inject override lateinit var store: RestoreStore
 }

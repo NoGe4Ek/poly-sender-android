@@ -5,8 +5,7 @@ import com.poly.poly_sender_android.mvi.Store
 import javax.inject.Inject
 
 class RestoreStore @Inject constructor(
-    logger: Logger
-): Store<RestoreState, RestoreWish, RestoreEffect, RestoreNews>(logger) {
+): Store<RestoreState, RestoreWish, RestoreEffect, RestoreNews>() {
     init {
         actor = RestoreActor()
         reducer = RestoreReducer()

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/AttributesFragment"
         android:name="com.poly.poly_sender_android.ui.attributes.AttributesFragment"
-        android:label="Attributes"
+        android:label="@string/label_attributes"
         tools:layout="@layout/fragment_attributes">
     </fragment>
 

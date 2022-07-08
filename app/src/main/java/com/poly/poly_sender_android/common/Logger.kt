@@ -2,6 +2,7 @@ package com.poly.poly_sender_android.common
 
 import android.util.Log
 
+
 class Logger {
     private var className = UNKNOWN_CLASS
 

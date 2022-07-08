@@ -5,8 +5,7 @@ import com.poly.poly_sender_android.mvi.Store
 import javax.inject.Inject
 
 class SettingsStore @Inject constructor(
-    logger: Logger
-): Store<SettingsState, SettingsWish, SettingsEffect, SettingsNews>(logger) {
+): Store<SettingsState, SettingsWish, SettingsEffect, SettingsNews>() {
     init {
         actor = SettingsActor()
         reducer = SettingsReducer()

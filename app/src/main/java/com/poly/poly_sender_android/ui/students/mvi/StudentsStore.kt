@@ -6,8 +6,7 @@ import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.*
 import javax.inject.Inject
 
 class StudentsStore @Inject constructor(
-    logger: Logger
-): Store<StudentsState, StudentsWish, StudentsEffect, StudentsNews>(logger) {
+): Store<StudentsState, StudentsWish, StudentsEffect, StudentsNews>() {
     init {
         actor = StudentsActor()
         reducer = StudentsReducer()

@@ -1,6 +1,7 @@
 package com.poly.poly_sender_android.util
 
 import com.poly.poly_sender_android.data.models.domainModel.Filter
+import com.poly.poly_sender_android.data.models.domainModel.MailingMode
 import com.poly.poly_sender_android.data.models.networkModel.FilterNetworkEntity
 import javax.inject.Inject
 
@@ -15,7 +16,7 @@ class FilterMapper @Inject constructor() :
                                 mail = mail,
                                 expression = expression ?: "",
                                 type = type,
-                                mode = mode,
+                                mode = MailingMode.convert(mode),
                                 created = created,
                                 link = link,
                                 mailCounter = mailCounter,
@@ -34,7 +35,7 @@ class FilterMapper @Inject constructor() :
                                 mail = mail,
                                 expression = expression,
                                 type = type,
-                                mode = mode,
+                                mode = mode.str,
                                 created = created,
                                 link = link,
                                 mailCounter = mailCounter,

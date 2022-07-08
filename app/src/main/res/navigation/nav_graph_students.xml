@@ -8,8 +8,12 @@
     <fragment
         android:id="@+id/StudentsFragment"
         android:name="com.poly.poly_sender_android.ui.students.StudentsFragment"
-        android:label="Students"
+        android:label="@string/label_students"
         tools:layout="@layout/fragment_students">
+        <argument
+            android:name="created"
+            app:argType="boolean"
+            android:defaultValue="false" />
 
         <action
             android:id="@+id/action_StudentsFragment_to_StudentsAttributingFragment"
@@ -18,7 +22,7 @@
     <fragment
         android:id="@+id/StudentsAttributingFragment"
         android:name="com.poly.poly_sender_android.ui.students.StudentsAttributingFragment"
-        android:label="Students Attributing"
+        android:label="@string/label_attributing"
         tools:layout="@layout/fragment_students_attributing">
 
         <action

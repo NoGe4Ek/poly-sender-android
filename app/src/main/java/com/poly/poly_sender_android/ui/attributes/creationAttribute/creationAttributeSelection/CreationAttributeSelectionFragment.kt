@@ -11,12 +11,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.AppBar
+import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.databinding.FragmentCreationAttributeSelectionBinding
 import com.poly.poly_sender_android.mvi.MviView

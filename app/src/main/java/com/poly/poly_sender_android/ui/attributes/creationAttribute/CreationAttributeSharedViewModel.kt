@@ -1,5 +1,7 @@
 package com.poly.poly_sender_android.ui.attributes.creationAttribute
 
+import com.poly.poly_sender_android.common.Logger
+import com.poly.poly_sender_android.mvi.Store
 import com.poly.poly_sender_android.ui.BaseViewModel
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.mvi.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -9,7 +11,10 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class CreationAttributeSharedViewModel @Inject constructor() :
+class CreationAttributeSharedViewModel @Inject constructor(
+    override val logger: Logger,
+    override val store: CreationAttributeStore
+) :
     BaseViewModel<CreationAttributeState, CreationAttributeWish, CreationAttributeEffect, CreationAttributeNews>() {
     companion object {
         val initState = CreationAttributeState(
@@ -36,7 +41,4 @@ class CreationAttributeSharedViewModel @Inject constructor() :
     override val wishFlow = MutableSharedFlow<CreationAttributeWish?>()
     override val effectFlow = MutableSharedFlow<CreationAttributeEffect?>()
     override val newsFlow = MutableSharedFlow<CreationAttributeNews>()
-
-    @Inject
-    override lateinit var store: CreationAttributeStore
 }
