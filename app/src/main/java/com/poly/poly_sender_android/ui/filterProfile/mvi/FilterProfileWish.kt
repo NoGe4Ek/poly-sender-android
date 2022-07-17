@@ -6,4 +6,5 @@ import com.poly.poly_sender_android.mvi.Wish
 sealed interface FilterProfileWish : Wish {
     data class SetFilter(val filter: Filter) : FilterProfileWish
     data class DeleteFilter(val filter: Filter) : FilterProfileWish
+    data class GetEmails(val filter: Filter) : FilterProfileWish
 }

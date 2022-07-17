@@ -4,6 +4,7 @@ import androidx.navigation.findNavController
 import com.poly.poly_sender_android.App
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.mvi.Reducer
+import com.poly.poly_sender_android.util.MessageConstants
 
 class FilterProfileReducer :
     Reducer<FilterProfileState, FilterProfileEffect, FilterProfileNews> {
@@ -34,6 +35,12 @@ class FilterProfileReducer :
                 reducedState = state.copy(isLoading = false)
                 App.mCurrentActivity.findNavController(R.id.nav_host_fragment_content_main)
                     .navigateUp()
+            }
+            is FilterProfileEffect.GetEmailsFailure -> {
+                reducedNews = FilterProfileNews.Message(effect.errorMessage)
+            }
+            is FilterProfileEffect.GetEmailsSuccess -> {
+                reducedNews = FilterProfileNews.Message(MessageConstants.INFO_REPLIED)
             }
         }
         return reducedState to reducedNews

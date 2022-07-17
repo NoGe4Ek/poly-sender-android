@@ -21,9 +21,15 @@
     <string name="attribute_card_button_share">attribute_card_button_share</string>
     <string name="profile_square">profile_square</string>
     <string name="student_profile_square">student_profile_square</string>
-    <string name="empty_field_error">Can\'t be empty</string>
+
+    <string name="empty_field_error">Не может быть пустым</string>
     <string name="status_false">status: false</string>
-    <string name="unknown_exception">Unknown exception</string>
+    <string name="unknown_exception">Неизвестная ошибка</string>
+    <string name="create_success">Создано успешно</string>
+    <string name="update_success">Обновлено успешно</string>
+    <string name="delete_success">Удалено успешно</string>
+    <string name="reply_success">Почта была переслана успешно</string>
+    <string name="label_selected">Выбрано</string>
 
     <string name="label_attribute_profile">Профиль аттрибута</string>
     <string name="label_filter_profile">Профиль фильтра</string>
@@ -33,7 +39,7 @@
     <string name="label_creation_attribute">Создание аттрибута</string>
     <string name="label_creation_filter">Создание фильтра</string>
     <string name="label_creation_section">Создание раздела</string>
-    <string name="label_attributes">Аттрибуты</string>
+    <string name="label_attributes">Атрибуты</string>
     <string name="label_login">Вход</string>
     <string name="label_register">Регистрация</string>
     <string name="label_restore">Восстановление пароля</string>
@@ -96,5 +102,7 @@
     <string name="btn_change">Изменить</string>
     <string name="text_view_take_admin_access">Запросить права администратора</string>
     <string name="btn_take_admin_access">Запросить</string>
+    <string name="attribute_profile_expression">Expression</string>
+    <string name="btn_logout">Выйти из аккаунта</string>
 
 </resources>

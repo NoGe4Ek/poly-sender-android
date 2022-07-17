@@ -63,4 +63,6 @@ interface MainRepository {
     ): CreateFilterResponse
 
     suspend fun getStudents(id: String): List<Student>
+
+    suspend fun getEmails(filter: Filter)
 }

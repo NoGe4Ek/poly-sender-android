@@ -82,6 +82,7 @@ class AttributeProfileFragment : Fragment(), MviView<AttributeProfileState, Attr
         binding.cardViewAttributeProfileDate.setBackgroundResource(R.drawable.ic_card_profile_background)
         binding.cardViewAttributeProfileSection.setBackgroundResource(R.drawable.ic_card_profile_background)
         binding.cardViewAttributeProfileType.setBackgroundResource(R.drawable.ic_card_profile_background)
+        binding.cardViewAttributeProfileExpression.setBackgroundResource(R.drawable.ic_card_profile_background)
 
         attribute = args.attribute
         attributeProfileViewModel.obtainWish(AttributeProfileWish.SetAttribute(attribute))
@@ -137,6 +138,10 @@ class AttributeProfileFragment : Fragment(), MviView<AttributeProfileState, Attr
                 binding.textViewAttributeProfileStudents.text = students.size.toString()
                 binding.textViewAttributeProfileType.text = type
                 binding.textViewAttributeProfileDate.text = created
+                if (type == "expression") {
+                    binding.cardViewAttributeProfileExpression.visibility = View.VISIBLE
+                    binding.textViewAttributeProfileExpression.text = expression
+                }
             }
         }
     }

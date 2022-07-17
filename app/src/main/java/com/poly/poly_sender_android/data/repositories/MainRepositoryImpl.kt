@@ -222,4 +222,12 @@ class MainRepositoryImpl @Inject constructor(
         val studentsNE = retrofit.getAllStudents(CommonRequestBody(id))
         return studentMapper.mapFromEntityList(studentsNE)
     }
+
+    override suspend fun getEmails(filter: Filter) {
+        retrofit.getEmails(
+            GetEmailsBody(
+                idFilter = filter.id
+            )
+        )
+    }
 }

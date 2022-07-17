@@ -22,7 +22,7 @@ class StudentsSharedViewModel @Inject constructor(
     BaseViewModel<StudentsState, StudentsWish, StudentsEffect, StudentsNews>() {
 
     private val initState = StudentsState(
-        label = "Students",//App.mCurrentActivity.findNavController(R.id.nav_host_fragment_content_main).graph.label.toString(),
+        label = "Студенты",//App.mCurrentActivity.findNavController(R.id.nav_host_fragment_content_main).graph.label.toString(),
         isLoading = false,
         students = emptySet(),
         selectedStudents = emptySet(),

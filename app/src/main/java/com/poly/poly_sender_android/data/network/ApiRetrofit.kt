@@ -58,6 +58,9 @@ interface ApiRetrofit {
     @POST(Constants.URL_createFilter)
     suspend fun createFilter(@Body createFilterBody: CreateFilterBody): CreateFilterResponseNetworkEntity
 
+    @POST(Constants.URL_getEmails)
+    suspend fun getEmails(@Body getEmailsBody: GetEmailsBody): GetEmailsResponseNetworkEntity
+
     @POST(Constants.URL_updateFilter)
     suspend fun updateFilter(@Body updateFilterBody: UpdateFilterBody): UpdatedFilterNetworkEntity
 

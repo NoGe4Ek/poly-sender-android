@@ -17,6 +17,7 @@ import com.poly.poly_sender_android.ui.filters.creationFilter.CreationFilterPara
 import com.poly.poly_sender_android.ui.filters.creationFilter.CreationFilterSharedViewModel
 import com.poly.poly_sender_android.ui.filters.creationFilter.creationFilterSelection.CreationFilterSelectionAttributingFragmentDirections
 import com.poly.poly_sender_android.ui.filters.creationFilter.creationFilterSelection.CreationFilterSelectionFragmentDirections
+import com.poly.poly_sender_android.util.MessageConstants
 
 class CreationFilterReducer: Reducer<CreationFilterState, CreationFilterEffect, CreationFilterNews> {
 
@@ -29,7 +30,7 @@ class CreationFilterReducer: Reducer<CreationFilterState, CreationFilterEffect, 
             }
             CreationFilterEffect.CreateFilterSuccess -> {
                 reducedState = CreationFilterSharedViewModel.initState
-                reducedNews = CreationFilterNews.Message("Filter was successfully created")
+                reducedNews = CreationFilterNews.Message(MessageConstants.INFO_CREATED)
                 Navigation.findNavController(
                     App.mCurrentActivity,
                     R.id.nav_host_fragment_content_main
@@ -116,7 +117,7 @@ class CreationFilterReducer: Reducer<CreationFilterState, CreationFilterEffect, 
                     App.appBar = AppBar.CreationSelectionBar
                     App.mCurrentActivity.invalidateOptionsMenu()
                 } else {
-                    App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                    App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 }
 
                 reducedState = state.copy(
@@ -128,7 +129,7 @@ class CreationFilterReducer: Reducer<CreationFilterState, CreationFilterEffect, 
                 selectedStudents.add(effect.student)
                 App.appBar = AppBar.CreationSelectionSelectedBar
                 App.mCurrentActivity.invalidateOptionsMenu()
-                App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 reducedState = state.copy(
                     selectedStudents = selectedStudents
                 )
@@ -170,7 +171,7 @@ class CreationFilterReducer: Reducer<CreationFilterState, CreationFilterEffect, 
             }
             CreationFilterEffect.UpdateFilterSuccess -> {
                 reducedState = CreationFilterSharedViewModel.initState
-                reducedNews = CreationFilterNews.Message("Filter was successfully updated")
+                reducedNews = CreationFilterNews.Message(MessageConstants.INFO_UPDATED)
                 Navigation.findNavController(
                     App.mCurrentActivity,
                     R.id.nav_host_fragment_content_main
@@ -184,7 +185,7 @@ class CreationFilterReducer: Reducer<CreationFilterState, CreationFilterEffect, 
                     App.appBar = AppBar.CreationSelectionBar
                     App.mCurrentActivity.invalidateOptionsMenu()
                 } else {
-                    App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                    App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 }
 
                 reducedState = state.copy(
@@ -196,7 +197,7 @@ class CreationFilterReducer: Reducer<CreationFilterState, CreationFilterEffect, 
                 selectedStudents.addAll(effect.students)
                 App.appBar = AppBar.CreationSelectionSelectedBar
                 App.mCurrentActivity.invalidateOptionsMenu()
-                App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 reducedState = state.copy(
                     selectedStudents = selectedStudents
                 )

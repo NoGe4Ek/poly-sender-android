@@ -7,6 +7,7 @@ import com.poly.poly_sender_android.AppBar
 import com.poly.poly_sender_android.R
 import com.poly.poly_sender_android.mvi.Reducer
 import com.poly.poly_sender_android.ui.students.StudentsAttributingFragmentDirections
+import com.poly.poly_sender_android.util.MessageConstants
 
 class StudentsReducer :
     Reducer<StudentsState, StudentsEffect, StudentsNews> {
@@ -55,7 +56,7 @@ class StudentsReducer :
                     App.appBar = AppBar.StudentsBar
                     App.mCurrentActivity.invalidateOptionsMenu()
                 } else {
-                    App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                    App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 }
 
                 reducedState = state.copy(
@@ -67,7 +68,7 @@ class StudentsReducer :
                 selectedStudents.add(effect.student)
                 App.appBar = AppBar.StudentsSelectedBar
                 App.mCurrentActivity.invalidateOptionsMenu()
-                App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 reducedState = state.copy(
                     selectedStudents = selectedStudents
                 )
@@ -103,7 +104,7 @@ class StudentsReducer :
                     App.appBar = AppBar.StudentsBar
                     App.mCurrentActivity.invalidateOptionsMenu()
                 } else {
-                    App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                    App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 }
 
                 reducedState = state.copy(
@@ -115,7 +116,7 @@ class StudentsReducer :
                 selectedStudents.addAll(effect.students)
                 App.appBar = AppBar.StudentsSelectedBar
                 App.mCurrentActivity.invalidateOptionsMenu()
-                App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 reducedState = state.copy(
                     selectedStudents = selectedStudents
                 )

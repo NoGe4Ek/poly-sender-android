@@ -13,6 +13,7 @@ import com.poly.poly_sender_android.databinding.FragmentSettingsBinding
 import com.poly.poly_sender_android.mvi.MviView
 import com.poly.poly_sender_android.ui.settings.mvi.SettingsNews
 import com.poly.poly_sender_android.ui.settings.mvi.SettingsState
+import com.poly.poly_sender_android.ui.settings.mvi.SettingsWish
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -22,7 +23,7 @@ class SettingsFragment : Fragment(), MviView<SettingsState, SettingsNews> {
     @Inject
     lateinit var logger: Logger
 
-    private val userDetailsViewModel: SettingsViewModel by viewModels()
+    private val settingsViewModel: SettingsViewModel by viewModels()
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
@@ -40,8 +41,12 @@ class SettingsFragment : Fragment(), MviView<SettingsState, SettingsNews> {
         super.onViewCreated(view, savedInstanceState)
 
         logger.connect(javaClass)
-        with(userDetailsViewModel) {
+        with(settingsViewModel) {
             bind(viewLifecycleOwner.lifecycleScope, this@SettingsFragment)
+        }
+
+        binding.buttonLogout.setOnClickListener {
+            settingsViewModel.obtainWish(SettingsWish.Logout)
         }
     }
 

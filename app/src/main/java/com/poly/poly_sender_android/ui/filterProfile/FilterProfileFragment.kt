@@ -19,6 +19,7 @@ import com.poly.poly_sender_android.common.Logger
 import com.poly.poly_sender_android.common.copyToClipboard
 import com.poly.poly_sender_android.data.models.domainModel.Attribute
 import com.poly.poly_sender_android.data.models.domainModel.Filter
+import com.poly.poly_sender_android.data.models.domainModel.MailingMode
 import com.poly.poly_sender_android.databinding.FragmentAttributeProfileBinding
 import com.poly.poly_sender_android.databinding.FragmentFilterProfileBinding
 import com.poly.poly_sender_android.mvi.MviView
@@ -77,6 +78,7 @@ class FilterProfileFragment : Fragment(), MviView<FilterProfileState, FilterProf
         binding.cardViewFilterProfileMode.setBackgroundResource(R.drawable.ic_card_profile_background)
         binding.cardViewFilterProfileStudents.setBackgroundResource(R.drawable.ic_card_profile_background)
         binding.cardViewFilterProfileType.setBackgroundResource(R.drawable.ic_card_profile_background)
+        binding.cardViewFilterProfileExpression.setBackgroundResource(R.drawable.ic_card_profile_background)
 
         filter = args.filter
         filterProfileViewModel.obtainWish(FilterProfileWish.SetFilter(filter))
@@ -85,6 +87,10 @@ class FilterProfileFragment : Fragment(), MviView<FilterProfileState, FilterProf
             requireContext().copyToClipboard(filter.mail)
 
             Toast.makeText(requireContext(), "Copied successfully", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnGetEmails.setOnClickListener {
+            filterProfileViewModel.obtainWish(FilterProfileWish.GetEmails(filter))
         }
 
         lifecycleScope.launchWhenResumed {
@@ -139,6 +145,13 @@ class FilterProfileFragment : Fragment(), MviView<FilterProfileState, FilterProf
                 binding.textViewFilterProfileType.text = type
                 binding.textViewFilterProfileDate.text = created
                 binding.textViewFilterProfileMode.text = mode.str
+                if (mode == MailingMode.MANUAL) {
+                    binding.btnGetEmails.visibility = View.VISIBLE
+                }
+                if (type == "expression") {
+                    binding.cardViewFilterProfileExpression.visibility = View.VISIBLE
+                    binding.textViewFilterProfileExpression.text = expression
+                }
             }
         }
     }

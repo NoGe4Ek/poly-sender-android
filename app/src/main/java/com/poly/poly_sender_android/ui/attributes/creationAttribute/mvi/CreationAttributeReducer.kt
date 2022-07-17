@@ -10,6 +10,7 @@ import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttr
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.CreationAttributeSharedViewModel
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionAttributingFragmentDirections
 import com.poly.poly_sender_android.ui.attributes.creationAttribute.creationAttributeSelection.CreationAttributeSelectionFragmentDirections
+import com.poly.poly_sender_android.util.MessageConstants
 
 class CreationAttributeReducer :
     Reducer<CreationAttributeState, CreationAttributeEffect, CreationAttributeNews> {
@@ -26,7 +27,7 @@ class CreationAttributeReducer :
             }
             CreationAttributeEffect.CreateAttributeSuccess -> {
                 reducedState = CreationAttributeSharedViewModel.initState
-                reducedNews = CreationAttributeNews.Message("Attribute was successfully created")
+                reducedNews = CreationAttributeNews.Message(MessageConstants.INFO_CREATED)
                 Navigation.findNavController(
                     App.mCurrentActivity,
                     R.id.nav_host_fragment_content_main
@@ -113,7 +114,7 @@ class CreationAttributeReducer :
                     App.appBar = AppBar.CreationSelectionBar
                     App.mCurrentActivity.invalidateOptionsMenu()
                 } else {
-                    App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                    App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 }
 
                 reducedState = state.copy(
@@ -125,7 +126,7 @@ class CreationAttributeReducer :
                 selectedStudents.add(effect.student)
                 App.appBar = AppBar.CreationSelectionSelectedBar
                 App.mCurrentActivity.invalidateOptionsMenu()
-                App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 reducedState = state.copy(
                     selectedStudents = selectedStudents
                 )
@@ -167,7 +168,7 @@ class CreationAttributeReducer :
             }
             CreationAttributeEffect.UpdateAttributeSuccess -> {
                 reducedState = CreationAttributeSharedViewModel.initState
-                reducedNews = CreationAttributeNews.Message("Attribute was successfully updated")
+                reducedNews = CreationAttributeNews.Message(MessageConstants.INFO_UPDATED)
                 Navigation.findNavController(
                     App.mCurrentActivity,
                     R.id.nav_host_fragment_content_main
@@ -181,7 +182,7 @@ class CreationAttributeReducer :
                     App.appBar = AppBar.CreationSelectionBar
                     App.mCurrentActivity.invalidateOptionsMenu()
                 } else {
-                    App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                    App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 }
 
                 reducedState = state.copy(
@@ -193,7 +194,7 @@ class CreationAttributeReducer :
                 selectedStudents.addAll(effect.students)
                 App.appBar = AppBar.CreationSelectionSelectedBar
                 App.mCurrentActivity.invalidateOptionsMenu()
-                App.mCurrentActivity.supportActionBar?.title = "Selected: ${selectedStudents.size}"
+                App.mCurrentActivity.supportActionBar?.title = "${MessageConstants.LABEL_SELECTED}: ${selectedStudents.size}"
                 reducedState = state.copy(
                     selectedStudents = selectedStudents
                 )

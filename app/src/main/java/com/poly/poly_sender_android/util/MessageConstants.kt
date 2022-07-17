@@ -11,7 +11,11 @@ object MessageConstants {
     val ERROR_UNKNOWN_EXCEPTION = App.appContext.getString(R.string.unknown_exception)
 
     //Message
-    val INFO_CREATED = "Successfully created"
-    val INFO_UPDATED = "Successfully updated"
-    val INFO_DELETED = "Successfully deleted"
+    val INFO_CREATED = App.appContext.getString(R.string.create_success)
+    val INFO_UPDATED = App.appContext.getString(R.string.update_success)
+    val INFO_DELETED = App.appContext.getString(R.string.delete_success)
+    val INFO_REPLIED = App.appContext.getString(R.string.reply_success)
+
+    //AppHeaders
+    val LABEL_SELECTED = App.appContext.getString(R.string.label_selected)
 }

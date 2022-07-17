@@ -32,6 +32,15 @@ class FilterProfileActor :
                     emit(FilterProfileEffect.DeleteFilterFailure(errorMessage))
                 }
             }
+            is FilterProfileWish.GetEmails -> {
+                try {
+                    mainRepository.getEmails(wish.filter)
+                    emit(FilterProfileEffect.GetEmailsSuccess(wish.filter))
+                } catch (e: Exception) {
+                    val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
+                    emit(FilterProfileEffect.GetEmailsFailure(errorMessage))
+                }
+            }
         }
     }.flowOn(Dispatchers.IO)
 }

@@ -10,4 +10,7 @@ sealed interface FilterProfileEffect : Effect {
 
     data class DeleteFilterSuccess(val filter: Filter) : FilterProfileEffect
     data class DeleteFilterFailure(val errorMessage: String) : FilterProfileEffect
+
+    data class GetEmailsSuccess(val filter: Filter) : FilterProfileEffect
+    data class GetEmailsFailure(val errorMessage: String) : FilterProfileEffect
 }

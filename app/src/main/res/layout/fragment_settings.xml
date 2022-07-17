@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
+        android:text="@string/text_view_change_password"
         app:layout_constraintBottom_toTopOf="@id/text_field_old_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside"
-        android:text="@string/text_view_change_password" />
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_field_old_password"
@@ -26,11 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:hint="@string/hint_old_password"
         app:layout_constraintBottom_toTopOf="@id/text_field_new_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_change_password"
-        android:hint="@string/hint_old_password">
+        app:layout_constraintTop_toBottomOf="@id/text_view_change_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -44,11 +44,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:hint="@string/hint_new_password"
         app:layout_constraintBottom_toTopOf="@id/text_field_new_password_again"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_field_old_password"
-        android:hint="@string/hint_new_password">
+        app:layout_constraintTop_toBottomOf="@id/text_field_old_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -62,11 +62,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:hint="@string/hint_new_password_again"
         app:layout_constraintBottom_toTopOf="@id/button_change_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_field_new_password"
-        android:hint="@string/hint_new_password_again">
+        app:layout_constraintTop_toBottomOf="@id/text_field_new_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -80,11 +80,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="@string/btn_change"
         app:layout_constraintBottom_toTopOf="@id/text_view_get_admin_access"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_field_new_password_again"
-        android:text="@string/btn_change" />
+        app:layout_constraintTop_toBottomOf="@id/text_field_new_password_again" />
 
     <TextView
         android:id="@+id/text_view_get_admin_access"
@@ -93,12 +93,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@id/text_field_old_password"
+        android:text="@string/text_view_take_admin_access"
+        app:layout_constraintBottom_toTopOf="@id/button_get_admin_access"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_change_password"
-        app:layout_constraintVertical_chainStyle="spread_inside"
-        android:text="@string/text_view_take_admin_access" />
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <Button
         android:id="@+id/button_get_admin_access"
@@ -106,9 +106,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="@string/btn_take_admin_access"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_get_admin_access"
-        android:text="@string/btn_take_admin_access" />
+        app:layout_constraintTop_toBottomOf="@id/text_view_get_admin_access" />
+
+    <Button
+        android:id="@+id/button_logout"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="@string/btn_logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_get_admin_access" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
