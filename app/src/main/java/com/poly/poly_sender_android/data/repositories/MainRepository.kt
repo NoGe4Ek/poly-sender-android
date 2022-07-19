@@ -7,8 +7,10 @@ import javax.inject.Singleton
 interface MainRepository {
     var user: User
 
+
     suspend fun saveAuthToken(user: User)
     suspend fun fetchAuthToken(): String
+    suspend fun clearAuthToken()
 
     suspend fun saveLocalUser(user: User)
     suspend fun updateLocalUser(user: User)

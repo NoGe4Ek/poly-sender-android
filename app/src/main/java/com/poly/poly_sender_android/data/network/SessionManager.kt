@@ -34,6 +34,12 @@ class SessionManager @Inject constructor(@ApplicationContext context: Context) {
         return prefs.getString(USER_TOKEN, null)
     }
 
+    fun clearAuthToken() {
+        prefs.edit {
+            clear()
+        }
+    }
+
     companion object {
         private const val PREFS_NAME = "PrefsFile"
         private const val USER_TOKEN = "user_token"

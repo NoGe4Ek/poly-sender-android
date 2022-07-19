@@ -18,6 +18,7 @@ class SettingsActor: Actor<SettingsState, SettingsWish, SettingsEffect>() {
             is SettingsWish.Logout -> {
                 try {
                     mainRepository.nukeTable()
+                    mainRepository.clearAuthToken()
                     emit(SettingsEffect.LogoutSuccess)
                 } catch (e: Exception) {
                     val errorMessage = e.message ?: MessageConstants.ERROR_UNKNOWN_EXCEPTION
